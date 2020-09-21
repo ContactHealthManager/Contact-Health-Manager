@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>sign up</title>
+</head>
+<body>
+<h1>Sign Up</h1> <hr>
+
+<form th:action="@{/user}" method="POST">
+    id : <input type="text" name="id"> <br>
+    password : <input type="password" name="password"> <br>
+    email : <input type="email" name="email"> <br>
+    phone : <input type="tel" name="phone"> <br>
+
+    <input type="radio" name="auth" value="ROLE_TRAINER"> 트레이너
+    <input type="radio" name="auth" value="ROLE_HELLIN" checked="checked"> 헬린이 <br>
+    <button type="submit">Join</button>
+</form> <br>
+
+<a href="/login">Go to login →</a>
+</body>
+</html>
