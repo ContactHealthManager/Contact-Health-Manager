@@ -32,6 +32,8 @@
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
+
+
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
@@ -99,66 +101,113 @@
 
 </header>
 
-<a id="bgndVideo" class="player"
-   data-property="{videoURL:'http://youtu.be/7lutvYTZk8E',showYTLogo:false, showAnnotations: false, showControls: false, cc_load_policy: false, containment:'#home-section',autoPlay:true, mute:true, startAt:10, stopAt: 36, opacity:1}">
-</a>
 
+<div class="site-section section-2" id="classes-section">
 
-<div class="intro-section" id="home-section" style="background-color: #ccc;">
     <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" >
-                <h1>Welcome To 컨헬~~</h1>
+        <div>
+            <div>
+
+                <h2 class="section-title"><a th:href="@{/post}">매니저 찾기</a></h2>
+
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th class="one wide">번호</th>
+                        <th class="ten wide">글제목</th>
+                        <th class="two wide">작성자</th>
+                        <th class="three wide">작성일</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <!-- CONTENTS !-->
+                    <tr th:each="board : ${boardList}">
+                        <td>
+                            <span th:text="${board.id}"></span>
+                        </td>
+                        <td>
+                            <a th:href="@{'/post/' + ${board.id}}">
+                                <span th:text="${board.title}"></span>
+                            </a>
+                        </td>
+                        <td>
+                            <span th:text="${board.writer}"></span>
+                        </td>
+                        <td>
+                            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
             </div>
         </div>
-    </div>
-</div>
 
-
-<div class="site-section" id="trainer-section">
-    <div class="owl-carousel nonloop-block-13">
-
-        <a class="work-thumb" href="single.html">
-            <div class="work-text">
-                <h3>Classes fitness name here</h3>
-                <span class="category">Fitness</span>
-            </div>
-            <img src="images/slide_0.jpg" alt="Image" class="img-fluid">
-        </a>
-
-        <a class="work-thumb" href="single.html">
-            <div class="work-text">
-                <h3>Classes fitness name here</h3>
-                <span class="category">Cardio Vascular</span>
-            </div>
-            <img src="images/slide_1.jpg" alt="Image" class="img-fluid">
-        </a>
-
-        <a class="work-thumb" href="single.html">
-            <div class="work-text">
-                <h3>Classes fitness name here</h3>
-                <span class="category">Lose Weight</span>
-            </div>
-            <img src="images/slide_2.jpg" alt="Image" class="img-fluid">
-        </a>
-
-        <a class="work-thumb" href="single.html">
-            <div class="work-text">
-                <h3>Classes fitness name here</h3>
-                <span class="category">Cardio Vascular</span>
-            </div>
-            <img src="images/slide_3.jpg" alt="Image" class="img-fluid">
-        </a>
-
-        <a class="work-thumb" href="single.html">
-            <div class="work-text">
-                <h3>Classes fitness name here</h3>
-                <span class="category">Fitness</span>
-            </div>
-            <img src="images/slide_4.jpg" alt="Image" class="img-fluid">
-        </a>
     </div>
 
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
+                <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+            </li>
+
+        </ul>
+    </nav>
+
+    <hr>
+
+
+    <div>
+        <div class="site-section" id="trainer-section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 mb-5">
+                        <h2 class="section-title">Trainers</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem possimus distinctio ex. Natus
+                            totam
+                            voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa
+                            dolore
+                            molestias
+                            blanditiis consequuntur
+                            sunt nisi.</p>
+                    </div>
+                </div>
+                <div class="row large-gutters">
+                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
+                        <img src="images/person_1.jpg" alt="Image" class="img-fluid mb-5">
+                        <h3>James Holmes</h3>
+                        <p class="mb-4 opacity-7">Aerobatics Trainer</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
+                            rerum
+                            voluptatem, dignissimos dolorem porro aliquid veritatis!</p>
+                    </div>
+                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0 mt-5">
+                        <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-5">
+                        <h3>Kelly Green</h3>
+                        <p class="mb-4 opacity-7">Aerobatics Trainer</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
+                            rerum
+                            voluptatem,
+                            dignissimos dolorem porro aliquid veritatis!</p>
+                    </div>
+                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
+                        <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-5">
+                        <h3>Ben Smith</h3>
+                        <p class="mb-4 opacity-7">Aerobatics Trainer</p>
+                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
+                            rerum
+                            voluptatem,
+                            dignissimos dolorem porro aliquid veritatis!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 
 

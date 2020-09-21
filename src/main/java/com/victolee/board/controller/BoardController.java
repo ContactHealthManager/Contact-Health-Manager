@@ -3,6 +3,9 @@ package com.victolee.board.controller;
 import com.victolee.board.dto.BoardDto;
 import com.victolee.board.service.BoardService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,6 +21,12 @@ public class BoardController {
 
     /* 게시글 목록 */
     @GetMapping("/")
+    public String list() {
+
+        return "/index";
+    }
+
+    @GetMapping("/managerlist")
     public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlist(pageNum);
         Integer[] pageList = boardService.getPageList(pageNum);
@@ -25,8 +34,9 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
 
-        return "/index";
+        return "/managerlist";
     }
+
 
 
     /* 게시글 상세 */
@@ -82,6 +92,6 @@ public class BoardController {
 
         model.addAttribute("boardList", boardDtoList);
 
-        return "index";
+        return "/managerlist";
     }
 }
