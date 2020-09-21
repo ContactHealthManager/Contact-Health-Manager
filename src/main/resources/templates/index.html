@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
@@ -6,7 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Title</title>
+    <title>Contact Health manager</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/board.css}">
 
@@ -33,8 +35,6 @@
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
-
-
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -49,15 +49,10 @@
 
     <div class="container-fluid">
         <div class="d-flex align-items-center">
-            <div class="site-logo"><a href="index.html">Gymerw</a></div>
+            <div class="site-logo"><a href="index.html" th:href="@{/}">Contact Health Manager</a></div>
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li><a href="#home-section" class="nav-link">Home</a></li>
-                        <li><a href="#classes-section" class="nav-link">Classes</a></li>
-                        <li><a th:href="@{/post}" class="nav-link">contact</a></li>
-                        <li><a href="#trainer-section" class="nav-link">Trainer</a></li>
-                        <li><a href="#services-section" class="nav-link">Services</a></li>
                         <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
                         <li><a href="managerlist.html" th:href="@{/managerlist}"
                                class="nav-link btn btn-outline-primary">글목록</a></li>
@@ -71,29 +66,32 @@
                                            placeholder="ex)지역,운동,매니저">
                                 </div>
 
-                                <button type="submit" class="btn btn-light">검색하기욤</button>
+                                <button type="submit" class="btn btn-light">검색하기</button>
                             </form>
                         </li>
                         <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
                         <!--                        <li><a href="#services-section" class="nav-link">Services</a></li>-->
-
                     </ul>
                 </nav>
             </div>
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="cta"><a href="#contact-section" class="nav-link"><span
-                                class="rounded border border-primary"><span sec:authentication="name"></span></span></a></li>
-                        <li class="cta"><a href="#contact-section" class="nav-link"><span
-                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>
-                        <form id="logout" action="/logout" method="POST">
-                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-                            <input type="submit" value="로그아웃"/>
-                        </form>
+                        <li class="cta"><a href="#contact-section" class="btn btn-outline-light"
+                                           sec:authentication="name"></a></li>
+                        <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
+                        <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
+                        <li class="cta">
+                            <form id="logout" action="/logout" method="POST">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="submit" class="btn btn-outline-light" value="로그아웃"/>
+                            </form>
+                        </li>
+
                     </ul>
                 </nav>
-                <a href="#" class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
+                <a href="#"
+                   class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
                         class="icon-menu h3"></span></a>
             </div>
         </div>
@@ -105,10 +103,11 @@
    data-property="{videoURL:'http://youtu.be/7lutvYTZk8E',showYTLogo:false, showAnnotations: false, showControls: false, cc_load_policy: false, containment:'#home-section',autoPlay:true, mute:true, startAt:10, stopAt: 36, opacity:1}">
 </a>
 
+
 <div class="intro-section" id="home-section" style="background-color: #ccc;">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center" data-aos="fade-up">
+            <div class="col-lg-8 mx-auto text-center" data-aos="fade-up" >
                 <h1>Welcome To 컨헬~~</h1>
             </div>
         </div>
@@ -116,70 +115,7 @@
 </div>
 
 
-
-
-<div class="site-section section-2" id="classes-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-5">
-                <h2 class="section-title">인기 헬스매니저</h2>
-                <p>풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄풕킨컨휄</p>
-            </div>
-        </div>
-
-    </div>
-
-    <a th:href="@{/post}">글쓰기</a>
-
-    <table>
-        <thead>
-        <tr>
-            <th class="one wide">번호</th>
-            <th class="ten wide">글제목</th>
-            <th class="two wide">작성자</th>
-            <th class="three wide">작성일</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        <!-- CONTENTS !-->
-        <tr th:each="board : ${boardList}">
-            <td>
-                <span th:text="${board.id}"></span>
-            </td>
-            <td>
-                <a th:href="@{'/post/' + ${board.id}}">
-                    <span th:text="${board.title}"></span>
-                </a>
-            </td>
-            <td>
-                <span th:text="${board.writer}"></span>
-            </td>
-            <td>
-                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
-
-            </td>
-        </tr>
-        </tbody>
-    </table>
-
-    <div>
-        <span th:each="pageNum : ${pageList}" th:inline="text">
-            <a th:href="@{'/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-        </span>
-    </div>
-
-    <hr>
-
-    <!-- 검색 form -->
-    <form action="/board/search" method="GET">
-        <div>
-            <input name="keyword" type="text" placeholder="검색어를 입력해주세요">
-        </div>
-
-        <button>검색하기</button>
-    </form>
-
+<div class="site-section" id="trainer-section">
     <div class="owl-carousel nonloop-block-13">
 
         <a class="work-thumb" href="single.html">
@@ -226,52 +162,14 @@
 </div>
 
 
-<div class="site-section" id="trainer-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6 mb-5">
-                <h2 class="section-title">Trainers</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem possimus distinctio ex. Natus totam
-                    voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa dolore molestias
-                    blanditiis consequuntur
-                    sunt nisi.</p>
-            </div>
-        </div>
-        <div class="row large-gutters">
-            <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                <img src="images/person_1.jpg" alt="Image" class="img-fluid mb-5">
-                <h3>James Holmes</h3>
-                <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure rerum voluptatem, dignissimos dolorem porro aliquid veritatis!</p>
-            </div>
-            <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0 mt-5">
-                <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-5">
-                <h3>Kelly Green</h3>
-                <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure rerum voluptatem,
-                    dignissimos dolorem porro aliquid veritatis!</p>
-            </div>
-            <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-5">
-                <h3>Ben Smith</h3>
-                <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure rerum voluptatem,
-                    dignissimos dolorem porro aliquid veritatis!</p>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
 <footer class="footer-section">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <h3>About Gymer</h3>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis
-                    corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat dicta.</p>
+                    corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat
+                    dicta.</p>
             </div>
 
             <div class="col-md-3 ml-auto">
@@ -306,8 +204,10 @@
                         Copyright &copy;
                         <script>
                             document.write(new Date().getFullYear());
-                        </script> All rights reserved | This template is made with <i class="icon-heart"
-                                                                                      aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </script>
+                        All rights reserved | This template is made with <i class="icon-heart"
+                                                                            aria-hidden="true"></i> by <a
+                            href="https://colorlib.com" target="_blank">Colorlib</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
                 </div>
@@ -316,7 +216,6 @@
         </div>
     </div>
 </footer>
-
 
 
 </div>
@@ -338,9 +237,20 @@
 <script src="js/jquery.mb.YTPlayer.min.js"></script>
 
 
-
-
 <script src="js/main.js"></script>
+
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
