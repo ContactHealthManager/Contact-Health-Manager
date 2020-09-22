@@ -19,13 +19,14 @@ import java.util.List;
 public class BoardController {
     private BoardService boardService;
 
-    /* 게시글 목록 */
+
     @GetMapping("/")
     public String list() {
 
         return "/index";
     }
 
+    /* 게시글 목록 */
     @GetMapping("/managerlist")
     public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlist(pageNum);
@@ -58,7 +59,7 @@ public class BoardController {
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String write(BoardDto boardDto) {
         boardService.savePost(boardDto);
-        return "redirect:/";
+        return "redirect:/managerlist";
     }
 
 
@@ -94,4 +95,7 @@ public class BoardController {
 
         return "/managerlist";
     }
+
+
+
 }
