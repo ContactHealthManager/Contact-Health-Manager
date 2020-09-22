@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum Role {
     TRAINER("ROLE_TRAINER"),
     HELLIN("ROLE_HELLIN");
-
     private String value;
+
+
 }
