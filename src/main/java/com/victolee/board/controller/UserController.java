@@ -29,4 +29,10 @@ public class UserController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/login";
     }
+
+    @GetMapping("/myinfo")
+    public String myinfo() {
+        return "myinfo.html";
+    }
+
 }

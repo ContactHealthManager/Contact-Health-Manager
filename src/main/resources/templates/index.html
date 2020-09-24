@@ -68,6 +68,7 @@
                                 </div>
 
                                 <button type="submit" class="btn btn-light">검색하기</button>
+
                             </form>
                         </li>
                         <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
@@ -78,7 +79,7 @@
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="cta"><a href="#contact-section" class="btn btn-outline-light"
+                        <li class="cta"><a th:href="@{/myinfo}" class="btn btn-outline-light"
                                            sec:authentication="name"></a></li>
                         <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
                         <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
