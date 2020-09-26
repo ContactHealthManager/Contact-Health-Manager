@@ -27,10 +27,13 @@ public class UserService implements UserDetailsService {
 
         return userRepository.save(UserEntity.builder()
                 .id(infoDto.getId())
-                .email(infoDto.getEmail())
-                .auth(infoDto.getAuth())
                 .phone(infoDto.getPhone())
-                .password(infoDto.getPassword()).build()).getCode();
+                .email(infoDto.getEmail())
+                .address(infoDto.getAddress())
+                .role(infoDto.getRole())
+                .carrer(infoDto.getCarrer())
+                .u_name(infoDto.getU_name())
+                .password(infoDto.getPassword()).build()).getU_id();
     }
 
     /**
