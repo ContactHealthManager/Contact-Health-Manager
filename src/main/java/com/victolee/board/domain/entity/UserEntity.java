@@ -19,9 +19,9 @@ import java.util.Set;
 public class UserEntity implements UserDetails {
 
     @Id
-    @Column(name = "code")
+    @Column(name = "u_id")
     @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long code;
+    private Long u_id;
 
 
     @Column
@@ -31,21 +31,34 @@ public class UserEntity implements UserDetails {
     private String password;
 
     @Column
-    private String email;
-
-    @Column
     private String phone;
 
     @Column
-    private String auth;
+    private String email;
+
+    @Column
+    private String address;
+
+    @Column
+    private String role;
+
+    @Column
+    private String carrer;
+
+    @Column
+    private String u_name;
 
     @Builder
-    public UserEntity(String id, String password,String email, String phone,String auth) {
+    public UserEntity(String id, String password,String phone, String email, String address,String role, String carrer, String u_name) {
         this.id = id;
         this.password = password;
-        this.email = email;
         this.phone = phone;
-        this.auth = auth;
+        this.email = email;
+        this.address = address;
+        this.role = role;
+        this.carrer = carrer;
+        this.u_name = u_name;
+
     }
 
     // 사용자의 권한을 콜렉션 형태로 반환
@@ -54,7 +67,7 @@ public class UserEntity implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> roles = new HashSet<>();
 
-        for (String role : auth.split(",")) {
+        for (String role : role.split(",")) {
             roles.add(new SimpleGrantedAuthority(role));
         }
 

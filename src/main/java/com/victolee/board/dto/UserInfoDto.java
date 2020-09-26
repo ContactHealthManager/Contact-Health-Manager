@@ -7,8 +7,11 @@ import lombok.Setter;
 @Setter
 public class UserInfoDto {
     private String id;
-    private String email;
     private String password;
     private String phone;
-    private String auth;
+    private String email;
+    private String address;
+    private String role;
+    private String carrer;
+    private String u_name;
 }
