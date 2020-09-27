@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
@@ -25,20 +25,81 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <div class="site-logo"><a href="index.html" th:href="@{/}">Contact Health Manager</a></div>
+            <div class="ml-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
+                        <li><a href="managerlist.html" th:href="@{/managerlist}"
+                               class="nav-link btn btn-outline-primary">주변매니저</a></li>
+                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a></li>
+                        <li><a href="mail.html" th:href="@{/mail}" class="nav-link btn btn-outline-primary">고객센터</a>
+                        </li>
+                        <li>
+                            <!-- 검색 form -->
+                            <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="keyword" class="sr-only">검색</label>
+                                    <input class="form-control" id="keyword" name="keyword" type="text"
+                                           placeholder="ex)지역,운동,매니저">
+                                </div>
+
+                                <button type="submit" class="btn btn-light">검색하기</button>
+                            </form>
+                        </li>
+                        <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
+                        <!--                        <li><a href="#services-section" class="nav-link">Services</a></li>-->
+                    </ul>
+                </nav>
+            </div>
+            <div class="ml-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
+                        <li class="cta">
+                            <button class="btn btn-outline-light">
+                                <a th:href="@{/myinfo}" sec:authentication="name"></a>
+                            </button>
+                        </li>
+                        <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
+                        <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
+                        <li class="cta">
+                            <form id="logout" action="/logout" method="POST">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="submit" class="btn btn-outline-light" value="로그아웃"/>
+                            </form>
+                        </li>
+
+                    </ul>
+                </nav>
+                <a href="#"
+                   class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
+                        class="icon-menu h3"></span></a>
+            </div>
+        </div>
+    </div>
+
+</header>
+
 <div class="site-section bg-dark" id="contact-section">
     <div class="container">
 
         <div class="row justify-content-center">
             <div class="col-md-7">
-
-                <form th:action="@{/mail}" method="post">
-                    <input name="address" placeholder="이메일 주소"> <br>
-                    <input name="title" placeholder="제목"> <br>
-                    <textarea name="message" placeholder="메일 내용을 입력해주세요." cols="60" rows="20"></textarea>
-                    <button>발송</button>
-                </form>
-
-
 
                 <h2 class="section-title mb-3">1:1 건의</h2>
                 <p class="mb-5">고객님들의 소리에 하나하나 귀 기울여 듣고 명쾌한 답변으로 보답하겠습니다.</p>
@@ -73,6 +134,64 @@
         </div>
     </div>
 </div>
+
+<footer class="footer-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h3>About Gymer</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et
+                    veritatis
+                    corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat
+                    dicta.</p>
+            </div>
+
+            <div class="col-md-3 ml-auto">
+                <h3>Links</h3>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Meditation</a></li>
+                    <li><a href="#">Gym</a></li>
+                    <li><a href="#">Aerobatics</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <h3>Subscribe</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto
+                    architecto?
+                    Numquam, natus?</p>
+                <form action="#">
+                    <div class="d-flex mb-5">
+                        <input type="text" class="form-control rounded-0" placeholder="Email">
+                        <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+
+        <div class="row pt-5 mt-5 text-center">
+            <div class="col-md-12">
+                <div class=" pt-5">
+                    <p>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        Copyright &copy;
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        All rights reserved | This template is made with <i class="icon-heart"
+                                                                            aria-hidden="true"></i> by <a
+                            href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</footer>
+
 </body>
 <!-- .site-wrap -->
 

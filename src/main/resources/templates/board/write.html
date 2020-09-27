@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contact Health manager</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+
     <link th:href="@{https://fonts.googleapis.com/css?family=Muli:300,400,700,900}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
 
@@ -24,62 +32,193 @@
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
-<div class="site-section bg-dark" id="contact-section">
-    <div class="container">
-
-        <div class="row justify-content-center">
-            <div class="col-md-7">
 
 
-
-                <h2 class="section-title mb-3">매니저등록</h2>
-                <p class="mb-5">매니저등록: 필요한것 매니저 썸네일,매니저 이미지 5장,매니저 이름, 전화번호 , 지역,
-                    운동 종류, 트레이너 소개, 상담 가능 시간 ,소속 , 자격및 경력사항</p>
-
-                <form  action="/post" method="POST" data-aos="fade">
-                    <div class="form-group row">
-                        <div class="col-md-6 mb-3 mb-lg-0">
-                            <input type="text" name="title"class="form-control" placeholder="제목">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="writer" class="form-control" placeholder="작성자">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="cNumber" class="form-control" placeholder="소속 전화번호">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="cName" class="form-control" placeholder="소속 이름">
-                        </div>
-                        <div class="col-md-6">
-                            <input type="text" name="pAddress" class="form-control" placeholder="매니저님 주소">
-                        </div>
-                    </div>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                  <textarea class="form-control" name="content" id="" cols="30" rows="10"
-                            placeholder="글내용"></textarea>
-                        </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-6">
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
 
-                            <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="Send Message">
-                        </div>
-                    </div>
+    <div class="container-fluid">
+        <div class="d-flex align-items-center">
+            <div class="site-logo"><a href="index.html" th:href="@{/}">Contact Health Manager</a></div>
+            <div class="ml-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
+                        <li><a href="managerlist.html" th:href="@{/managerlist}"
+                               class="nav-link btn btn-outline-primary">주변매니저</a></li>
+                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a></li>
+                        <li><a href="mail.html" th:href="@{/mail}" class="nav-link btn btn-outline-primary">고객센터</a>
+                        </li>
+                        <li>
+                            <!-- 검색 form -->
+                            <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
+                                <div class="form-group mx-sm-3 mb-2">
+                                    <label for="keyword" class="sr-only">검색</label>
+                                    <input class="form-control" id="keyword" name="keyword" type="text"
+                                           placeholder="ex)지역,운동,매니저">
+                                </div>
 
-                </form>
+                                <button type="submit" class="btn btn-light">검색하기</button>
+                            </form>
+                        </li>
+                        <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
+                        <!--                        <li><a href="#services-section" class="nav-link">Services</a></li>-->
+                    </ul>
+                </nav>
+            </div>
+            <div class="ml-auto">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+                    <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
+                        <li class="cta">
+                            <button class="btn btn-outline-light">
+                                <a th:href="@{/myinfo}" sec:authentication="name"></a>
+                            </button>
+                        </li>
+                        <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
+                        <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
+                        <li class="cta">
+                            <form id="logout" action="/logout" method="POST">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="submit" class="btn btn-outline-light" value="로그아웃"/>
+                            </form>
+                        </li>
+
+                    </ul>
+                </nav>
+                <a href="#"
+                   class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
+                        class="icon-menu h3"></span></a>
             </div>
         </div>
     </div>
-</div>
-</body>
-<!-- .site-wrap -->
 
+</header>
+
+
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
+
+            <div class="row justify-content-center">
+                <div class="col-md-7">
+
+                    <h2 class="section-title mb-3">매니저등록</h2>
+                    <p class="mb-5">매니저등록: 필요한것 매니저 썸네일,매니저 이미지 5장,매니저 이름, 전화번호 , 지역,
+                        운동 종류, 트레이너 소개, 상담 가능 시간 ,소속 , 자격및 경력사항</p>
+
+                    <form th:action="@{/post}" method="POST" data-aos="fade">
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3 mb-lg-0">
+                                <input type="text" name="title" class="form-control" placeholder="제목">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="writer" class="form-control" placeholder="작성자">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="cNumber" class="form-control" placeholder="소속 전화번호">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="cName" class="form-control" placeholder="소속 이름">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="pAddress" class="form-control" placeholder="소속 주소">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                            <textarea class="form-control" name="content" id="" cols="30" rows="10"
+                            placeholder="글내용"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="등록">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>About Gymer</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et
+                        veritatis
+                        corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat
+                        dicta.</p>
+                </div>
+
+                <div class="col-md-3 ml-auto">
+                    <h3>Links</h3>
+                    <ul class="list-unstyled footer-links">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Meditation</a></li>
+                        <li><a href="#">Gym</a></li>
+                        <li><a href="#">Aerobatics</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h3>Subscribe</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto
+                        architecto?
+                        Numquam, natus?</p>
+                    <form action="#">
+                        <div class="d-flex mb-5">
+                            <input type="text" class="form-control rounded-0" placeholder="Email">
+                            <input type="submit" class="btn btn-primary rounded-0" value="Subscribe">
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="row pt-5 mt-5 text-center">
+                <div class="col-md-12">
+                    <div class=" pt-5">
+                        <p>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            Copyright &copy;
+                            <script>
+                                document.write(new Date().getFullYear());
+                            </script>
+                            All rights reserved | This template is made with <i class="icon-heart"
+                                                                                aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+
+</div>
+
+
+<!-- .site-wrap -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>
@@ -96,8 +235,20 @@
 <script src="js/jquery.mb.YTPlayer.min.js"></script>
 
 
-
-
 <script src="js/main.js"></script>
-</html>
 
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
