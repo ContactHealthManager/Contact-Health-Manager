@@ -14,4 +14,5 @@ public class UserInfoDto {
     private String role;
     private String carrer;
     private String u_name;
+    private String token;
 }

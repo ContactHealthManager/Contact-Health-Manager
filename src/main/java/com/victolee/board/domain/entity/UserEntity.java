@@ -48,8 +48,11 @@ public class UserEntity implements UserDetails {
     @Column
     private String u_name;
 
+    @Column
+    private String token;
+
     @Builder
-    public UserEntity(String id, String password,String phone, String email, String address,String role, String carrer, String u_name) {
+    public UserEntity(String id, String password,String phone, String email, String address,String role, String carrer, String u_name, String token) {
         this.id = id;
         this.password = password;
         this.phone = phone;
@@ -58,6 +61,7 @@ public class UserEntity implements UserDetails {
         this.role = role;
         this.carrer = carrer;
         this.u_name = u_name;
+        this.token = token;
 
     }
 
