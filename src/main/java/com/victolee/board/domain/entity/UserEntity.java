@@ -52,7 +52,8 @@ public class UserEntity implements UserDetails {
     private String token;
 
     @Builder
-    public UserEntity(String id, String password,String phone, String email, String address,String role, String carrer, String u_name, String token) {
+    public UserEntity(Long u_id, String id, String password,String phone, String email, String address,String role, String carrer, String u_name, String token) {
+        this.u_id = u_id;
         this.id = id;
         this.password = password;
         this.phone = phone;
