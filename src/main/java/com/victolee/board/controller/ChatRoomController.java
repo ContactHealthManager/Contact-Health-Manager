@@ -1,8 +1,11 @@
 package com.victolee.board.controller;
 
-import com.victolee.board.dto.ChatRoom;
+import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.ChatRoom;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -43,5 +46,14 @@ public class ChatRoomController {
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
         return chatRoomRepository.findRoomById(roomId);
+    }
+
+
+    @GetMapping("/user")
+    @ResponseBody
+    public UserEntity getUserEntity() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        return UserEntity.builder().u_name(name).build();
     }
 }
