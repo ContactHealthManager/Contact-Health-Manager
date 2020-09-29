@@ -9,22 +9,18 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
+@Table(name = "user")
 public class UserEntity implements UserDetails {
 
     @Id
-    @Column(name = "u_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long u_id;
-
-    @Column
+    @Column(name = "id")
     private String id;
+
 
     @Column
     private String password;
@@ -42,21 +38,25 @@ public class UserEntity implements UserDetails {
     private String role;
 
     @Column
-    private String carrer;
+    private String career;
 
     @Column
-    private String u_name;
+    private String nicname;
+
+
 
     @Builder
-    public UserEntity(String id, String password,String phone, String email, String address,String role, String carrer, String u_name) {
+    public UserEntity(String id, String password,String phone,
+                      String email, String address,String role,
+                      String career, String nicname) {
         this.id = id;
         this.password = password;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.role = role;
-        this.carrer = carrer;
-        this.u_name = u_name;
+        this.career = career;
+        this.nicname = nicname;
 
     }
 

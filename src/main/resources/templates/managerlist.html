@@ -129,15 +129,15 @@
                     <!-- CONTENTS !-->
                     <tr th:each="board : ${boardList}">
                         <td>
-                            <span th:text="${board.pId}"></span>
+                            <span th:text="${board.id}"></span>
                         </td>
                         <td>
-                            <a th:href="@{'/post/' + ${board.pId}}">
+                            <a th:href="@{'/post/' + ${board.id}}">
                                 <span th:text="${board.title}"></span>
                             </a>
                         </td>
                         <td>
-                            <span th:text="${board.writer}"></span>
+                            <span></span>
                         </td>
                         <td>
                             <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>

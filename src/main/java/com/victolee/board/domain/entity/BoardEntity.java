@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -15,10 +16,7 @@ public class BoardEntity extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long pId;
-
-    @Column(length = 10, nullable = false)
-    private String writer;
+    private Long id;
 
     @Column(length = 100, nullable = false)
     private String title;
@@ -27,38 +25,36 @@ public class BoardEntity extends TimeEntity {
     private String content;
 
     @Column(length = 13, nullable = false)
-    private String cNumber;
+    private String companyphone;
 
     @Column(length = 10, nullable = false)
-    private String cName;
+    private String companyname;
 
     @Column(nullable = false)
-    private Integer postCount;
+    private Integer count;
 
     @Column(nullable = false)
-    private Integer postLike;
-
-    @Column(nullable = false)
-    private Integer commentId;
+    private Integer sumlike;
 
     @Column(columnDefinition = "TEXT", nullable = false)
-    private String pAddress;
+    private String address;
+
 
 
     @Builder
-    public BoardEntity(Long pId, String title, String content,
-                       String writer,String cNumber,String cName,
-                       Integer postCount,Integer postLike,Integer commentId,
-                       String pAddress) {
-        this.pId = pId;
-        this.writer = writer;
+    public BoardEntity(Long id, String title, String content,
+                       String companyphone, String companyname,
+                       Integer count, Integer sumlike,
+                       String address) {
+
+        this.id = id;
         this.title = title;
         this.content = content;
-        this.cNumber = cNumber;
-        this.cName = cName;
-        this.postCount = postCount;
-        this.postLike = postLike;
-        this.commentId = commentId;
-        this.pAddress = pAddress;
+        this.companyphone = companyphone;
+        this.companyname = companyname;
+        this.count = count;
+        this.sumlike = sumlike;
+        this.address = address;
+
     }
 }

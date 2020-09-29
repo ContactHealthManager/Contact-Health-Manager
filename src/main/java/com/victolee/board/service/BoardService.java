@@ -1,6 +1,7 @@
 package com.victolee.board.service;
 
 import com.victolee.board.domain.entity.BoardEntity;
+import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.BoardRepository;
 import com.victolee.board.dto.BoardDto;
 import lombok.AllArgsConstructor;
@@ -51,12 +52,12 @@ public class BoardService {
 
     @Transactional
     public Long savePost(BoardDto boardDto) {
-        return boardRepository.save(boardDto.toEntity()).getPId();
+        return boardRepository.save(boardDto.toEntity()).getId();
     }
 
     @Transactional
-    public void deletePost(Long pId) {
-        boardRepository.deleteById(pId);
+    public void deletePost(Long id) {
+        boardRepository.deleteById(id);
     }
 
     @Transactional
@@ -100,17 +101,15 @@ public class BoardService {
 
     private BoardDto convertEntityToDto(BoardEntity boardEntity) {
         return BoardDto.builder()
-                .pId(boardEntity.getPId())
+                .id(boardEntity.getId())
                 .title(boardEntity.getTitle())
                 .content(boardEntity.getContent())
-                .writer(boardEntity.getWriter())
                 .createdDate(boardEntity.getCreatedDate())
-                .cNumber(boardEntity.getCNumber())
-                .cName(boardEntity.getCName())
-                .postCount(boardEntity.getPostCount())
-                .postLike(boardEntity.getPostLike())
-                .commentId(boardEntity.getCommentId())
-                .pAddress(boardEntity.getPAddress())
+                .companyphone(boardEntity.getCompanyphone())
+                .companyname(boardEntity.getCompanyname())
+                .count(boardEntity.getCount())
+                .sumlike(boardEntity.getSumlike())
+                .address(boardEntity.getAddress())
                 .build();
     }
 }
