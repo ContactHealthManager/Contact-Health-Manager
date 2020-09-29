@@ -116,6 +116,7 @@ h1, h2, h3, h4, h5,
   background: #000; }
 
 .form-control {
+
   height: 43px;
   border-radius: 0px;
   background: none;

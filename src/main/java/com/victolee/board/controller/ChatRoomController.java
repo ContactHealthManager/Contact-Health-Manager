@@ -54,6 +54,6 @@ public class ChatRoomController {
     public UserEntity getUserEntity() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
-        return UserEntity.builder().u_name(name).build();
+        return UserEntity.builder().nicname(name).build();
     }
 }

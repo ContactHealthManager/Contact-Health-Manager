@@ -129,10 +129,10 @@
                     <!-- CONTENTS !-->
                     <tr th:each="board : ${boardList}">
                         <td>
-                            <span th:text="${board.pId}"></span>
+                            <span th:text="${board.id}"></span>
                         </td>
                         <td>
-                            <a th:href="@{'/post/' + ${board.pId}}">
+                            <a th:href="@{'/post/' + ${board.id}}">
                                 <span th:text="${board.title}"></span>
                             </a>
                         </td>

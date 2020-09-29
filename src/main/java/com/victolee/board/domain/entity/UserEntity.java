@@ -16,14 +16,10 @@ import java.util.Set;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 @Getter
+@Table(name = "user")
 public class UserEntity implements UserDetails {
 
     @Id
-    @Column(name = "u_id")
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long u_id;
-
-    @Column
     private String id;
 
     @Column
@@ -42,26 +38,22 @@ public class UserEntity implements UserDetails {
     private String role;
 
     @Column
-    private String carrer;
+    private String career;
 
     @Column
-    private String u_name;
-
-    @Column
-    private String token;
+    private String nicname;
 
     @Builder
-    public UserEntity(Long u_id, String id, String password,String phone, String email, String address,String role, String carrer, String u_name, String token) {
-        this.u_id = u_id;
+    public UserEntity(String id, String password,String phone, String email, String address,String role, String career, String nicname) {
+
         this.id = id;
         this.password = password;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.role = role;
-        this.carrer = carrer;
-        this.u_name = u_name;
-        this.token = token;
+        this.career = career;
+        this.nicname = nicname;
 
     }
 

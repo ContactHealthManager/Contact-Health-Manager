@@ -109,49 +109,55 @@
 
 <div class="site-section section-2" id="classes-section">
     <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <img src="images/slide_0.jpg" alt="Image" class="img-fluid">
+            </div>
+            <div class="col-lg-5 ml-auto">
+                <h2 th:text="${boardDto.title}"></h2><h5 th:inline="text">게시물 고유번호 :[[${boardDto.id}]] </h5>
+                <p>
+                <p th:inline="text">
+                    작성자: &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 이미지:
+                </p>
+                </p>
 
-        <h2 th:text="${boardDto.title}"></h2><h5 th:inline="text">게시물 고유번호 :[[${boardDto.pId}]] </h5>
-        <p>
-        <p th:inline="text">
-            작성자: &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; 이미지:
-        </p>
-        </p>
+                <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
+                    &nbsp; &nbsp; 조회수 : [[${boardDto.count}]] &nbsp; 좋아요: [[${boardDto.sumlike}]]</p>
 
-        <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
-            &nbsp; &nbsp; 조회수 : [[${boardDto.postCount}]] &nbsp; 좋아요: [[${boardDto.postLike}]]</p>
+                <p th:inline="text">소속 회사 이름 : [[${boardDto.companyname}]]
+                    &nbsp; &nbsp; 소속 전화번호 : [[${boardDto.companyphone}]] &nbsp; 소속 주소: [[${boardDto.address}]]</p>
 
-        <p th:inline="text">소속 회사 이름 : [[${boardDto.cName}]]
-            &nbsp; &nbsp; 소속 전화번호 : [[${boardDto.cNumber}]] &nbsp; 소속 주소: [[${boardDto.pAddress}]]</p>
-
-        <h2>소개</h2>
-        <p th:text="${boardDto.content}"></p>
+                <h2>소개</h2>
+                <p th:text="${boardDto.content}"></p>
 
 
-        <!-- 수정/삭제 -->
-        <div class="text-right">
-            <a th:href="@{'/post/edit/' + ${boardDto.pId}}">
-                <button type="button" class="float-lg-right btn btn-outline-primary">수정</button>
-            </a>
+                <!-- 수정/삭제 -->
+                <div class="text-right">
+                    <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+                        <button type="button" class="float-lg-right btn btn-outline-primary">수정</button>
+                    </a>
 
-            <form id="delete-form" th:action="@{'/post/' + ${boardDto.pId}}" method="post">
-                <input type="hidden" name="_method" value="delete"/>
-                <button class="float-lg-right btn btn-outline-primary" id="delete-btn">삭제</button>
-            </form>
+                    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
+                        <input type="hidden" name="_method" value="delete"/>
+                        <button class="float-lg-right btn btn-outline-primary" id="delete-btn">삭제</button>
+                    </form>
+                </div>
+
+                <!-- 변수 셋팅 -->
+                <script th:inline="javascript">
+                    /*<![CDATA[*/
+                    var boardDto = /*[[${boardDto}]]*/ "";
+                    /*]]>*/
+                </script>
+
+                <!-- script -->
+                <script th:inline="javascript" th:src="@{/js/board.js}"></script>
+                </h1>
+            </div>
         </div>
 
-        <!-- 변수 셋팅 -->
-        <script th:inline="javascript">
-            /*<![CDATA[*/
-            var boardDto = /*[[${boardDto}]]*/ "";
-            /*]]>*/
-        </script>
 
-        <!-- script -->
-        <script th:inline="javascript" th:src="@{/js/board.js}"></script>
-    </h1>
-
-
-</div>
+    </div>
 
 
 <footer class="footer-section">

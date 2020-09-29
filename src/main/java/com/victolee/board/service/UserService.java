@@ -21,7 +21,7 @@ public class UserService implements UserDetailsService {
      * @param infoDto 회원정보가 들어있는 DTO
      * @return 저장되는 회원의 PK
      */
-    public Long save(UserInfoDto infoDto) {
+    public String save(UserInfoDto infoDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         infoDto.setPassword(encoder.encode(infoDto.getPassword()));
 
@@ -31,9 +31,9 @@ public class UserService implements UserDetailsService {
                 .email(infoDto.getEmail())
                 .address(infoDto.getAddress())
                 .role(infoDto.getRole())
-                .carrer(infoDto.getCarrer())
-                .u_name(infoDto.getU_name())
-                .password(infoDto.getPassword()).build()).getU_id();
+                .career(infoDto.getCareer())
+                .nicname(infoDto.getNicname())
+                .password(infoDto.getPassword()).build()).getId();
     }
 
     /**

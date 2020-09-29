@@ -51,7 +51,7 @@ public class BoardService {
 
     @Transactional
     public Long savePost(BoardDto boardDto) {
-        return boardRepository.save(boardDto.toEntity()).getPId();
+        return boardRepository.save(boardDto.toEntity()).getId();
     }
 
     @Transactional
@@ -100,17 +100,17 @@ public class BoardService {
 
     private BoardDto convertEntityToDto(BoardEntity boardEntity) {
         return BoardDto.builder()
-                .pId(boardEntity.getPId())
+                .id(boardEntity.getId())
                 .title(boardEntity.getTitle())
                 .content(boardEntity.getContent())
                 .writer(boardEntity.getWriter())
                 .createdDate(boardEntity.getCreatedDate())
-                .cNumber(boardEntity.getCNumber())
-                .cName(boardEntity.getCName())
-                .postCount(boardEntity.getPostCount())
-                .postLike(boardEntity.getPostLike())
-                .commentId(boardEntity.getCommentId())
-                .pAddress(boardEntity.getPAddress())
+                .companyphone(boardEntity.getCompanyphone())
+                .companyname(boardEntity.getCompanyname())
+                .count(boardEntity.getCount())
+                .sumlike(boardEntity.getSumlike())
+                .address(boardEntity.getAddress())
+                .writer(boardEntity.getWriter())
                 .build();
     }
 }
