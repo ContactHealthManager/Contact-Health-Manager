@@ -11,6 +11,7 @@
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/board.css}">
+    <link rel="stylesheet" th:href="@{/css/float_1.css}">
 
     <link th:href="@{https://fonts.googleapis.com/css?family=Muli:300,400,700,900}" rel="stylesheet">
     <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
@@ -80,8 +81,11 @@
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="cta"><a href="#contact-section" class="btn btn-outline-light"
-                                           sec:authentication="name"></a></li>
+                        <li class="cta">
+                            <button class="btn btn-outline-light">
+                                <a th:href="@{/myinfo}" sec:authentication="name"></a>
+                            </button>
+                        </li>
                         <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
                         <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
                         <li class="cta">
@@ -109,7 +113,7 @@
         <div>
             <div>
 
-                <h2 class="section-title"><a th:href="@{/post}">매니저 찾기</a></h2>
+                <h2 class="section-title text-center">매니저 찾기</h2>
 
                 <table class="table table-striped">
                     <thead>
@@ -179,7 +183,7 @@
                 </div>
                 <div class="row large-gutters">
                     <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                        <img src="images/person_1.jpg" alt="Image" class="img-fluid mb-5">
+                        <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5">
                         <h3>James Holmes</h3>
                         <p class="mb-4 opacity-7">Aerobatics Trainer</p>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
@@ -187,7 +191,7 @@
                             voluptatem, dignissimos dolorem porro aliquid veritatis!</p>
                     </div>
                     <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0 mt-5">
-                        <img src="images/person_2.jpg" alt="Image" class="img-fluid mb-5">
+                        <img th:src="@{/images/person_2.jpg}" alt="Image" class="img-fluid mb-5">
                         <h3>Kelly Green</h3>
                         <p class="mb-4 opacity-7">Aerobatics Trainer</p>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
@@ -196,7 +200,7 @@
                             dignissimos dolorem porro aliquid veritatis!</p>
                     </div>
                     <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                        <img src="images/person_3.jpg" alt="Image" class="img-fluid mb-5">
+                        <img th:src="@{/images/person_3.jpg}" alt="Image" class="img-fluid mb-5">
                         <h3>Ben Smith</h3>
                         <p class="mb-4 opacity-7">Aerobatics Trainer</p>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure

@@ -55,8 +55,8 @@ public class BoardService {
     }
 
     @Transactional
-    public void deletePost(Long id) {
-        boardRepository.deleteById(id);
+    public void deletePost(Long pId) {
+        boardRepository.deleteById(pId);
     }
 
     @Transactional

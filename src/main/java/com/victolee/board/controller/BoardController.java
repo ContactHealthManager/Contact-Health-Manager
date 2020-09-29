@@ -19,7 +19,7 @@ import java.util.List;
 public class BoardController {
     private BoardService boardService;
 
-
+    /* 메인 화면 */
     @GetMapping("/")
     public String list() {
 
@@ -71,12 +71,12 @@ public class BoardController {
         model.addAttribute("boardDto", boardDTO);
         return "board/update";
     }
-
+    /* 수정 폼에서 수정 완료*/
     @PutMapping("/post/edit/{no}")
     public String update(BoardDto boardDTO) {
         boardService.savePost(boardDTO);
 
-        return "redirect:/";
+        return "redirect:/managerlist";
     }
 
     /* 게시글 삭제 */
@@ -84,9 +84,9 @@ public class BoardController {
     public String delete(@PathVariable("no") Long no) {
         boardService.deletePost(no);
 
-        return "redirect:/";
+        return "redirect:/managerlist";
     }
-
+    /* 게시글 검색 */
     @GetMapping("/board/search")
     public String search(@RequestParam(value="keyword") String keyword, Model model) {
         List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
