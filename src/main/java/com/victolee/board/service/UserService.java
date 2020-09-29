@@ -1,13 +1,18 @@
 package com.victolee.board.service;
 
+import com.victolee.board.domain.entity.BoardEntity;
 import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.UserRepository;
+import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.UserInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
@@ -21,7 +26,7 @@ public class UserService implements UserDetailsService {
      * @param infoDto 회원정보가 들어있는 DTO
      * @return 저장되는 회원의 PK
      */
-    public Long save(UserInfoDto infoDto) {
+    public String save(UserInfoDto infoDto) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         infoDto.setPassword(encoder.encode(infoDto.getPassword()));
 
@@ -31,10 +36,12 @@ public class UserService implements UserDetailsService {
                 .email(infoDto.getEmail())
                 .address(infoDto.getAddress())
                 .role(infoDto.getRole())
-                .carrer(infoDto.getCarrer())
-                .u_name(infoDto.getU_name())
-                .password(infoDto.getPassword()).build()).getU_id();
+                .career(infoDto.getCareer())
+                .nicname(infoDto.getNicname())
+                .password(infoDto.getPassword()).build()).getId();
     }
+
+
 
     /**
      * Spring Security 필수 메소드 구현

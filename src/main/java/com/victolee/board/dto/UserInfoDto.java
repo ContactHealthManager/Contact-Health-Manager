@@ -1,10 +1,12 @@
 package com.victolee.board.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
+
 public class UserInfoDto {
     private String id;
     private String password;
@@ -12,6 +14,8 @@ public class UserInfoDto {
     private String email;
     private String address;
     private String role;
-    private String carrer;
-    private String u_name;
+    private String career;
+    private String nicname;
+
+
 }
