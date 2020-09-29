@@ -4,6 +4,7 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.apache.catalina.User;
 
 import javax.persistence.*;
 
@@ -38,14 +39,14 @@ public class BoardEntity extends TimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String address;
 
-    @Column(length = 10, nullable = false)
-    private String writer;
 
     @Builder
     public BoardEntity(Long id, String title, String content,
-                       String companyphone,String companyname,Integer count,
-                       Integer sumlike,String address,
-                       String writer) {
+                       String companyphone, String companyname,
+                       Integer count, Integer sumlike,
+                       String address) {
+
+
         this.id = id;
         this.title = title;
         this.content = content;
@@ -54,6 +55,6 @@ public class BoardEntity extends TimeEntity {
         this.count = count;
         this.sumlike = sumlike;
         this.address = address;
-        this.writer = writer;
+
     }
 }

@@ -1,10 +1,12 @@
 package com.victolee.board.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
+
 public class UserInfoDto {
 
     private String id;

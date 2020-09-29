@@ -9,9 +9,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
@@ -21,6 +19,7 @@ public class UserEntity implements UserDetails {
 
     @Id
     private String id;
+
 
     @Column
     private String password;
@@ -43,9 +42,12 @@ public class UserEntity implements UserDetails {
     @Column
     private String nicname;
 
-    @Builder
-    public UserEntity(String id, String password,String phone, String email, String address,String role, String career, String nicname) {
 
+
+    @Builder
+    public UserEntity(String id, String password,String phone,
+                      String email, String address,String role,
+                      String career, String nicname) {
         this.id = id;
         this.password = password;
         this.phone = phone;
