@@ -58,15 +58,19 @@
                         <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
                         <li><a href="managerlist.html" th:href="@{/managerlist}"
                                class="nav-link btn btn-outline-primary">주변매니저</a></li>
-                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a></li>
-                        <li><a href="mail.html" th:href="@{/mail}" class="nav-link btn btn-outline-primary">고객센터</a>
+                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a>
+                        </li>
+                        <li><a th:href="@{/community}" class="nav-link btn btn-outline-primary">커뮤니티</a>
+                        </li>
+                        <li><a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">고객센터</a>
                         </li>
                         <li>
                             <!-- 검색 form -->
                             <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label for="keyword" class="sr-only">검색</label>
-                                    <input class="form-control" id="keyword" name="keyword" type="text"
+                                    <input class="form-control text-light bg-dark" id="keyword" name="keyword"
+                                           type="text"
                                            placeholder="ex)지역,운동,매니저">
                                 </div>
 
@@ -111,6 +115,11 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7">
+
+                    <h2 class="section-title mb-3">매니저수정</h2>
+                    <p class="mb-5">매니저등록: 필요한것 매니저 썸네일,매니저 이미지 5장,매니저 이름, 전화번호 , 지역,
+                        운동 종류, 트레이너 소개, 상담 가능 시간 ,소속 , 자격및 경력사항</p>
+
                     <form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post">
                         <input type="hidden" name="_method" value="put"/>
                         <input type="hidden" name="id" th:value="${boardDto.id}"/>
@@ -122,22 +131,24 @@
                             </div>
 
                             <div class="col-md-6">
-                                <input type="text" name="cNumber" th:value="${boardDto.companyphone}" class="form-control"
+                                <input type="text" name="companyphone" th:value="${boardDto.companyphone}"
+                                       class="form-control"
                                        placeholder="소속 전화번호">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="cName" th:value="${boardDto.companyname}" class="form-control"
+                                <input type="text" name="companyname" th:value="${boardDto.companyname}"
+                                       class="form-control"
                                        placeholder="소속 이름">
                             </div>
                             <div class="col-md-6">
-                                <input type="text" name="pAddress" th:value="${boardDto.address}" class="form-control"
+                                <input type="text" name="address" th:value="${boardDto.address}" class="form-control"
                                        placeholder="소속 주소">
                             </div>
                         </div>
 
                         <div class="form-group row">
                             <div class="col-md-12">
-                            <textarea name="content" th:text="${boardDto.content}"  class="form-control"
+                            <textarea name="content" th:text="${boardDto.content}" class="form-control"
                                       placeholder="글내용"></textarea>
                             </div>
                         </div>
