@@ -43,7 +43,7 @@ public class BoardDto {
 
 
 
-    public BoardEntity toEntity() {
+    public BoardEntity toEntity() { //글쓰기 저장을 위한 엔티티
         BoardEntity boardEntity = BoardEntity.builder()
                 .id(id)
                 .title(title)

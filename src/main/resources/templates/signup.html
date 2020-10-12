@@ -41,51 +41,54 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 login-sec">
-                <h2 class="text-center">SignUp Now</h2>
+                <h2 class="text-center">회원가입</h2>
                 <form class="login-form" th:action="@{/user}" method="POST">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
                     <div class="form-group">
-                        <label for="exampleInputEmail1" class="text-uppercase">ID</label>
+                        <label for="exampleInputEmail1" class="text-uppercase">아이디</label>
                         <input type="text" class="form-control" name="id">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1" class="text-uppercase">Password</label>
+                        <label for="exampleInputPassword1" class="text-uppercase">비밀번호</label>
                         <input type="password" class="form-control" name="password">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1" class="text-uppercase">NICKNAME</label>
-                        <input type="password" class="form-control" name="nicname">
+                        <label for="exampleInputPassword1" class="text-uppercase">닉네임</label>
+                        <input type="text" class="form-control" name="nicname">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1" class="text-uppercase">email</label>
+                        <label for="exampleInputPassword1" class="text-uppercase">이메일</label>
                         <input type="email" class="form-control" name="email">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1" class="text-uppercase">phone</label>
+                        <label for="exampleInputPassword1" class="text-uppercase">전화번호</label>
                         <input type="tel" class="form-control" name="phone">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1" class="text-uppercase">address</label>
-                        <input type="tel" class="form-control" name="address">
+                        <label for="exampleInputPassword1" class="text-uppercase">주소</label>
+                        <input type="text" class="form-control" name="address">
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputPassword1" class="text-uppercase">career</label>
-                        <input type="tel" class="form-control" name="career">
+                        <label for="exampleInputPassword1" class="text-uppercase">경력</label>
+                        <input type="text" class="form-control" name="career">
                     </div>
                     <input type="radio" name="role" value="ROLE_TRAINER"> 트레이너
                     <input type="radio" name="role" value="ROLE_HELLIN" checked="checked"> 헬린이 <br>
 
                     <div class="form-check">
-                        <button type="submit" class="btn btn-login float-right">Join</button>
+                        <button type="submit" class="btn btn-login float-right">가입하기</button>
                     </div>
                 </form>
 
             </div>
             <div class="col-md-8 banner-sec">
-                                <div class="banner-text">
-                                    <h2>This is Heaven</h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation</p>
-                                </div>
+                <div class="banner-text">
+                    <p>
+                        운동을 어떻게 시작해야할까..? <br>
+                        하나도 모르겠는데... <br>
+                    </p>
+                    <h2>Come on ~</h2>
+                </div>
         </div>
 </section>
 </body>

@@ -59,14 +59,18 @@
                         <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
                         <li><a href="managerlist.html" th:href="@{/managerlist}"
                                class="nav-link btn btn-outline-primary">주변매니저</a></li>
-                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a></li>
-                        <li><a href="mail.html" th:href="@{/mail}" class="nav-link btn btn-outline-primary">고객센터</a></li>
+                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a>
+                        </li>
+                        <li><a th:href="@{/community}" class="nav-link btn btn-outline-primary">커뮤니티</a>
+                        </li>
+                        <li><a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">고객센터</a>
+                        </li>
                         <li>
                             <!-- 검색 form -->
                             <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label for="keyword" class="sr-only">검색</label>
-                                    <input class="form-control" id="keyword" name="keyword" type="text"
+                                    <input class="form-control text-light bg-dark" id="keyword" name="keyword" type="text"
                                            placeholder="ex)지역,운동,매니저">
                                 </div>
 
@@ -137,7 +141,7 @@
                             </a>
                         </td>
                         <td>
-                            <span></span>
+                            <span th:text="${board.writer}"></span>
                         </td>
                         <td>
                             <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>

@@ -2,7 +2,7 @@ package com.victolee.board.dto;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
+
 
 @Getter
 @Setter

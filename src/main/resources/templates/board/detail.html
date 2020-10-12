@@ -58,15 +58,19 @@
                         <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
                         <li><a href="managerlist.html" th:href="@{/managerlist}"
                                class="nav-link btn btn-outline-primary">주변매니저</a></li>
-                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a></li>
-                        <li><a href="mail.html" th:href="@{/mail}" class="nav-link btn btn-outline-primary">고객센터</a>
+                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a>
+                        </li>
+                        <li><a th:href="@{/community}" class="nav-link btn btn-outline-primary">커뮤니티</a>
+                        </li>
+                        <li><a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">고객센터</a>
                         </li>
                         <li>
                             <!-- 검색 form -->
                             <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label for="keyword" class="sr-only">검색</label>
-                                    <input class="form-control" id="keyword" name="keyword" type="text"
+                                    <input class="form-control text-light bg-dark" id="keyword" name="keyword"
+                                           type="text"
                                            placeholder="ex)지역,운동,매니저">
                                 </div>
 
@@ -106,23 +110,26 @@
 
 </header>
 
-
 <div class="site-section section-2" id="classes-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-6">
-                <img src="images/slide_0.jpg" alt="Image" class="img-fluid">
-            </div>
-            <div class="col-lg-5 ml-auto">
-                <h2 th:text="${boardDto.title}"></h2><h5 th:inline="text">게시물 고유번호 :[[${boardDto.id}]] </h5>
-                <p>
-                <p th:inline="text">
-                    작성자: &nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp; &nbsp; [[${boardDto.writer}]]
-                </p>
-                </p>
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
+
+            <img th:src="@{/images/person_1.jpg}" alt="Image" style="float:left" class="img-fluid mb-5">
+
+            <div>
+                <P></P>
+                <button class="float-lg-right btn btn-outline-primary">찜하기</button>
+                <button class="float-lg-right btn btn-outline-primary">찜취소</button>
+                <button class="float-lg-right btn btn-outline-primary">1대1상담하기</button>
+
+                제목: <h2 th:text="${boardDto.title}"></h2>
+                <h5 th:inline="text">게시물 고유번호 :[[${boardDto.id}]] </h5>
+
+                작성자 : <h4 th:text="${boardDto.writer}"></h4>
+
 
                 <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
-                    &nbsp; &nbsp; 조회수 : [[${boardDto.count}]] &nbsp; 좋아요: [[${boardDto.sumlike}]]</p>
+                    &nbsp; &nbsp; 조회수 : [[${boardDto.count}]] &nbsp; 찜수 : [[${boardDto.sumlike}]]</p>
 
                 <p th:inline="text">소속 회사 이름 : [[${boardDto.companyname}]]
                     &nbsp; &nbsp; 소속 전화번호 : [[${boardDto.companyphone}]] &nbsp; 소속 주소: [[${boardDto.address}]]</p>
@@ -142,31 +149,30 @@
                         <button class="float-lg-right btn btn-outline-primary" id="delete-btn">삭제</button>
                     </form>
                 </div>
-
-                <!-- 변수 셋팅 -->
-                <script th:inline="javascript">
-                    /*<![CDATA[*/
-                    var boardDto = /*[[${boardDto}]]*/ "";
-                    /*]]>*/
-                </script>
-
-                <!-- script -->
-                <script th:inline="javascript" th:src="@{/js/board.js}"></script>
-                </h1>
             </div>
 
+            <!-- 변수 셋팅 -->
+            <script th:inline="javascript">
+                /*<![CDATA[*/
+                var boardDto = /*[[${boardDto}]]*/ "";
+                /*]]>*/
+            </script>
+
+            <!-- script -->
+            <script th:inline="javascript" th:src="@{/js/board.js}"></script>
+            </h1>
+
+
         </div>
-
-
     </div>
-
-
-<footer class="footer-section">
+</div>
+<footer class="footer-section" style="clear: both">
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <h3>About Gymer</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et veritatis
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro consectetur ut hic ipsum et
+                    veritatis
                     corrupti. Itaque eius soluta optio dolorum temporibus in, atque, quos fugit sunt sit quaerat
                     dicta.</p>
             </div>
@@ -183,7 +189,8 @@
 
             <div class="col-md-4">
                 <h3>Subscribe</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto architecto?
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt incidunt iure iusto
+                    architecto?
                     Numquam, natus?</p>
                 <form action="#">
                     <div class="d-flex mb-5">
@@ -215,9 +222,6 @@
         </div>
     </div>
 </footer>
-
-
-</div>
 <!-- .site-wrap -->
 
 <script src="js/jquery-3.3.1.min.js"></script>
@@ -250,6 +254,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
-
+</div>
 </body>
 </html>

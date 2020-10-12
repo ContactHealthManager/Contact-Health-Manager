@@ -17,6 +17,7 @@ import java.util.List;
 public class BoardController {
     private BoardService boardService;
 
+
     /* 메인 화면 */
     @GetMapping("/")
     public String list() {
@@ -54,11 +55,16 @@ public class BoardController {
         return "board/write";
     }
 
+    /* 게시글 쓰기 */
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String write(BoardDto boardDto,Principal principal) {
+
+    public String write(BoardDto boardDto, Principal principal) {
+
         String userid = principal.getName();
+
         boardDto.setWriter(userid);
         boardService.savePost(boardDto);
+
         return "redirect:/managerlist";
     }
 
@@ -74,7 +80,10 @@ public class BoardController {
     }
     /* 수정 폼에서 수정 완료*/
     @PutMapping("/post/edit/{no}")
-    public String update(BoardDto boardDTO) {
+    public String update(BoardDto boardDTO,Principal principal) {
+        String userid = principal.getName();
+
+        boardDTO.setWriter(userid);
         boardService.savePost(boardDTO);
 
         return "redirect:/managerlist";
