@@ -33,7 +33,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // 2
     protected void configure(HttpSecurity http) throws Exception { // 6
         http
                 .authorizeRequests() // 접근에 대한 인증 설정
-                .antMatchers("/login","/signup","/user","/chat/**").permitAll() // 누구나 접근 허용
+                .antMatchers("/login","/signup","/user").permitAll() // 누구나 접근 허용
 //                .antMatchers("/chat/**").hasRole("TRAINER")
 //                .antMatchers("/chat/**").hasRole("HELLIN")
                 .anyRequest().authenticated() // 나머지 요청들은 권한의 종류에 상관 없이 권한이 있어야 접근 가능

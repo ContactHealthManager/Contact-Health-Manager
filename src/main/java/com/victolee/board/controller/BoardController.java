@@ -3,13 +3,11 @@ package com.victolee.board.controller;
 import com.victolee.board.dto.BoardDto;
 import com.victolee.board.service.BoardService;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -57,10 +55,13 @@ public class BoardController {
     }
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String write(BoardDto boardDto) {
+    public String write(BoardDto boardDto,Principal principal) {
+        String userid = principal.getName();
+        boardDto.setWriter(userid);
         boardService.savePost(boardDto);
         return "redirect:/managerlist";
     }
+
 
 
     /* 게시글 수정 */

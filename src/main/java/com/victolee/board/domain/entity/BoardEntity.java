@@ -4,16 +4,15 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+
 @Table(name = "board")
 public class BoardEntity extends TimeEntity {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,15 +35,19 @@ public class BoardEntity extends TimeEntity {
     @Column(nullable = false)
     private Integer sumlike;
 
+    @Column(nullable = false)
+    private String writer;
+
     @Column(columnDefinition = "TEXT", nullable = false)
     private String address;
+
 
 
     @Builder
     public BoardEntity(Long id, String title, String content,
                        String companyphone, String companyname,
                        Integer count, Integer sumlike,
-                       String address) {
+                       String address,String writer) {
 
 
         this.id = id;
@@ -55,6 +58,6 @@ public class BoardEntity extends TimeEntity {
         this.count = count;
         this.sumlike = sumlike;
         this.address = address;
-
+        this.writer = writer;
     }
 }
