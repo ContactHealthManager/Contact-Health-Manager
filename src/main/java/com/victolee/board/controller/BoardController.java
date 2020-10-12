@@ -1,15 +1,21 @@
 package com.victolee.board.controller;
 
+import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.dto.BoardDto;
 import com.victolee.board.service.BoardService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -18,6 +24,7 @@ import java.util.List;
 
 public class BoardController {
     private BoardService boardService;
+
 
     /* 메인 화면 */
     @GetMapping("/")
@@ -56,9 +63,15 @@ public class BoardController {
         return "board/write";
     }
 
+    /* 게시글 쓰기 */
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String write(BoardDto boardDto) {
+    public String write(BoardDto boardDto, Principal principal) {
+
+        String userid = principal.getName();
+
+        boardDto.setWriter(userid);
         boardService.savePost(boardDto);
+
         return "redirect:/managerlist";
     }
 
@@ -73,7 +86,10 @@ public class BoardController {
     }
     /* 수정 폼에서 수정 완료*/
     @PutMapping("/post/edit/{no}")
-    public String update(BoardDto boardDTO) {
+    public String update(BoardDto boardDTO,Principal principal) {
+        String userid = principal.getName();
+
+        boardDTO.setWriter(userid);
         boardService.savePost(boardDTO);
 
         return "redirect:/managerlist";

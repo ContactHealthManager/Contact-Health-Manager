@@ -39,13 +39,15 @@ public class BoardEntity extends TimeEntity {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String address;
 
+    @Column(length = 10, nullable = false)
+    private String writer;
 
 
     @Builder
     public BoardEntity(Long id, String title, String content,
                        String companyphone, String companyname,
                        Integer count, Integer sumlike,
-                       String address) {
+                       String address,String writer) {
 
         this.id = id;
         this.title = title;
@@ -55,6 +57,6 @@ public class BoardEntity extends TimeEntity {
         this.count = count;
         this.sumlike = sumlike;
         this.address = address;
-
+        this.writer = writer;
     }
 }

@@ -110,6 +110,7 @@ public class BoardService {
                 .count(boardEntity.getCount())
                 .sumlike(boardEntity.getSumlike())
                 .address(boardEntity.getAddress())
+                .writer(boardEntity.getWriter())
                 .build();
     }
 }
