@@ -26,6 +26,12 @@ spring:
       enabled: true
     restart:
       enabled=false:
+  freemarker:
+    cache: false
+    suffix: .ftl
+
+  profiles:
+    active: local
 
   jpa:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
@@ -33,7 +39,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-
+      ddl-auto: create
 
 logging:
   level:

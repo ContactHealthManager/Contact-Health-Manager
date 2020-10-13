@@ -47,6 +47,7 @@ body:before {
     min-height: 38px;
     font-size: 15px;
     border: 1px solid #c8c8c8;
+
 }
 
 .form-group {
@@ -56,6 +57,7 @@ body:before {
 input {
     padding-left: 10px;
     outline: none;
+
 }
 
 h1, h2, h3, h4, h5, h6 {

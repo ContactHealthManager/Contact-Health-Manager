@@ -18,7 +18,6 @@ import java.util.*;
 public class UserEntity implements UserDetails {
 
     @Id
-    @Column(name = "id")
     private String id;
 
 
