@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
+<head th:fragment="head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contact Health manager</title>
@@ -33,9 +33,7 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
-
-
-<header>
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
@@ -46,8 +44,8 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
-
-<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:fragment="header">
 
     <div class="container-fluid">
         <div class="d-flex align-items-center">
@@ -58,18 +56,24 @@
                         <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
                         <li><a href="managerlist.html" th:href="@{/managerlist}"
                                class="nav-link btn btn-outline-primary">주변매니저</a></li>
-                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a></li>
-                        <li><a href="mail.html" th:href="@{/mail}" class="nav-link btn btn-outline-primary">고객센터</a></li>
+                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a>
+                        </li>
+                        <li><a th:href="@{/community}" class="nav-link btn btn-outline-primary">커뮤니티</a>
+                        </li>
+                        <li><a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">고객센터</a>
+                        </li>
                         <li>
                             <!-- 검색 form -->
                             <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
                                 <div class="form-group mx-sm-3 mb-2">
                                     <label for="keyword" class="sr-only">검색</label>
-                                    <input class="form-control" id="keyword" name="keyword" type="text"
+                                    <input class="form-control text-light bg-dark" id="keyword" name="keyword"
+                                           type="text"
                                            placeholder="ex)지역,운동,매니저">
                                 </div>
 
                                 <button type="submit" class="btn btn-light">검색하기</button>
+
                             </form>
                         </li>
                         <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
@@ -80,8 +84,11 @@
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="cta"><a href="#contact-section" class="btn btn-outline-light"
-                                           sec:authentication="name"></a></li>
+                        <li class="cta">
+                            <button class="btn btn-outline-light">
+                                <a th:href="@{/myinfo}" sec:authentication="name"></a>
+                            </button>
+                        </li>
                         <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
                         <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
                         <li class="cta">
@@ -101,4 +108,5 @@
     </div>
 
 </header>
-</header>
+</body>
+</html>
