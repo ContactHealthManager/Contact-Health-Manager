@@ -23,56 +23,59 @@
 
 
 <div class="site-section section-2" id="classes-section">
-    <div class="container">
-        <div>
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
             <div>
-                <h2 class="section-title text-center">매니저 찾기</h2>
+                <div>
+                    <h2 class="section-title text-center">매니저 찾기</h2>
 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="one wide">번호</th>
-                        <th class="ten wide">글제목</th>
-                        <th class="two wide">작성자</th>
-                        <th class="three wide">작성일</th>
-                    </tr>
-                    </thead>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="one wide">번호</th>
+                            <th class="ten wide">글제목</th>
+                            <th class="two wide">작성자</th>
+                            <th class="three wide">작성일</th>
+                        </tr>
+                        </thead>
 
-                    <tbody>
-                    <!-- CONTENTS !-->
-                    <tr th:each="board : ${boardList}">
-                        <td>
-                            <span th:text="${board.id}"></span>
-                        </td>
-                        <td>
-                            <a th:href="@{'/post/' + ${board.id}}">
-                                <span th:text="${board.title}"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <span th:text="${board.writer}"></span>
-                        </td>
-                        <td>
-                            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                        <tbody>
+                        <!-- CONTENTS !-->
+                        <tr th:each="board : ${boardList}">
+                            <td>
+                                <span th:text="${board.id}"></span>
+                            </td>
+                            <td>
+                                <a th:href="@{'/post/' + ${board.id}}">
+                                    <span th:text="${board.title}"></span>
+                                </a>
+                            </td>
+                            <td>
+                                <span th:text="${board.writer}"></span>
+                            </td>
+                            <td>
+                                <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
 
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
 
+                </div>
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
+                        <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
 
-            <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
-                <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-            </li>
-
-        </ul>
-    </nav>
     <hr>
 
     <div>
