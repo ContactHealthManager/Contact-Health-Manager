@@ -1,18 +1,13 @@
 package com.victolee.board.service;
 
-import com.victolee.board.domain.entity.BoardEntity;
 import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.UserRepository;
-import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.UserInfoDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import javax.transaction.Transactional;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service

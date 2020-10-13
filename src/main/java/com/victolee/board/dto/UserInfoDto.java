@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 
 public class UserInfoDto {
+
     private String id;
     private String password;
     private String phone;
@@ -16,6 +17,5 @@ public class UserInfoDto {
     private String role;
     private String career;
     private String nicname;
-
 
 }

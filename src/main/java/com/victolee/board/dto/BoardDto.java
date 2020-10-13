@@ -1,7 +1,6 @@
 package com.victolee.board.dto;
 
 import com.victolee.board.domain.entity.BoardEntity;
-import com.victolee.board.domain.entity.UserEntity;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -26,7 +25,8 @@ public class BoardDto {
     // 소속이름
     private String companyname;
 
-    // 조회수
+    private String writer;
+
     private Integer count;
 
     // 좋아요총수
@@ -40,9 +40,6 @@ public class BoardDto {
 
     // 게시물 주소
     private String address;
-
-
-    private String writer;
 
 
 
@@ -62,10 +59,12 @@ public class BoardDto {
     }
 
     @Builder
+
     public BoardDto(Long id, String title, String content,
                     LocalDateTime createdDate, LocalDateTime modifiedDate,
                     String companyphone, String companyname, Integer count,
                     Integer sumlike, String address,String writer) {
+
         this.id = id;
         this.title = title;
         this.content = content;
