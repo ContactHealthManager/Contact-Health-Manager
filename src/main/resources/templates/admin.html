@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>admin</title>
+<head th:replace="/common/header.html :: head">
+
 </head>
-<body>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">>
+
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
+
 <h2>관리자 전용 페이지</h2>
 ID : <span sec:authentication="name"></span> <br>
 소유 권한 : <span sec:authentication="authorities"></span> <br>
@@ -14,5 +29,8 @@ ID : <span sec:authentication="name"></span> <br>
     <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
     <input type="submit" value="로그아웃"/>
 </form>
+
+<footer class="footer-section" th:replace="/common/footer.html :: footer">
+</footer>
 </body>
 </html>
