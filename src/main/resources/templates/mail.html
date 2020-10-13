@@ -18,41 +18,42 @@
         th:replace="/common/header.html :: header">
 </header>
 
-<div class="site-section bg-dark" id="contact-section">
-    <div class="container">
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
 
-        <div class="row justify-content-center">
-            <div class="col-md-7">
+            <div class="row justify-content-center">
+                <div class="col-md-7">
 
-                <h2 class="section-title mb-3">1:1 건의</h2>
-                <p class="mb-5">고객님들의 소리에 하나하나 귀 기울여 듣고 명쾌한 답변으로 보답하겠습니다.</p>
+                    <h2 class="section-title mb-3">1:1 건의</h2>
+                    <p class="mb-5">고객님들의 소리에 하나하나 귀 기울여 듣고 명쾌한 답변으로 보답하겠습니다.</p>
 
-                <form  th:action="@{/mail}" method="POST" data-aos="fade">
-                    <div class="form-group row">
-                        <div class="col-md-6 mb-3 mb-lg-0">
-                            <input type="text" name="title"class="form-control" placeholder="제목">
+                    <form th:action="@{/mail}" method="POST" data-aos="fade">
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3 mb-lg-0">
+                                <input type="text" name="title" class="form-control" placeholder="제목">
+                            </div>
+                            <div class="col-md-6">
+                                <input type="text" name="address" class="form-control" placeholder="작성자 이메일 주소">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <input type="text" name="address" class="form-control" placeholder="작성자 이메일 주소">
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                    <textarea class="form-control" name="message" cols="60" rows="20"
+                                    placeholder="문제의 요점과 구성에 대해서 명확히 써주시면 감사하겠습니다."></textarea>
+                            </div>
                         </div>
-                    </div>
 
-
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                  <textarea class="form-control" name="message" cols="60" rows="20"
-                            placeholder="문제의 요점과 구성에 대해서 명확히 써주시면 감사하겠습니다."></textarea>
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="보내기">
+                            </div>
                         </div>
-                    </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-6">
-
-                            <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="보내기">
-                        </div>
-                    </div>
-
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -78,8 +79,6 @@
 <script src="js/jquery.fancybox.min.js"></script>
 <script src="js/jquery.sticky.js"></script>
 <script src="js/jquery.mb.YTPlayer.min.js"></script>
-
-
 
 
 <script src="js/main.js"></script>

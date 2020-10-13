@@ -23,8 +23,8 @@
 
 
 <div class="site-section section-2" id="classes-section">
-    <div class="container">
-        <div>
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
             <div>
                 <a href="map.html" th:href="@{/map}"
                    class="nav-link btn btn-outline-primary">주소로 찾기</a></li>
@@ -63,18 +63,19 @@
                 </table>
 
             </div>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
+                        <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+                    </li>
+
+                </ul>
+            </nav>
         </div>
     </div>
 
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
 
-            <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
-                <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-            </li>
-
-        </ul>
-    </nav>
     <hr>
 
     <div>

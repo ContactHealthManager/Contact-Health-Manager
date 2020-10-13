@@ -20,20 +20,22 @@
         th:replace="/common/header.html :: header">
 </header>
 
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
+            <div>
+                <div>
+                    <h1>형준이가 재밌게 만들 고객센터!!! CRUD</h1>
 
-<div class="intro-section" id="home-section" style="background-color: #ccc;">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-6 mx-auto text-center" data-aos="fade-up">
-                <h1>형준이가 재밌게 만들 고객센터!!! CRUD</h1>
-
-                <a th:href="@{/mail}">
-                    <button type="button" class="float-lg-right btn btn-outline-primary">답변하기(관리자만 보여야함)</button>
-                </a>
+                    <a th:href="@{/mail}">
+                        <button type="button" class="float-lg-right btn btn-outline-primary">답변하기(관리자만 보여야함)</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
