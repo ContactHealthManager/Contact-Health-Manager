@@ -32,7 +32,7 @@
                 <P></P>
                 <button class="float-lg-right btn btn-outline-primary">찜하기</button>
                 <button class="float-lg-right btn btn-outline-primary">찜취소</button>
-                <button class="float-lg-right btn btn-outline-primary">1대1상담하기</button>
+                <button class="float-lg-right btn-md btn btn-outline-primary">1대1상담하기</button>
 
                 제목: <h2 th:text="${boardDto.title}"></h2>
                 <h5 th:inline="text">게시물 고유번호 :[[${boardDto.id}]] </h5>
@@ -58,7 +58,8 @@
 
                     <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
                         <input type="hidden" name="_method" value="delete"/>
-                        <button class="float-lg-right btn btn-outline-primary" id="delete-btn">삭제</button>
+                        <button class="float-lg-right btn btn-outline-primary"
+                                id="delete-btn" >삭제</button>
                     </form>
                 </div>
             </div>
