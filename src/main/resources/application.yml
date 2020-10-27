@@ -39,11 +39,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-<<<<<<< HEAD
-      ddl-auto:
-=======
 
->>>>>>> origin/jaebin
 
 logging:
   level:
