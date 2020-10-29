@@ -12,10 +12,9 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
 
 
-
-
-
-    List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword, String contentkeyword);
+    List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword,String contentkeyword);
+    BoardEntity findById(Integer id);
+    List<BoardEntity> findAllBy();
 
 }
 

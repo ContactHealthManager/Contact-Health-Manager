@@ -4,12 +4,16 @@ import com.victolee.board.domain.entity.BoardEntity;
 import com.victolee.board.domain.repository.BoardRepository;
 import com.victolee.board.dto.BoardDto;
 import lombok.AllArgsConstructor;
+import org.hibernate.Criteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
 
+import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,7 +22,7 @@ import java.util.Optional;
 @Service
 public class BoardService {
     private BoardRepository boardRepository;
-//    private CountRepository countRepository;
+
     private static final int BLOCK_PAGE_NUM_COUNT = 5;  // 블럭에 존재하는 페이지 번호 수
     private static final int PAGE_POST_COUNT = 6;       // 한 페이지에 존재하는 게시글 수
 
@@ -48,13 +52,16 @@ public class BoardService {
         return boardRepository.count();
     }
 
+
+
     @Transactional
-    public BoardDto getPost(Long id) { //게시물 테이블의 여러 상세 정보를 객체에 담음
+    public BoardDto getPost(Long id) { //게시물 상세정보 수정할때,게시물 테이블의 여러 상세 정보를 객체에 담음
         Optional<BoardEntity> boardEntityWrapper = boardRepository.findById(id);
         BoardEntity boardEntity = boardEntityWrapper.get();
 
         return this.convertEntityToDto(boardEntity);
     }
+
 
     @Transactional
     public Long savePost(BoardDto boardDto) { // 게시물 저장하기
@@ -107,7 +114,7 @@ public class BoardService {
         return pageList;
     }
 
-    private BoardDto convertEntityToDto(BoardEntity boardEntity) {
+    private BoardDto convertEntityToDto(BoardEntity boardEntity) { //엔티티 객체 변수를 디티오 객체 변수로 변환
         return BoardDto.builder()
                 .id(boardEntity.getId())
                 .title(boardEntity.getTitle())
@@ -115,10 +122,11 @@ public class BoardService {
                 .createdDate(boardEntity.getCreatedDate())
                 .companyphone(boardEntity.getCompanyphone())
                 .companyname(boardEntity.getCompanyname())
-                .count(boardEntity.getCount())
+                .bcount(boardEntity.getBcount())
                 .sumlike(boardEntity.getSumlike())
                 .address(boardEntity.getAddress())
                 .writer(boardEntity.getWriter())
                 .build();
     }
+
 }

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://www.w3.org/1999/XSL/Transform">
 
 <head th:replace="/common/header.html :: head">
 </head>
@@ -63,15 +64,20 @@
                     <!-- 글 나눔선  -->
                     <hr style="border: solid 2px #48d494;">
                     <hr>
-                    <div class="text-right">
-                        <!-- 수정하기 -->
-                        <div style="text-align: right; margin-right: 10px;">
-                            <a th:href="@{'/post/edit/' + ${boardDto.id}}"><button type="button" class="float-lg-right btn btn-outline-primary">수정하기</button></a>
-                            <!-- 삭제하기 -->
-                            <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post"> <input type="hidden" name="_method" value="delete"/><button class="float-lg-right btn btn-outline-primary"
-                            >삭제하기</button></a></form>
+                    <!-- 수정/삭제 -->
+                    <div th:if="${boardDto.writer.toString().equals(userId)}" class="text-right">
 
-                        </div>
+                        <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+                            <button type="button" class="float-lg-right btn btn-outline-primary">수정</button>
+                        </a>
+
+                        <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button class="float-lg-right btn btn-outline-primary"
+                                    id="delete-btn">삭제
+                            </button>
+                        </form>
+
                     </div>
                 </div>
             </div>

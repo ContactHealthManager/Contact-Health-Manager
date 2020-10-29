@@ -27,7 +27,8 @@ public class BoardDto {
     // 작성자
     private String writer;
     // 조회수
-    private int count;
+
+    private int bcount;
 
     // 좋아요총수
     private int sumlike;
@@ -49,7 +50,7 @@ public class BoardDto {
                 .content(content)
                 .companyphone(companyphone)
                 .companyname(companyname)
-                .count(count)
+                .bcount(bcount)
                 .sumlike(sumlike)
                 .address(address)
                 .writer(writer)
@@ -58,10 +59,11 @@ public class BoardDto {
         return boardEntity;
     }
 
+
     @Builder
     public BoardDto(Long id, String title, String content,
                     LocalDateTime createdDate, LocalDateTime modifiedDate,
-                    String companyphone, String companyname, Integer count,
+                    String companyphone, String companyname, Integer bcount,
                     Integer sumlike, String address,String writer) {
 
         this.id = id;
@@ -71,7 +73,7 @@ public class BoardDto {
         this.modifiedDate = modifiedDate;
         this.companyphone = companyphone;
         this.companyname = companyname;
-        this.count = count;
+        this.bcount = bcount;
         this.sumlike = sumlike;
         this.address = address;
         this.writer = writer;
