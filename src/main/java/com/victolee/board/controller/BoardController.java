@@ -43,7 +43,7 @@ public class BoardController {
     @GetMapping("/post/{no}")
     public String detail(@PathVariable("no") Long no, Model model) {
         BoardDto boardDto = boardService.getPost(no);
-
+//        boardService.increaseBoardCount(no);
         model.addAttribute("boardDto", boardDto);
         return "board/detail";
     }

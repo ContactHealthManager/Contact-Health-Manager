@@ -7,7 +7,6 @@ spring:
     username: root
     password: wlq960505
 
-
   mail:
     host: smtp.gmail.com
     port: 587
@@ -41,6 +40,7 @@ spring:
       format_sql: true
 
 
+
 logging:
   level:
     org:
@@ -50,6 +50,5 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
-
-
-
+server:
+  port: 8030

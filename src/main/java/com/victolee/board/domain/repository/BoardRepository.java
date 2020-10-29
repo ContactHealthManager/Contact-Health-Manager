@@ -9,7 +9,13 @@ import java.util.List;
 // Containing: 특정 키워드 포함 여부
 
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
-    List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword,String contentkeyword);
+
+
+
+
+
+
+    List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword, String contentkeyword);
 
 }
 

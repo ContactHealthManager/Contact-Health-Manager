@@ -1,7 +1,6 @@
 package com.victolee.board.config;
 
 import com.victolee.board.service.UserService;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

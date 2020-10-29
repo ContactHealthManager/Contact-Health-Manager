@@ -27,10 +27,10 @@ public class BoardDto {
     // 작성자
     private String writer;
     // 조회수
-    private Integer count;
+    private int count;
 
     // 좋아요총수
-    private Integer sumlike;
+    private int sumlike;
 
     // 등록날짜
     private LocalDateTime createdDate;
@@ -40,7 +40,6 @@ public class BoardDto {
 
     // 게시물 주소
     private String address;
-
 
 
     public BoardEntity toEntity() { //글쓰기 저장을 위한 엔티티
@@ -54,6 +53,7 @@ public class BoardDto {
                 .sumlike(sumlike)
                 .address(address)
                 .writer(writer)
+
                 .build();
         return boardEntity;
     }
