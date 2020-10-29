@@ -2,38 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Contact Health manager</title>
-
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-
-    <link rel="stylesheet" th:href="@{/css/board.css}">
-    <link rel="stylesheet" th:href="@{/css/float_1.css}">
-
-    <link th:href="@{https://fonts.googleapis.com/css?family=Muli:300,400,700,900}" rel="stylesheet">
-    <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
-
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
-    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
-    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
-    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
-
-    <link rel="stylesheet" th:href="@{/css/jquery.fancybox.min.css}">
-
-    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
-
-    <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
-
-    <link rel="stylesheet" th:href="@{/css/aos.css}">
-    <link th:href="@{css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
-
-    <link rel="stylesheet" th:href="@{/css/style.css}">
-
+<head th:replace="/common/header.html :: head">
 </head>
+
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <div class="site-mobile-menu site-navbar-target">
     <div class="site-mobile-menu-header">
@@ -44,110 +15,43 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
 
-<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
+            <div>
+                <form class="text-center" onclick="sample5_execDaumPostcode()">
 
-    <div class="container-fluid">
-        <div class="d-flex align-items-center">
-            <div class="site-logo"><a href="index.html" th:href="@{/}">Contact Health Manager</a></div>
-            <div class="ml-auto">
-                <nav class="site-navigation position-relative text-right" role="navigation">
-                    <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
-                        <li><a href="managerlist.html" th:href="@{/managerlist}"
-                               class="nav-link btn btn-outline-primary">주변매니저</a></li>
-                        <li><a th:href="@{/post}" class="nav-link btn btn-outline-primary">매니저등록</a>
-                        </li>
-                        <li><a th:href="@{/community}" class="nav-link btn btn-outline-primary">커뮤니티</a>
-                        </li>
-                        <li><a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">고객센터</a>
-                        </li>
-                        <li>
-                            <!-- 검색 form -->
-                            <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
-                                <div class="form-group mx-sm-3 mb-2">
-                                    <label for="keyword" class="sr-only">검색</label>
-                                    <input class="form-control text-light bg-dark" id="keyword" name="keyword" type="text"
-                                           placeholder="ex)지역,운동,매니저">
-                                </div>
+                    <input type="text" class="d-inline-block form-control text-light bg-dark"
+                           id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px;">
+                    <input type="button" class="d-inline-block btn btn-primary active btn-lg"
+                            value="주소 검색">
+                    <input type="button" class="d-inline-block btn btn-info active btn-lg"
+                           value="위치 설정"> <!--나중에 위치 저장할 수 있게 만들거임 -->
+                </form>
+                <div>
+                <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
+                </div>
+                <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
+                </script>
+                <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
 
-                                <button type="submit" class="btn btn-light">검색하기</button>
-                            </form>
-                        </li>
-                        <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
-                        <!--                        <li><a href="#services-section" class="nav-link">Services</a></li>-->
-                    </ul>
-                </nav>
+                </script>
+                <script src="/js/map.js">
+                </script>
+                </div>
             </div>
-            <div class="ml-auto">
-                <nav class="site-navigation position-relative text-right" role="navigation">
-                    <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
-                        <li class="cta">
-                            <button class="btn btn-outline-light">
-                                <a th:href="@{/myinfo}" sec:authentication="name"></a>
-                            </button>
-                        </li>
-                        <!--                        <li class="cta"><a href="#contact-section" class="nav-link"><span-->
-                        <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
-                        <li class="cta">
-                            <form id="logout" action="/logout" method="POST">
-                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input type="submit" class="btn btn-outline-light" value="로그아웃"/>
-                            </form>
-                        </li>
 
-                    </ul>
-                </nav>
-                <a href="#"
-                   class="d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black float-right"><span
-                        class="icon-menu h3"></span></a>
-            </div>
         </div>
     </div>
-    <input type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
-    <input type="text" id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px;">
-    <br> <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
 </div>
-    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
-</script>
-    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
-
-    </script>
-    <script> var mapContainer = document.getElementById('map'),// 지도를 표시할div
-    mapOption = { center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
-    level: 5 // 지도의 확대 레벨
-    };
-    //지도를 미리 생성
-    var map = new daum.maps.Map(mapContainer, mapOption); //주소-좌표 변환 객체를 생성
-    var geocoder = new daum.maps.services.Geocoder(); //마커를 미리 생성
-    var marker = new daum.maps.Marker({ position: new daum.maps.LatLng(37.537187, 127.005476), map: map });
-    function sample5_execDaumPostcode() {
-        new daum.Postcode({ oncomplete: function(data) {
-            // 각 주소의 노출 규칙에 따라 주소를 조합한다.
-    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
-    var fullAddr = data.address; // 최종 주소 변수
-    var extraAddr = ''; // 조합형 주소 변수 // 기본 주소가 도로명 타입일때 조합한다.
-    if(data.addressType === 'R'){ //법정동명이 있을 경우 추가한다.
-        if(data.bname !== ''){
-            extraAddr += data.bname;
-        } // 건물명이 있을 경우 추가한다.
-    if(data.buildingName !== ''){
-        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-    } // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
-    fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
-    } // 주소 정보를 해당 필드에 넣는다.
-    document.getElementById("sample5_address").value = fullAddr; // 주소로 상세 정보를 검색
-    geocoder.addressSearch(data.address, function(results, status) {
-        // 정상적으로 검색이 완료됐으면
-    if (status === daum.maps.services.Status.OK) {
-        var result = results[0]; //첫번째 결과의 값을 활용 // 해당 주소에 대한 좌표를 받아서
-    var coords = new daum.maps.LatLng(result.y, result.x); // 지도를 보여준다.
-    mapContainer.style.display = "block"; map.relayout(); // 지도 중심을 변경한다.
-        map.setCenter(coords); // 마커를 결과값으로 받은 위치로 옮긴다.
-    marker.setPosition(coords) } }); } }).open(); } </script>
 
 
-</header>
+<footer class="footer-section" th:replace="/common/footer.html :: footer">
+</footer>
 
 </body>
 </html>

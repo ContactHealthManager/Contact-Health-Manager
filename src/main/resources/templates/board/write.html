@@ -22,69 +22,78 @@
 </header>
 
 <div class="site-section section-2" id="classes-section">
+    <h2 class="section-title mb-3">매니저등록</h2>
     <div class="site-section bg-dark" id="contact-section">
+
         <div class="container">
 
-            <div class="row justify-content-center">
-                <div class="col-md-7">
+            <div class="">
 
-                    <h2 class="section-title mb-3">매니저등록</h2>
-                    <p class="mb-5">매니저등록: 필요한것 매니저 썸네일,매니저 이미지 5장,매니저 이름, 전화번호 , 지역,
-                        운동 종류, 트레이너 소개, 상담 가능 시간 ,소속 , 자격및 경력사항</p>
+                <form th:action="@{/post}" method="POST" data-aos="fade">
 
+                    <div class="halfmain">
 
-                    <form th:action="@{/post}" method="POST" data-aos="fade">
-                        <div class="form-group row">
-                            <div class="col-md-6 mb-3 mb-lg-0">
-                                <input type="text" name="title"
-                                       class="form-control"
-                                       placeholder="제목">
-                            </div>
-
-                            <div class="col-md-6">
-                                <input type="text" name="companyphone"
-                                       class="form-control"
-                                       placeholder="소속 전화번호">
-                            </div>
-
-                            <div class="col-md-6">
-                                <input type="text" name="companyname"
-                                       class="form-control"
-                                       placeholder="소속 이름">
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="address"
-                                       class="form-control"
-                                       placeholder="소속 주소">
+                        <div class="halfleft">
+                            <label class="col-form-label text-md-right
+                            col-12 col-md-3 col-lg-3">사진 업로드</label>
+                            <div class="col-sm-12 col-md-7" >
+                                <input type="file" name="img" class=""  value="사진업로드">
                             </div>
                         </div>
 
+                        <div class="halfright">
+                            <div class="form-group row">
+                                <div class="col-md-6 mb-3 mb-lg-0">
+                                    <input type="text" name="title"
+                                           class="form-control"
+                                           placeholder="제목"
+                                           autocomplete="off" required/>
+                                </div>
 
-                        <div class="form-group row">
-                            <div class="col-md-12">
-                            <textarea name="content" id="" cols="30" rows="10"
-                                      class="form-control"
-                                      placeholder="글내용"></textarea>
+                                <div class="col-md-6">
+                                    <input type="text" name="companyphone"
+                                           class="form-control"
+                                           placeholder="소속 전화번호"
+                                           autocomplete="off" required/>
+                                </div>
+
+                                <div class="col-md-6">
+                                    <input type="text" name="companyname"
+                                           class="form-control"
+                                           placeholder="소속 이름"
+                                           autocomplete="off" required/>
+                                </div>
+                                <div class="col-md-6">
+                                    <input type="text" name="address"
+                                           class="form-control"
+                                           placeholder="소속 주소"
+                                           autocomplete="off" required/>
+                                </div>
+
                             </div>
-                        </div>
-                        <div class="form-group row">
-                            <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">사진 업로드</label>
-                            <div class="col-sm-12 col-md-7">
-                                <input type="file" name="img" id="img">
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <textarea name="content" id="content_w" cols="30" rows="10"
+                                              class="form-control"
+                                              placeholder="글내용"
+                                              autocomplete="off" required/></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group row">
+
+
                             <div class="col-md-6">
-                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="등록">
+                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block " value="등록">
                             </div>
                         </div>
+                    </div>
 
-                    </form>
-                </div>
+
+                </form>
             </div>
         </div>
     </div>
 </div>
+
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>

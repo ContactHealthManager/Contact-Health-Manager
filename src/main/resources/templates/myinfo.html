@@ -31,13 +31,20 @@
 
                     <div>
 
-                        아이디 :
-                        <div sec:authentication="name">
-                        </div>
-                        <div>
-                            <div th:text="${UserEntity.nicname}"></div>
-
-                        </div>
+                        아이디 :[[${id}]]
+                        <br>
+                        전화번호:[[${phone}]]
+                        <br>
+                        이메일:[[${email}]]
+                        <br>
+                        역할 :[[${role}]]
+                        <br>
+                        닉네임 :[[${nicname}]]
+                        <br>
+                        경력 :[[${career}]]
+                        <br>
+                        주소 :[[${address}]]
+                        <br>
 
 
 
