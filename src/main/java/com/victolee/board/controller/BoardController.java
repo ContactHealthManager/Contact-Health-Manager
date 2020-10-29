@@ -44,6 +44,7 @@ public class BoardController {
 
         BoardDto boardDto = boardService.getPost(no);
 
+
         if(!boardDto.getWriter().equals(principal.getName())) {
             int count = boardDto.getBcount();
             count = count + 1;

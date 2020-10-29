@@ -19,9 +19,14 @@ import java.util.Optional;
 public class BoardService {
     private BoardRepository boardRepository;
 
-//------------------------------jpa 서비스-------------------------------------------------------
     private static final int BLOCK_PAGE_NUM_COUNT = 5;  // 블럭에 존재하는 페이지 번호 수
-    private static final int PAGE_POST_COUNT = 4;       // 한 페이지에 존재하는 게시글 수
+    private static final int PAGE_POST_COUNT = 6;       // 한 페이지에 존재하는 게시글 수
+
+//    @Transactional
+//    public void increaseBoardCount(Long no) {
+//    countRepository.increaseBoardCount(no);
+//    }
+
 
     @Transactional
     public List<BoardDto> getBoardlist(Integer pageNum) { //게시물 목록을 그 페이지에 맞게 리스트에 담음.

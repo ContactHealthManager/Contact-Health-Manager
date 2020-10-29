@@ -27,6 +27,7 @@ public class BoardDto {
     // 작성자
     private String writer;
     // 조회수
+
     private int bcount;
 
     // 좋아요총수
@@ -42,7 +43,6 @@ public class BoardDto {
     private String address;
 
 
-
     public BoardEntity toEntity() { //글쓰기 저장을 위한 엔티티
         BoardEntity boardEntity = BoardEntity.builder()
                 .id(id)
@@ -54,6 +54,7 @@ public class BoardDto {
                 .sumlike(sumlike)
                 .address(address)
                 .writer(writer)
+
                 .build();
         return boardEntity;
     }

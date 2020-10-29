@@ -29,7 +29,7 @@ public class UserInfoDto {
         return UserEntity.builder()
                 .id(id)
                 .password(password)
-                .phone(콜)
+                .phone(phone)
                 .email(email)
                 .address(address)
                 .role(role)

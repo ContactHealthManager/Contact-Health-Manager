@@ -6,7 +6,10 @@ spring:
     url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: wlq960505
+<<<<<<< HEAD
 
+=======
+>>>>>>> seongsu
 
   mail:
     host: smtp.gmail.com
@@ -41,6 +44,7 @@ spring:
       format_sql: true
       ddl-auto:
 
+
 logging:
   level:
     org:
@@ -50,6 +54,10 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+
+server:
+  port: 8030
+
 
 
 
