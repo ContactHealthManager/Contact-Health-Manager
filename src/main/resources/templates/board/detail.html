@@ -27,12 +27,13 @@
     <div class="site-section bg-dark" id="contact-section">
         <div class="container">
 
+
             <div class="wrap ftco-animate" style="border:5px solid #48d494; margin-bottom: 30px;">
                 <br>
                 <p th:inline="text" class="float-lg-right">
                     작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
                     &nbsp; &nbsp;
-                    조회수 : [[${boardDto.count}]] &nbsp;
+                    조회수 : [[${boardDto.bcount}]] &nbsp;
                     찜수 : [[${boardDto.sumlike}]]</p>
                 <div class="content" style="padding-left:8%; padding-right:8%; padding-top: 5%; padding-bottom: 10%;">
                     <!-- 글 제목 -->
@@ -53,33 +54,36 @@
                     <strong style="font-size: 20px">소속 전화번호</strong>
                     <p th:inline="text">[[${boardDto.companyphone}]]</p>
                     <hr style="border: solid 2px #48d494;">
-                        <strong style="font-size: 20px">소속 주소</strong>
+                    <strong style="font-size: 20px">소속 주소</strong>
                     <p th:inline="text">[[${boardDto.address}]]</p>
 
                     <hr style="border: solid 2px #48d494;">
-                            <strong style="font-size: 20px">내용</strong>
+                    <strong style="font-size: 20px">내용</strong>
                     <!-- 글 내용 -->
                     <p th:text="${boardDto.content}"></p>
 
                     <!-- 글 나눔선  -->
                     <hr style="border: solid 2px #48d494;">
                     <hr>
-                    <!-- 수정/삭제 -->
                     <div th:if="${boardDto.writer.toString().equals(userId)}" class="text-right">
+                        <!-- 수정하기 -->
+                        <div style="text-align: right; margin-right: 10px;">
+                            <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+                                <button type="button" class="float-lg-right btn btn-outline-primary">수정하기</button>
+                            </a>
+                            <!-- 삭제하기 -->
+                            <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post"><input
+                                    type="hidden" name="_method" value="delete"/>
+                                <button class="float-lg-right btn btn-outline-primary"
+                                >삭제하기
+                                </button>
+                                </a></form>
 
-                        <a th:href="@{'/post/edit/' + ${boardDto.id}}">
-                            <button type="button" class="float-lg-right btn btn-outline-primary">수정</button>
-                        </a>
-
-                        <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
-                            <input type="hidden" name="_method" value="delete"/>
-                            <button class="float-lg-right btn btn-outline-primary"
-                                    id="delete-btn">삭제
-                            </button>
-                        </form>
-
+                        </div>
                     </div>
                 </div>
+
+
             </div>
             <!-- 변수 셋팅 -->
             <script th:inline="javascript">
