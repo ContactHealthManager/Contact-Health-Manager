@@ -21,46 +21,28 @@
         th:replace="/common/header.html :: header">
 </header>
 
+<hr>
 
-<div class="site-section section-2" id="classes-section">
-    <div class="site-section bg-dark" id="contact-section">
+<div>
+    <div class="site-section" id="trainer-section">
         <div class="container">
-            <div>
-                <a href="map.html" th:href="@{/map}"
-                   class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a></li>
-                <h2 class="section-title text-center">매니저 찾기</h2>
+            <a href="map.html" th:href="@{/map}"
+               class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a></li>
 
-                <table class="table table-striped">
-                    <thead>
-                    <tr>
-                        <th class="one wide">번호</th>
-                        <th class="ten wide">글제목</th>
-                        <th class="two wide">작성자</th>
-                        <th class="three wide">작성일</th>
-                    </tr>
-                    </thead>
+            <hr>
+            <div class="row large-gutters">
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
+                    <a th:href="@{'/post/' + ${board.id}}">
+                        <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5" th:href="@{'/post/' + ${board.id}}">
+                    <p class="mb-4 opacity-7">
+                        <span th:text="${board.title}"></span>
+                    </p>
+                    <p>  <span th:text="${board.writer}"></span></p>
 
-                    <tbody>
-                    <!-- CONTENTS !-->
-                    <tr th:each="board : ${boardList}">
-                        <td>
-                            <span th:text="${board.id}"></span>
-                        </td>
-                        <td>
-                            <a th:href="@{'/post/' + ${board.id}}">
-                                <span th:text="${board.title}"></span>
-                            </a>
-                        </td>
-                        <td>
-                            <span th:text="${board.writer}"></span>
-                        </td>
-                        <td>
-                            <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></span>
+                    </a>
+                </div>
 
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
             </div>
         </div>
         <nav aria-label="Page navigation example">
@@ -72,56 +54,6 @@
 
             </ul>
         </nav>
-    </div>
-</div>
-
-
-<hr>
-
-<div>
-    <div class="site-section" id="trainer-section">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 mb-5">
-                    <h2 class="section-title">Trainers</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem possimus distinctio ex. Natus
-                        totam
-                        voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa
-                        dolore
-                        molestias
-                        blanditiis consequuntur
-                        sunt nisi.</p>
-                </div>
-            </div>
-            <div class="row large-gutters">
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                    <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5">
-                    <h3>James Holmes</h3>
-                    <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
-                        rerum
-                        voluptatem, dignissimos dolorem porro aliquid veritatis!</p>
-                </div>
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0 mt-5">
-                    <img th:src="@{/images/person_2.jpg}" alt="Image" class="img-fluid mb-5">
-                    <h3>Kelly Green</h3>
-                    <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
-                        rerum
-                        voluptatem,
-                        dignissimos dolorem porro aliquid veritatis!</p>
-                </div>
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                    <img th:src="@{/images/person_3.jpg}" alt="Image" class="img-fluid mb-5">
-                    <h3>Ben Smith</h3>
-                    <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
-                        rerum
-                        voluptatem,
-                        dignissimos dolorem porro aliquid veritatis!</p>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 </div>
