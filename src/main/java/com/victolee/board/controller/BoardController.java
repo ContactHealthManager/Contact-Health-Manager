@@ -12,12 +12,11 @@ import java.util.List;
 
 @Controller
 @AllArgsConstructor
-
-
 public class BoardController {
+
     private BoardService boardService;
 
-
+//-----------------------------------jpa로만든 컨트롤러-------------------------------------------------
     /* 메인 화면 */
     @GetMapping("/")
     public String list() {
@@ -37,13 +36,16 @@ public class BoardController {
         return "/managerlist";
     }
 
-
-
     /* 게시글 상세 목록*/
-    @GetMapping("/post/{no}")
-    public String detail(@PathVariable("no") Long no, Model model) {
+    @RequestMapping("/post/{no}")
+    public String detail(@PathVariable("no") Long no, Model model
+            ,Principal principal) {
+
+
         BoardDto boardDto = boardService.getPost(no);
 
+
+        model.addAttribute("userId",principal.getName());
         model.addAttribute("boardDto", boardDto);
         return "board/detail";
     }
@@ -67,7 +69,6 @@ public class BoardController {
 
         return "redirect:/managerlist";
     }
-
 
     /* 게시글 수정 */
     @GetMapping("/post/edit/{no}")

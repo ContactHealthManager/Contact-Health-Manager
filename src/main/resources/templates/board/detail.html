@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://www.w3.org/1999/XSL/Transform">
 
 <head th:replace="/common/header.html :: head">
 </head>
@@ -41,7 +42,7 @@
 
 
                 <p th:inline="text">작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
-                    &nbsp; &nbsp; 조회수 : [[${boardDto.count}]] &nbsp; 찜수 : [[${boardDto.sumlike}]]</p>
+                    &nbsp; &nbsp; 조회수 : [[${boardDto.bcount}]] &nbsp; 찜수 : [[${boardDto.sumlike}]]</p>
 
                 <p th:inline="text">소속 회사 이름 : [[${boardDto.companyname}]]
                     &nbsp; &nbsp; 소속 전화번호 : [[${boardDto.companyphone}]] &nbsp; 소속 주소: [[${boardDto.address}]]</p>
@@ -50,18 +51,22 @@
                 <p th:text="${boardDto.content}"></p>
 
 
-                <!-- 수정/삭제 -->
-                <div class="text-right">
-                    <a th:href="@{'/post/edit/' + ${boardDto.id}}">
-                        <button type="button" class="float-lg-right btn btn-outline-primary">수정</button>
-                    </a>
+                    <!-- 수정/삭제 -->
+                    <div th:if="${boardDto.writer.toString().equals(userId)}" class="text-right">
 
-                    <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
-                        <input type="hidden" name="_method" value="delete"/>
-                        <button class="float-lg-right btn btn-outline-primary"
-                                id="delete-btn" >삭제</button>
-                    </form>
-                </div>
+                        <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+                            <button type="button" class="float-lg-right btn btn-outline-primary">수정</button>
+                        </a>
+
+                        <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post">
+                            <input type="hidden" name="_method" value="delete"/>
+                            <button class="float-lg-right btn btn-outline-primary"
+                                    id="delete-btn">삭제
+                            </button>
+                        </form>
+
+                    </div>
+
             </div>
 
             <!-- 변수 셋팅 -->
