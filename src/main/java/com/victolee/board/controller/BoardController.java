@@ -44,6 +44,12 @@ public class BoardController {
 
         BoardDto boardDto = boardService.getPost(no);
 
+        if(!boardDto.getWriter().equals(principal.getName())) {
+            int count = boardDto.getBcount();
+            count = count + 1;
+            boardDto.setBcount(count);
+            boardService.savePost(boardDto);
+        }
 
         model.addAttribute("userId",principal.getName());
         model.addAttribute("boardDto", boardDto);
