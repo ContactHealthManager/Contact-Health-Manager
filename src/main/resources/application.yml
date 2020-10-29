@@ -8,6 +8,7 @@ spring:
     password: 8532007
 
 
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -39,7 +40,7 @@ spring:
     show-sql: true
     hibernate:
       format_sql: true
-      ddl-auto:
+
 
 logging:
   level:
@@ -50,6 +51,4 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
-
-
 

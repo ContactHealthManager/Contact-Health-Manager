@@ -24,9 +24,9 @@ public class BoardDto {
 
     // 소속이름
     private String companyname;
-
+    // 작성자
     private String writer;
-
+    // 조회수
     private Integer count;
 
     // 좋아요총수
@@ -59,7 +59,6 @@ public class BoardDto {
     }
 
     @Builder
-
     public BoardDto(Long id, String title, String content,
                     LocalDateTime createdDate, LocalDateTime modifiedDate,
                     String companyphone, String companyname, Integer count,

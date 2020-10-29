@@ -27,7 +27,7 @@
         <div class="container">
             <div>
                 <a href="map.html" th:href="@{/map}"
-                   class="nav-link btn btn-outline-primary">주소로 찾기</a></li>
+                   class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a></li>
                 <h2 class="section-title text-center">매니저 찾기</h2>
 
                 <table class="table table-striped">
@@ -61,69 +61,69 @@
                     </tr>
                     </tbody>
                 </table>
-
-            </div>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-center">
-
-                    <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
-                        <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-                    </li>
-
-                </ul>
-            </nav>
-        </div>
-    </div>
-
-
-    <hr>
-
-    <div>
-        <div class="site-section" id="trainer-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 mb-5">
-                        <h2 class="section-title">Trainers</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem possimus distinctio ex. Natus
-                            totam
-                            voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa
-                            dolore
-                            molestias
-                            blanditiis consequuntur
-                            sunt nisi.</p>
-                    </div>
-                </div>
-                <div class="row large-gutters">
-                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                        <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5">
-                        <h3>James Holmes</h3>
-                        <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
-                            rerum
-                            voluptatem, dignissimos dolorem porro aliquid veritatis!</p>
-                    </div>
-                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0 mt-5">
-                        <img th:src="@{/images/person_2.jpg}" alt="Image" class="img-fluid mb-5">
-                        <h3>Kelly Green</h3>
-                        <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
-                            rerum
-                            voluptatem,
-                            dignissimos dolorem porro aliquid veritatis!</p>
-                    </div>
-                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
-                        <img th:src="@{/images/person_3.jpg}" alt="Image" class="img-fluid mb-5">
-                        <h3>Ben Smith</h3>
-                        <p class="mb-4 opacity-7">Aerobatics Trainer</p>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
-                            rerum
-                            voluptatem,
-                            dignissimos dolorem porro aliquid veritatis!</p>
-                    </div>
-                </div>
             </div>
         </div>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+
+                <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
+                    <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+                </li>
+
+            </ul>
+        </nav>
     </div>
+</div>
+
+
+<hr>
+
+<div>
+    <div class="site-section" id="trainer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5">
+                    <h2 class="section-title">Trainers</h2>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Rem possimus distinctio ex. Natus
+                        totam
+                        voluptatibus animi aspernatur ducimus quas obcaecati mollitia quibusdam temporibus culpa
+                        dolore
+                        molestias
+                        blanditiis consequuntur
+                        sunt nisi.</p>
+                </div>
+            </div>
+            <div class="row large-gutters">
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
+                    <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5">
+                    <h3>James Holmes</h3>
+                    <p class="mb-4 opacity-7">Aerobatics Trainer</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
+                        rerum
+                        voluptatem, dignissimos dolorem porro aliquid veritatis!</p>
+                </div>
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0 mt-5">
+                    <img th:src="@{/images/person_2.jpg}" alt="Image" class="img-fluid mb-5">
+                    <h3>Kelly Green</h3>
+                    <p class="mb-4 opacity-7">Aerobatics Trainer</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
+                        rerum
+                        voluptatem,
+                        dignissimos dolorem porro aliquid veritatis!</p>
+                </div>
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0">
+                    <img th:src="@{/images/person_3.jpg}" alt="Image" class="img-fluid mb-5">
+                    <h3>Ben Smith</h3>
+                    <p class="mb-4 opacity-7">Aerobatics Trainer</p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nihil repellat ipsam sequi iure
+                        rerum
+                        voluptatem,
+                        dignissimos dolorem porro aliquid veritatis!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
