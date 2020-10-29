@@ -9,6 +9,8 @@ spring:
 
 
 
+
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -41,6 +43,11 @@ spring:
     hibernate:
       format_sql: true
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 4f5f4e5dee07c55e58b5c79ec964f9a267f24bad
 
 logging:
   level:
@@ -52,3 +59,11 @@ logging:
             sql:
               BasicBinder: TRACE
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> 4f5f4e5dee07c55e58b5c79ec964f9a267f24bad
