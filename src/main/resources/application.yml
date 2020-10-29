@@ -6,8 +6,11 @@ spring:
     url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
     password: 8532007
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> hj
 
 
 
@@ -32,6 +35,7 @@ spring:
   freemarker:
     cache: false
     suffix: .ftl
+    request-context-attribute: rc
 
   profiles:
     active: local
@@ -40,14 +44,20 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     show-sql: true
+    generate-ddl: false
     hibernate:
       format_sql: true
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 =======
 
 
 >>>>>>> 4f5f4e5dee07c55e58b5c79ec964f9a267f24bad
+=======
+      ddl-auto: update
+
+>>>>>>> hj
 
 logging:
   level:
@@ -60,6 +70,7 @@ logging:
               BasicBinder: TRACE
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -67,3 +78,5 @@ logging:
 
 
 >>>>>>> 4f5f4e5dee07c55e58b5c79ec964f9a267f24bad
+=======
+>>>>>>> hj
