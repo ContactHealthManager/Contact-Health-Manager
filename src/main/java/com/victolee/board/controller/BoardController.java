@@ -25,6 +25,7 @@ public class BoardController {
         return "/index";
     }
 
+
     /* 게시글 목록 */ /*페이지를 담는 리스트와 그 페이지 안의 목록들을 담은 리스트 */
     @GetMapping("/managerlist")
     public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
