@@ -42,7 +42,7 @@ public class BoardEntity extends TimeEntity {
     private String writer;
 
 
-    @Builder
+    @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
     public BoardEntity(Long id, String title, String content,
                        String companyphone, String companyname,
                        Integer count, Integer sumlike,
