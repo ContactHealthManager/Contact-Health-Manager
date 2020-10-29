@@ -4,16 +4,12 @@ import com.victolee.board.domain.entity.BoardEntity;
 import com.victolee.board.domain.repository.BoardRepository;
 import com.victolee.board.dto.BoardDto;
 import lombok.AllArgsConstructor;
-import org.hibernate.Criteria;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Isolation;
 
-import javax.inject.Inject;
 import javax.transaction.Transactional;
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
