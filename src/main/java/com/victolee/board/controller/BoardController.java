@@ -1,11 +1,18 @@
 package com.victolee.board.controller;
 
+import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.dto.BoardDto;
+import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.BoardService;
+import com.victolee.board.service.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
@@ -16,13 +23,17 @@ public class BoardController {
 
     private BoardService boardService;
 
+
 //-----------------------------------jpa로만든 컨트롤러-------------------------------------------------
     /* 메인 화면 */
     @GetMapping("/")
-    public String list() {
+    public String list(@AuthenticationPrincipal UserEntity userEntity,Model model) {
+        String role = userEntity.getRole();
 
+        model.addAttribute("role",role);
         return "/index";
     }
+
 
     /* 게시글 목록 */ /*페이지를 담는 리스트와 그 페이지 안의 목록들을 담은 리스트 */
     @GetMapping("/managerlist")
