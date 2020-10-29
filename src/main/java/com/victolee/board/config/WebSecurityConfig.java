@@ -1,6 +1,7 @@
 package com.victolee.board.config;
 
 import com.victolee.board.service.UserService;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 @RequiredArgsConstructor
 @EnableWebSecurity // 1
@@ -35,6 +37,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter { // 2
         http
                 .authorizeRequests() // 접근에 대한 인증 설정
                 .antMatchers("/login","/signup","/user").permitAll() // 누구나 접근 허용
+                .antMatchers("/post").hasRole("TRAINER")
 //                .antMatchers("/chat/**").hasRole("TRAINER")
 //                .antMatchers("/chat/**").hasRole("HELLIN")
                 .anyRequest().authenticated() // 나머지 요청들은 권한의 종류에 상관 없이 권한이 있어야 접근 가능
