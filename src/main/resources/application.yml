@@ -8,6 +8,8 @@ spring:
     password: woqls129@@
 
 
+
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -29,7 +31,6 @@ spring:
   freemarker:
     cache: false
     suffix: .ftl
-    request-context-attribute: rc
 
   profiles:
     active: local
@@ -38,10 +39,10 @@ spring:
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     open-in-view: false
     show-sql: true
-    generate-ddl: false
     hibernate:
       format_sql: true
-      ddl-auto: update
+
+
 
 
 logging:
@@ -53,5 +54,9 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
+
+
+
+
 
 

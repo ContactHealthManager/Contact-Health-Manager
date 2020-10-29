@@ -1,8 +1,10 @@
 package com.victolee.board.controller;
 
+
 import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.UserRepository;
 import com.victolee.board.dto.BoardDto;
+
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,14 +14,16 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.Principal;
 import java.util.*;
+
 
 @RequiredArgsConstructor
 @Controller
@@ -40,9 +44,6 @@ public class UserController {
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
         return "redirect:/login";
     }
-
-
-
 
     @RequestMapping("/myinfo") //로그인한 정보를 내정보에 불러오기
     public ModelAndView myinfo(@AuthenticationPrincipal UserEntity userEntity) {
@@ -67,6 +68,7 @@ public class UserController {
 
 
         return view;
+
     }
 
 }
