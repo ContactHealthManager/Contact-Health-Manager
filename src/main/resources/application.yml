@@ -41,6 +41,12 @@ spring:
     hibernate:
       format_sql: true
       ddl-auto: update
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
 
 
 
@@ -56,6 +62,5 @@ logging:
 
 server:
   port: 8030
-
 
 

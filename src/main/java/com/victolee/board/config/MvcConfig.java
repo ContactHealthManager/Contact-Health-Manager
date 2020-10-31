@@ -1,6 +1,7 @@
 package com.victolee.board.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -15,5 +16,11 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/signup").setViewName("signup");
         registry.addViewController("/chat/room").setViewName("chat/room");
         registry.addViewController("/chat/roomdetail").setViewName("chat/roomdetail");
+
+    }
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/summernoteImage/**")
+                .addResourceLocations("file:///C:/summernote_image/");
     }
 }
