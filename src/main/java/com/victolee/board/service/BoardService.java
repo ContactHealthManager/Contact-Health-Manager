@@ -122,6 +122,7 @@ public class BoardService {
                 .sumlike(boardEntity.getSumlike())
                 .address(boardEntity.getAddress())
                 .writer(boardEntity.getWriter())
+                .imgname(boardEntity.getImgname())
                 .build();
     }
 

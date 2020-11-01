@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
-      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 
 <head th:replace="/common/header.html :: head">
 </head>
@@ -25,54 +24,39 @@
 
 <div class="site-section section-2" id="classes-section">
     <div class="site-section bg-dark" id="contact-section">
-        <div class="container">
-
-
+        <div class="container" style="color: white">
             <div class="wrap ftco-animate" style="border:5px solid #48d494; margin-bottom: 30px;">
                 <br>
                 <p th:inline="text" class="float-lg-right">
-                    작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
+                    작성일 : [[${#temporals.format(servicecenterDTO.createdDate, 'yyyy-MM-dd HH:mm')}]]
                     &nbsp; &nbsp;
-                    조회수 : [[${boardDto.bcount}]] &nbsp;
-                    찜수 : [[${boardDto.sumlike}]]</p>
+                </p>
                 <div class="content" style="padding-left:8%; padding-right:8%; padding-top: 5%; padding-bottom: 10%;">
                     <!-- 글 제목 -->
-                    <h1 style="text-align: center; margin-bottom: 20px;" th:text="${boardDto.title}"></h1>
+                    <strong style="font-size: 20px">제목 :</strong>
+                    <h3 style="text-align: center; margin-bottom: 20px;" th:text="${servicecenterDTO.title}"></h3>
                     <!-- 작성자 -->
-                    <button class="float-lg-left btn btn-outline-primary">찜하기</button>
-                    <button class="float-lg-left btn btn-outline-primary">찜취소</button>
-                    <button class="float-lg-left btn-md btn btn-outline-primary">1대1상담하기</button>
-                    <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>
-                    <h1>[[${boardDto.id}]]</h1>
-                    <hr style="border: solid 2px #48d494;">
-                    <img th:src="${boardDto.imgname}" alt="Image" width="100%" height="300px">
-                    <!-- 글 나눔선  -->
-                    <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">소속 회사 이름</strong>
-                    <p th:inline="text">[[${boardDto.companyname}]]</p>
-                    <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">소속 전화번호</strong>
-                    <p th:inline="text">[[${boardDto.companyphone}]]</p>
-                    <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">소속 주소</strong>
-                    <p th:inline="text">[[${boardDto.address}]]</p>
+                    <strong style="font-size: 20px">작성자 :</strong>
+                    <h3 style="text-align: right; margin-right: 10px;" th:text="${servicecenterDTO.user}"></h3>
+
+
 
                     <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">내용</strong>
+                    <strong style="font-size: 20px">문의사항 :</strong>
                     <!-- 글 내용 -->
-                    <p th:text="${boardDto.content}"></p>
+                    <p th:text="${servicecenterDTO.content}"></p>
 
                     <!-- 글 나눔선  -->
                     <hr style="border: solid 2px #48d494;">
                     <hr>
-                    <div th:if="${boardDto.writer.toString().equals(userId)}" class="text-right">
+                    <div th:if="${servicecenterDTO.user.toString().equals(userId)}" class="text-right">
                         <!-- 수정하기 -->
                         <div style="text-align: right; margin-right: 10px;">
-                            <a th:href="@{'/post/edit/' + ${boardDto.id}}">
+                            <a th:href="@{'/servicepost/edit/' + ${servicecenterDTO.id}}">
                                 <button type="button" class="float-lg-right btn btn-outline-primary">수정하기</button>
                             </a>
                             <!-- 삭제하기 -->
-                            <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post"><input
+                            <form id="delete-form" th:action="@{'/servicepost/' + ${servicecenterDTO.id}}" method="post"><input
                                     type="hidden" name="_method" value="delete"/>
                                 <button class="float-lg-right btn btn-outline-primary"
                                 >삭제하기
@@ -88,17 +72,18 @@
             <!-- 변수 셋팅 -->
             <script th:inline="javascript">
                 /*<![CDATA[*/
-                var boardDto = /*[[${boardDto}]]*/ "";
+                var servicecenterDTO = /*[[${boardDto}]]*/ "";
                 /*]]>*/
             </script>
 
             <!-- script -->
             <script th:inline="javascript" th:src="@{/js/board.js}"></script>
             </h1>
+
+
         </div>
     </div>
 </div>
-
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 
 <head th:replace="/common/header.html :: head">
 </head>
@@ -16,6 +16,7 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
+
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
@@ -23,54 +24,58 @@
 <div class="site-section section-2" id="classes-section">
     <div class="site-section bg-dark" id="contact-section">
         <div class="container">
-            <div>
-                <div>
-                    <a th:href="@{/servicepost}" class="nav-link btn btn-outline-light">지금 바로 문의사항 남기기 </a>
-                    <a th:href="@{/mail}">
-                        <button type="button" class="float-lg-right btn btn-outline-primary">답변하기(관리자만 보여야함)</button>
-                    </a>
-                    <table class="table table-striped" style="color: lightseagreen">
-                        <thead>
-                        <tr>
-                            <th class="one wide">번호</th>
-                            <th class="ten wide">글제목</th>
-                            <th class="two wide">작성자</th>
 
-                        </tr>
-                        </thead>
+            <div class="row justify-content-center">
+                <div class="col-md-7">
 
-                        <tbody>
-                        <!-- CONTENTS !-->
-                        <tr th:each="servicecenter : ${servicecenterList}">
-                            <td>
-                                <span th:text="${servicecenter.id}"></span>
-                            </td>
-                            <td>
-                                <a th:href="@{'/servicepost/' + ${servicecenter.id}}">
-                                    <p><span th:text="${servicecenter.title}"></span></p>
+                    <h2 class="section-title mb-3">고객센터 입니당</h2>
+                    <p class="mb-5">건의사항 및 오류사항을 접수 해주세용</p>
 
-                                </a>
-                            </td>
-                            <td>
-                                <p><span th:text="${servicecenter.user}" style="color: white"></span></p>
-                            </td>
 
-                        </tr>
-                        </tbody>
-                    </table>
+                    <form th:action="@{/servicepost}" method="POST" data-aos="fade">
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3 mb-lg-0">
+                                <input type="text" name="title"
+                                       class="form-control"
+                                       placeholder="제목">
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="text" name="email"
+                                       class="form-control"
+                                       placeholder="이메일">
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                            <textarea name="content" id="" cols="30" rows="10"
+                                      class="form-control"
+                                      placeholder="글내용"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="등록">
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
 
-</div>
-<!-- .site-wrap -->
 
+<!-- .site-wrap -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>

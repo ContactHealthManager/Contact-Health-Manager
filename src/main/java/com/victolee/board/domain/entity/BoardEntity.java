@@ -38,12 +38,15 @@ public class BoardEntity extends TimeEntity {
     @Column(name = "writer",length = 10, nullable = false)
     private String writer;
 
+    @Column(name = "imgname",length = 100, nullable = false)
+    private String imgname;
+
 
     @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
     public BoardEntity(Long id, String title, String content,
                        String companyphone, String companyname,
                        Integer bcount, Integer sumlike,
-                       String address,String writer) {
+                       String address,String writer,String imgname) {
 
         this.id = id;
         this.title = title;
@@ -54,5 +57,6 @@ public class BoardEntity extends TimeEntity {
         this.sumlike = sumlike;
         this.address = address;
         this.writer = writer;
+        this.imgname = imgname;
     }
 }
