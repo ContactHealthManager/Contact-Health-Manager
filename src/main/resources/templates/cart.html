@@ -20,47 +20,47 @@
         th:replace="/common/header.html :: header">
 </header>
 
-<hr>
 
 <div>
     <div class="site-section" id="trainer-section">
         <div class="container">
-            <a href="map.html" th:href="@{/map}"
-               class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a></li>
+            <div class="row large-gutters">
 
-            <hr>
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
-                    <a th:href="@{'/post/' + ${board.id}}">
-                        <img th:src="@{${board.imgname}}" alt="Image" class="img-fluid mb-5"/>
-<!--                             th:href="@{'/post/' + ${board.id}}">-->
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}" >
+
+                    <p th:text="${cart.boardId}"></p>
+                    <a th:href="@{'/post/' + ${cart.boardId}}">1
+                        <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
+                             th:href="@{'/post/' + ${cart.boardId}}">
                         <p class="mb-4 opacity-7">
-                            <span th:text="${board.title}"></span>
+                            <span th:text="${cart.title}"></span>
                         </p>
-                        <p><span th:text="${board.writer}"></span></p>
-
+                        <p><span th:text="${cart.writer}"></span></p>
                     </a>
+
+
                 </div>
+
+
             </div>
         </div>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-
-                <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
-                    <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-                </li>
-
-            </ul>
-        </nav>
     </div>
 </div>
-
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
 
-</div>
-<!-- .site-wrap -->
+<!-- 변수 셋팅 -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cartDto = /*[[${cartDto}]]*/ "";
+    /*]]>*/
+</script>
+
+<!-- script -->
+<script th:inline="javascript" th:src="@{/js/cart.js}"></script>
+
+<!--&lt;!&ndash; .site-wrap &ndash;&gt;-->
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>

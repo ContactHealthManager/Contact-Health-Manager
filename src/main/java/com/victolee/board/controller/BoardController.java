@@ -2,8 +2,10 @@ package com.victolee.board.controller;
 
 import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.dto.BoardDto;
+import com.victolee.board.dto.CartDto;
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.BoardService;
+import com.victolee.board.service.CartService;
 import com.victolee.board.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,10 @@ import java.util.List;
 @Controller
 @AllArgsConstructor
 public class BoardController {
-
+    @Autowired
     private BoardService boardService;
+    @Autowired
+    private CartService cartService;
 
 
     //-----------------------------------jpa로만든 컨트롤러-------------------------------------------------
@@ -37,7 +41,7 @@ public class BoardController {
     }
 
 
-    /* 게시글 목록 */ /*페이지를 담는 리스트와 그 페이지 안의 목록들을 담은 리스트 */
+    /* 게시글 전체 목록 */ /* 페이지 수를 담는 배열과  그 페이지에 따라 게시글 목록들을 담은 리스트 */
     @GetMapping("/managerlist")
     public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlist(pageNum);
@@ -54,9 +58,8 @@ public class BoardController {
     public String detail(@PathVariable("no") Long no, Model model
             ,Principal principal) {
 
-
         BoardDto boardDto = boardService.getPost(no);
-
+//        CartDto cartDto = cartService.getCartlist();
 
         if(!boardDto.getWriter().equals(principal.getName())) {
             int count = boardDto.getBcount();
@@ -78,8 +81,9 @@ public class BoardController {
         return "board/write";
     }
 
+
     /* 게시글 쓰기 */ /* 로그인한 유저가 작성자가 되도록 해줌.*/
-    @PostMapping
+
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
         System.out.println("넘어오나용");
@@ -130,7 +134,7 @@ public class BoardController {
         return "redirect:/managerlist";
     }
 
-    /* 게시글 검색 */
+    /* 게시글 검색 */ //키워드를 받아서 검색.
     @GetMapping("/board/search")
     public String search(@RequestParam(value="keyword") String keyword, Model model) {
         List<BoardDto> boardDtoList = boardService.searchPosts(keyword);
@@ -139,6 +143,7 @@ public class BoardController {
 
         return "/managerlist";
     }
+
     /* 게시글 목록 */
     @GetMapping("/map")
     public String map(){
