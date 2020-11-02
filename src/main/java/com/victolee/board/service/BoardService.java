@@ -54,6 +54,21 @@ public class BoardService {
 //        return boardDtoList;
 //    }
 
+    @Transactional
+    public List<BoardDto> getcountBoardlist(Integer pageNum) { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
+        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1, PAGE_POST_COUNT,
+                Sort.by(Sort.Direction.DESC, "bcount")));
+
+        List<BoardEntity> boardEntities = page.getContent();
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        for (BoardEntity boardEntity : boardEntities) {
+            boardDtoList.add(this.convertEntityToDto(boardEntity));
+        }
+
+        return boardDtoList;
+    }
+
     @Transactional //게시물의 총개수
     public Long getBoardCount() {
         return boardRepository.count();

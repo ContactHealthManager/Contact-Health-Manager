@@ -47,6 +47,7 @@ public class UploadFile {
         this.registerDate = registerDate;
     }
 
+    @Builder
     public UploadFile() {
 
     }

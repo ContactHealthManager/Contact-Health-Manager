@@ -13,6 +13,6 @@ public class BoardApplication {
     }
     @Bean(name = "uploadPath")
     public String uploadPath() {
-        return "C:\\Users\\oplm1\\OneDrive\\사진\\카메라 앨범";
+        return "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";
     }
 }
