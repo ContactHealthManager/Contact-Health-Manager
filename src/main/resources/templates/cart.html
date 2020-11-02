@@ -25,22 +25,22 @@
     <div class="site-section" id="trainer-section">
         <div class="container">
             <div class="row large-gutters">
+                <div th:if="${cartList.get(2).getUser().getId().toString().equals(loginId)}">
+                    <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}">
 
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}" >
-
-                    <p th:text="${cart.boardId}"></p>
-                    <a th:href="@{'/post/' + ${cart.boardId}}">1
-                        <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
-                             th:href="@{'/post/' + ${cart.boardId}}">
-                        <p class="mb-4 opacity-7">
-                            <span th:text="${cart.title}"></span>
-                        </p>
-                        <p><span th:text="${cart.writer}"></span></p>
-                    </a>
+                        <p th:text="${cart.boardId}"></p>
+                        <a th:href="@{'/post/' + ${cart.boardId}}">1
+                            <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
+                                 th:href="@{'/post/' + ${cart.boardId}}">
+                            <p class="mb-4 opacity-7">
+                                <span th:text="${cart.title}"></span>
+                            </p>
+                            <p><span th:text="${cart.writer}"></span></p>
+                        </a>
 
 
+                    </div>
                 </div>
-
 
             </div>
         </div>
