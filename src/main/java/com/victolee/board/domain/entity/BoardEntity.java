@@ -1,11 +1,11 @@
 package com.victolee.board.domain.entity;
 
-import lombok.*;
-import net.bytebuddy.implementation.bind.annotation.Default;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -40,10 +40,14 @@ public class BoardEntity extends TimeEntity {
 
     @Column(name = "writer",length = 10, nullable = false)
     private String writer;
-    
+
     @Column(name = "imgname",length = 100, nullable = false)
     private String imgname;
 
+
+    public Long getId() {
+        return id;
+    }
 
 
 
