@@ -88,7 +88,7 @@ public class BoardController {
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
         System.out.println("넘어오나용");
         try {
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\media";//파일 저장 코드
             String filePath = baseDir + "\\" + files.getOriginalFilename();
             files.transferTo(new File(filePath));//해당 위치에 저장 형준 수정
 
