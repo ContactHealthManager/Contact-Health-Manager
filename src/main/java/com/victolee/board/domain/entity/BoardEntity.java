@@ -1,6 +1,9 @@
 package com.victolee.board.domain.entity;
 
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -17,7 +20,7 @@ public class BoardEntity extends TimeEntity {
     @Column(name = "title",length = 100, nullable = false)
     private String title;
 
-    @Column(name = "content",columnDefinition = "TEXT", nullable = false)
+    @Column(name = "content",columnDefinition = "TEXT", nullable = false,length = 100000000)
     private String content;
 
     @Column(name = "companyphone", length = 13, nullable = false)
@@ -40,6 +43,26 @@ public class BoardEntity extends TimeEntity {
 
     @Column(name = "imgname",length = 100, nullable = false)
     private String imgname;
+
+
+    public Long getId() {
+        return id;
+    }
+
+
+
+//    @ManyToMany
+//    @JoinTable(name = "cart")
+//    private List<BoardEntity> boardEntityList = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "board")
+//    private List<CartEntity> cartEntityList = new ArrayList<CartEntity>();
+//
+//    public void addCart(CartEntity cartEntity)
+//    {
+//        cartEntityList.add(cartEntity);
+//        cartEntity.setBoard(this);
+//    }
 
 
     @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
