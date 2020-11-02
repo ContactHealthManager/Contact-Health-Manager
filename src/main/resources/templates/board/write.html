@@ -80,10 +80,11 @@
                                    autocomplete="off" required/>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="address"
-                                   class="form-control"
-                                   placeholder="소속 주소"
-                                   autocomplete="off" required/>
+
+                            <input type="text" class="d-inline-block form-control text-light bg-dark"
+                                   id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px;" onclick="sample5_execDaumPostcode()">
+                            <input type="button" class="d-inline-block btn btn-primary active btn-lg"
+                                   value="주소 검색" onclick="sample5_execDaumPostcode()">
                         </div>
 
                     </div>
@@ -103,6 +104,25 @@
 
 
         </form>
+        <div>
+<!--            <form class="text-center" onclick="sample5_execDaumPostcode()">-->
+
+<!--                <input type="button" class="d-inline-block btn btn-info active btn-lg"-->
+<!--                       value="위치 설정"> &lt;!&ndash;나중에 위치 저장할 수 있게 만들거임 &ndash;&gt;-->
+<!--            </form>-->
+            <div>
+                <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
+                </div>
+                <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
+                </script>
+                <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
+
+                </script>
+                <script src="/js/map.js">
+                </script>
+            </div>
+        </div>
+
     </div>
 </div>
 

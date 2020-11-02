@@ -121,7 +121,7 @@ public class BoardController {
 
         return "/managerlist";
     }
-    /* 게시글 목록 */
+    /* 주소찾기 */
     @GetMapping("/map")
     public String map(){
 

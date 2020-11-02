@@ -34,6 +34,7 @@ function sample5_execDaumPostcode() {
                     map.relayout(); // 지도 중심을 변경한다.
                     map.setCenter(coords); // 마커를 결과값으로 받은 위치로 옮긴다.
                     marker.setPosition(coords)
+                    alert(coords)
                 }
             });
         }
