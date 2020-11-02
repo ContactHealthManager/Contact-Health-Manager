@@ -1,8 +1,11 @@
 package com.victolee.board.domain.entity;
 
 import lombok.*;
+import net.bytebuddy.implementation.bind.annotation.Default;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -38,6 +41,26 @@ public class BoardEntity extends TimeEntity {
     @Column(name = "writer",length = 10, nullable = false)
     private String writer;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+//    @ManyToMany
+//    @JoinTable(name = "cart")
+//    private List<BoardEntity> boardEntityList = new ArrayList<>();
+//
+//    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "board")
+//    private List<CartEntity> cartEntityList = new ArrayList<CartEntity>();
+//
+//    public void addCart(CartEntity cartEntity)
+//    {
+//        cartEntityList.add(cartEntity);
+//        cartEntity.setBoard(this);
+//    }
 
     @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
     public BoardEntity(Long id, String title, String content,

@@ -39,7 +39,16 @@
                     <!-- 글 제목 -->
                     <h1 style="text-align: center; margin-bottom: 20px;" th:text="${boardDto.title}"></h1>
                     <!-- 작성자 -->
-                    <button class="float-lg-left btn btn-outline-primary">찜하기</button>
+
+
+                    <form th:action="@{'/post/'+${boardDto.id}}" method="POST">
+                        <input type="hidden" name="board" th:value="${boardDto.id}"/>
+                        <input type="hidden" name="user" th:value="${userId}"/>
+                        <input type="hidden" name="status" th:value="${'1'}"/>
+                        <input type="submit" class="float-lg-left btn btn-outline-primary" value="찜하기"/>
+                    </form>
+
+
                     <button class="float-lg-left btn btn-outline-primary">찜취소</button>
                     <button class="float-lg-left btn-md btn btn-outline-primary">1대1상담하기</button>
                     <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>

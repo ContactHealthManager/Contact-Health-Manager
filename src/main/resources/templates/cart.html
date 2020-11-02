@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
-      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
+      xmlns:th="http://www.w3.org/1999/xhtml">
 
 <head th:replace="/common/header.html :: head">
 </head>
+
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <div class="site-mobile-menu site-navbar-target">
@@ -20,44 +20,27 @@
         th:replace="/common/header.html :: header">
 </header>
 
-<div class="intro-section" id="home-section" style="background-color: #ccc;">
-    <div class="container">
-        <div class="row align-items-center">
-            <div class="col-lg-13 mx-auto text-center" data-aos="fade-up">
 
-                <h1>내정보 페이지입니다.</h1>
+<div>
+    <div class="site-section" id="trainer-section">
+        <div class="container">
+            <div class="row large-gutters">
 
-                <img th:src="@{/images/person_1.jpg}" alt="Image" style="float:left" class="img-fluid mb-5">
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}" >
 
-                <div>
+                    <p th:text="${cart.boardId}"></p>
+                    <a th:href="@{'/post/' + ${cart.boardId}}">1
+                        <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
+                             th:href="@{'/post/' + ${cart.boardId}}">
+                        <p class="mb-4 opacity-7">
+                            <span th:text="${cart.title}"></span>
+                        </p>
+                        <p><span th:text="${cart.writer}"></span></p>
+                    </a>
 
-                    아이디 :[[${id}]]
-                    <br>
-                    전화번호:[[${phone}]]
-                    <br>
-                    이메일:[[${email}]]
-                    <br>
-                    역할 :[[${role}]]
-                    <br>
-                    닉네임 :[[${nicname}]]
-                    <br>
-                    경력 :[[${career}]]
-                    <br>
-                    주소 :[[${address}]]
-                    <br>
-                    <a href="cart.html" th:href="@{/cart}" class="nav-link btn btn-outline-primary">내가 좋아하는 게시물</a>
 
                 </div>
-                <!-- 변수 셋팅 -->
-                <script th:inline="javascript">
-                    /*<![CDATA[*/
-                    var userDto = /*[[${userDto}]]*/ "";
-                    /*]]>*/
-                </script>
 
-                <!-- script -->
-                <script th:inline="javascript" th:src="@{/js/user.js}"></script>
-                </h1>
 
             </div>
         </div>
@@ -67,7 +50,17 @@
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
 
-<!-- .site-wrap -->
+<!-- 변수 셋팅 -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    var cartDto = /*[[${cartDto}]]*/ "";
+    /*]]>*/
+</script>
+
+<!-- script -->
+<script th:inline="javascript" th:src="@{/js/cart.js}"></script>
+
+<!--&lt;!&ndash; .site-wrap &ndash;&gt;-->
 
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
