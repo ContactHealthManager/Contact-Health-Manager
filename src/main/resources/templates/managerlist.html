@@ -19,19 +19,19 @@
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
-
+<a></a>
 <hr>
+
 
 <div>
     <div class="site-section" id="trainer-section">
         <div class="container">
-            <a href="map.html" th:href="@{/map}"
-               class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a></li>
-
+            <a href="map.html" th:href="@{/map}" class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>&nbsp;
+            <a href="map.html" th:href="@{/countmanagerlist}" class="nav-link float-lg-right btn btn-primary btn-lg">조회수순서</a>
             <hr>
                 <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
                     <a th:href="@{'/post/' + ${board.id}}">
-                        <img th:src="@{${board.imgname}}" alt="Image" class="img-fluid mb-5"/>
+                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid mb-5"/>
 <!--                             th:href="@{'/post/' + ${board.id}}">-->
                         <p class="mb-4 opacity-7">
                             <span th:text="${board.title}"></span>

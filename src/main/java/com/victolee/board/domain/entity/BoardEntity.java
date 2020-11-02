@@ -1,11 +1,11 @@
 package com.victolee.board.domain.entity;
 
-import lombok.*;
-import net.bytebuddy.implementation.bind.annotation.Default;
+import lombok.AccessLevel;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -20,7 +20,7 @@ public class BoardEntity extends TimeEntity {
     @Column(name = "title",length = 100, nullable = false)
     private String title;
 
-    @Column(name = "content",columnDefinition = "TEXT", nullable = false)
+    @Column(name = "content",columnDefinition = "TEXT", nullable = false,length = 100000000)
     private String content;
 
     @Column(name = "companyphone", length = 13, nullable = false)
@@ -41,14 +41,15 @@ public class BoardEntity extends TimeEntity {
     @Column(name = "writer",length = 10, nullable = false)
     private String writer;
 
+    @Column(name = "imgname",length = 100, nullable = false)
+    private String imgname;
+
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+
 
 //    @ManyToMany
 //    @JoinTable(name = "cart")
@@ -62,10 +63,6 @@ public class BoardEntity extends TimeEntity {
 //        cartEntityList.add(cartEntity);
 //        cartEntity.setBoard(this);
 //    }
-
-    @Column(name = "imgname",length = 100, nullable = false)
-    private String imgname;
-
 
 
     @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함

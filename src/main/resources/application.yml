@@ -7,13 +7,6 @@ spring:
     username: root
     password: woqls129@@
 
-  servlet:
-    multipart:
-      maxFileSize: 10MB
-      maxRequestSize: 10MB
-
-
-
 
   mail:
     host: smtp.gmail.com
@@ -48,6 +41,13 @@ spring:
       format_sql: true
       ddl-auto: update
 
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 10MB
+      max-request-size: 10MB
+
+
 
 
 
@@ -60,7 +60,6 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
-
 
 
 

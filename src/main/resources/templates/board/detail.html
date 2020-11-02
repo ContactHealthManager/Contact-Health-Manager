@@ -54,7 +54,7 @@
                     <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>
                     <h1>[[${boardDto.id}]]</h1>
                     <hr style="border: solid 2px #48d494;">
-                    <img th:src="${boardDto.imgname}" alt="Image" width="100%" height="300px">
+                    <img th:src="@{/images/media/} + ${boardDto.imgname}" alt="Image" width="100%" height="300px">
                     <!-- 글 나눔선  -->
                     <hr style="border: solid 2px #48d494;">
                     <strong style="font-size: 20px">소속 회사 이름</strong>
@@ -69,7 +69,7 @@
                     <hr style="border: solid 2px #48d494;">
                     <strong style="font-size: 20px">내용</strong>
                     <!-- 글 내용 -->
-                    <p th:text="${boardDto.content}"></p>
+                    <p th:utext="${boardDto.content}"></p>
 
                     <!-- 글 나눔선  -->
                     <hr style="border: solid 2px #48d494;">
