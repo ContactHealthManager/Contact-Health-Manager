@@ -5,7 +5,12 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
     username: root
-    password: woqls129@@
+    password: 8532007
+
+  servlet:
+    multipart:
+      maxFileSize: 10MB
+      maxRequestSize: 10MB
 
 
 
@@ -55,8 +60,6 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
-
-
 
 
 

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.w3.org/1999/xhtml">
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 
 <head th:replace="/common/header.html :: head">
 </head>
-
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <div class="site-mobile-menu site-navbar-target">
@@ -16,52 +16,66 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
+
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
 
-<hr>
-
-<div>
-    <div class="site-section" id="trainer-section">
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section bg-dark" id="contact-section">
         <div class="container">
-            <a href="map.html" th:href="@{/map}"
-               class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a></li>
 
-            <hr>
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
-                    <a th:href="@{'/post/' + ${board.id}}">
-                        <img th:src="@{${board.imgname}}" alt="Image" class="img-fluid mb-5"/>
-<!--                             th:href="@{'/post/' + ${board.id}}">-->
-                        <p class="mb-4 opacity-7">
-                            <span th:text="${board.title}"></span>
-                        </p>
-                        <p><span th:text="${board.writer}"></span></p>
+            <div class="row justify-content-center">
+                <div class="col-md-7">
 
-                    </a>
+                    <h2 class="section-title mb-3">고객센터 입니당</h2>
+                    <p class="mb-5">건의사항 및 오류사항을 접수 해주세용</p>
+
+
+                    <form th:action="@{/servicepost}" method="POST" data-aos="fade">
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3 mb-lg-0">
+                                <input type="text" name="title"
+                                       class="form-control"
+                                       placeholder="제목">
+                            </div>
+
+                            <div class="col-md-6">
+                                <input type="text" name="email"
+                                       class="form-control"
+                                       placeholder="이메일">
+                            </div>
+
+
+                        </div>
+
+
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                            <textarea name="content" id="" cols="30" rows="10"
+                                      class="form-control"
+                                      placeholder="글내용"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary py-3 px-5 btn-block" value="등록">
+                            </div>
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>
-
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-
-                <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
-                    <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-                </li>
-
-            </ul>
-        </nav>
     </div>
 </div>
-
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
 
-</div>
-<!-- .site-wrap -->
 
+<!-- .site-wrap -->
 <script src="js/jquery-3.3.1.min.js"></script>
 <script src="js/jquery-migrate-3.0.1.min.js"></script>
 <script src="js/jquery-ui.js"></script>

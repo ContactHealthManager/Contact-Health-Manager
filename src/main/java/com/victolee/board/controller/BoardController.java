@@ -14,8 +14,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.io.File;
 import java.security.Principal;
 import java.util.List;
 
@@ -28,7 +30,7 @@ public class BoardController {
     private CartService cartService;
 
 
-//-----------------------------------jpa로만든 컨트롤러-------------------------------------------------
+    //-----------------------------------jpa로만든 컨트롤러-------------------------------------------------
     /* 메인 화면 */
     @GetMapping("/")
     public String list(@AuthenticationPrincipal UserEntity userEntity,Model model) {
@@ -75,18 +77,32 @@ public class BoardController {
     /* 게시글 쓰기 폼으로 이동*/
     @GetMapping("/post")
     public String write() {
+
         return "board/write";
     }
 
 
     /* 게시글 쓰기 */ /* 로그인한 유저가 작성자가 되도록 해줌.*/
+
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String write(BoardDto boardDto, Principal principal) {
+    public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
+        System.out.println("넘어오나용");
+        try {
+            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\media";//파일 저장 코드
+            String filePath = baseDir + "\\" + files.getOriginalFilename();
+            files.transferTo(new File(filePath));//해당 위치에 저장 형준 수정
 
-        String userid = principal.getName();
+            String userid = principal.getName();
+            boardDto.setImgname(filePath);
+            boardDto.setWriter(userid);
+            boardService.savePost(boardDto);
 
-        boardDto.setWriter(userid);
-        boardService.savePost(boardDto);
+            return "redirect:/managerlist";
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+//        String filePath = files.getOriginalFilename();
+//        files.transferTo(new File("\\static\\images\\media\\"+filePath));
 
         return "redirect:/managerlist";
     }
