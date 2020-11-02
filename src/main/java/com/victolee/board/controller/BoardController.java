@@ -2,28 +2,22 @@ package com.victolee.board.controller;
 
 import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.dto.BoardDto;
-import com.victolee.board.dto.CartDto;
-import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.BoardService;
 import com.victolee.board.service.CartService;
-import com.victolee.board.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.ModelAndView;
-import java.io.File;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-
 import java.security.Principal;
 import java.util.List;
 import java.util.UUID;
@@ -95,7 +89,7 @@ public class BoardController {
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
         System.out.println("넘어오나용");
         try {
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\사진\\카메라 앨범";//파일 저장 코드
             String filePath = baseDir + "\\" + files.getOriginalFilename();
             files.transferTo(new File(filePath));//해당 위치에 저장 형준 수정
 

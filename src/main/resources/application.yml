@@ -7,13 +7,6 @@ spring:
     username: root
     password: wlq960505
 
-  servlet:
-    multipart:
-      maxFileSize: 10MB
-      maxRequestSize: 10MB
-
-
-
 
   mail:
     host: smtp.gmail.com
@@ -47,6 +40,7 @@ spring:
     hibernate:
       format_sql: true
       ddl-auto: update
+
   servlet:
     multipart:
       enabled: true
