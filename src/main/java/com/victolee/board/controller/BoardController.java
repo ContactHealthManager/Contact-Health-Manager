@@ -49,6 +49,17 @@ public class BoardController {
         return "/managerlist";
     }
 
+    @GetMapping("/countmanagerlist")
+    public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
+        Integer[] pageList = boardService.getPageList(pageNum);
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("pageList", pageList);
+
+        return "/managerlist";
+    }
+
     /* 게시글 상세 목록*/
     @RequestMapping("/post/{no}")
     public String detail(@PathVariable("no") Long no, Model model
@@ -84,12 +95,13 @@ public class BoardController {
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
         System.out.println("넘어오나용");
         try {
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\media";//파일 저장 코드
+            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
             String filePath = baseDir + "\\" + files.getOriginalFilename();
+            String fileName = files.getOriginalFilename();
             files.transferTo(new File(filePath));//해당 위치에 저장 형준 수정
 
             String userid = principal.getName();
-            boardDto.setImgname(filePath);
+            boardDto.setImgname(fileName);
             boardDto.setWriter(userid);
             boardService.savePost(boardDto);
 
