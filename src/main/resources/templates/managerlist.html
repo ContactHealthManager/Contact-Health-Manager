@@ -31,8 +31,9 @@
             <hr>
                 <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
                     <a th:href="@{'/post/' + ${board.id}}">
-                        <img th:src="@{${board.imgname}}" alt="Image" class="img-fluid mb-5"/>
+                        <img th:src="${board.imgname}" alt="Image" class="img-fluid mb-5"/>
 <!--                             th:href="@{'/post/' + ${board.id}}">-->
+
                         <p class="mb-4 opacity-7">
                             <span th:text="${board.title}"></span>
                         </p>
