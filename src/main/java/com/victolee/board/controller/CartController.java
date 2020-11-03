@@ -34,17 +34,10 @@ public class CartController {
 
     /* 게시글 목록 */ /*페이지를 담는 리스트와 그 페이지 안의 목록들을 담은 리스트 */
     @GetMapping("/cart")
-    public String cartlist(Model model) {
+    public String cartlist(Model model,Principal principal) {
         List<CartDto> cartList = cartService.getCartlist();
 
-
-//        List<BoardDto> boardList = boardService.getBoardlist();
-
-//        Long boardId = cartList.get(4).getId();
-//
-//        cartList.get(3) ==> 카트 리스트의 3번째 값인 board라는 객체인데 , 이객체는 객체기 때문에 변수로 뽑아서써야함.
-
-//        model.addAttribute("boardList", boardList);
+        model.addAttribute("loginId",principal.getName());
         model.addAttribute("cartList", cartList);
 
         return "/cart";

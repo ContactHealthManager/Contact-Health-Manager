@@ -21,18 +21,22 @@
 </header>
 
 
-
-
 <div>
     <div class="site-section" id="trainer-section">
-        <div class="container">
-            <a href="map.html" th:href="@{/map}" class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>&nbsp;
-            <a href="map.html" th:href="@{/countmanagerlist}" class="nav-link float-lg-right btn btn-primary btn-lg">조회수순서</a>
-            <hr>
-                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
+        <div class="container" data-aos="fade-up">
+            <div class="float-lg-right">
+                <a href="map.html" th:href="@{/map}" class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>&nbsp;
+                <a href="map.html" th:href="@{/countmanagerlist}"
+                   class="nav-link float-lg-right btn btn-primary btn-lg">조회수순서</a>
+            </div>
+            <div class="row large-gutters">
+                <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4 ">
                     <a th:href="@{'/post/' + ${board.id}}">
+
                         <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">
-<!--                             th:href="@{'/post/' + ${board.id}}">-->
+                        <!--                             th:href="@{'/post/' + ${board.id}}">-->
+
+
                         <p class="mb-4 opacity-7">
                             <span th:text="${board.title}"></span>
                         </p>
@@ -43,16 +47,22 @@
             </div>
 
 
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
+        </div>
 
-                <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
-                    <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
-                </li>
 
-            </ul>
-        </nav>
     </div>
+
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:each="pageNum : ${pageList}" th:inline="text">
+                <a class="page-link" th:href="@{'/managerlist/?page=' + ${pageNum}}">[[${pageNum}]]</a>
+            </li>
+
+        </ul>
+    </nav>
+
 
 </div>
 
