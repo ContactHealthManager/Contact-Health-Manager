@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 
-<head>
+<head >
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width"/>
     <title>Example</title>
@@ -22,6 +22,9 @@
     <script
             src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 </head>
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: head">
+</header>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 <div class="site-mobile-menu site-navbar-target">
@@ -33,17 +36,14 @@
     <div class="site-mobile-menu-body"></div>
 </div>
 
-<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
-        th:replace="/common/header.html :: head">
-</header>
+
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
 
 <div class="site-section section-2" id="classes-section">
     <h2 class="section-title mb-3">매니저등록</h2>
-    <div class="site-section bg-dark" id="contact-section">
-
+    <div class="site-section" id="contact-section">
 
         <form th:action="@{/post}" method="POST"enctype="multipart/form-data">
 
