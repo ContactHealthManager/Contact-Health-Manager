@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.jvm.hotspot.gc.parallel.PSYoungGen;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -103,7 +105,7 @@ public class BoardController {
     /* 게시글 쓰기 */ /* 로그인한 유저가 작성자가 되도록 해줌.*/
 
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
+    public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         System.out.println("넘어오나용");
         try {
 

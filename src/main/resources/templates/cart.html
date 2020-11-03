@@ -25,7 +25,7 @@
     <div class="site-section" id="trainer-section">
         <div class="container" data-aos="fade-up">
             <div class="row large-gutters">
-                <div th:if="${!(cartList.get(2).getUser().getId().toString() == null)}">
+                <div>
                     <div th:if="${cartList.get(2).getUser().getId().toString().equals(loginId)}">
                         <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}">
 
