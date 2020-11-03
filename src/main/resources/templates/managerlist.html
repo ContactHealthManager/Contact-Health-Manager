@@ -19,8 +19,8 @@
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
-<a></a>
-<hr>
+
+
 
 
 <div>
@@ -31,7 +31,7 @@
             <hr>
                 <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="board : ${boardList}">
                     <a th:href="@{'/post/' + ${board.id}}">
-                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid mb-5"/>
+                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">
 <!--                             th:href="@{'/post/' + ${board.id}}">-->
                         <p class="mb-4 opacity-7">
                             <span th:text="${board.title}"></span>
@@ -41,7 +41,7 @@
                     </a>
                 </div>
             </div>
-        </div>
+
 
         <nav aria-label="Page navigation example">
             <ul class="pagination justify-content-center">
@@ -53,13 +53,14 @@
             </ul>
         </nav>
     </div>
+
 </div>
 
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
 
-</div>
+
 <!-- .site-wrap -->
 
 <script src="js/jquery-3.3.1.min.js"></script>

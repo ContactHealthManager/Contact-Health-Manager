@@ -36,7 +36,8 @@ public class BoardController {
     @GetMapping("/")
     public String list(@AuthenticationPrincipal UserEntity userEntity,Model model) {
         String role = userEntity.getRole();
-
+        List<BoardDto> boardList = boardService.getBoardlistcount();
+        model.addAttribute("boardList", boardList);
         model.addAttribute("role",role);
         return "/index";
     }
@@ -54,16 +55,16 @@ public class BoardController {
         return "/managerlist";
     }
 
-    @GetMapping("/countmanagerlist")
-    public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
-        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
-        Integer[] pageList = boardService.getPageList(pageNum);
-
-        model.addAttribute("boardList", boardList);
-        model.addAttribute("pageList", pageList);
-
-        return "/managerlist";
-    }
+//    @GetMapping("/countmanagerlist")
+//    public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+//        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
+//        Integer[] pageList = boardService.getPageList(pageNum);
+//
+//        model.addAttribute("boardList", boardList);
+//        model.addAttribute("pageList", pageList);
+//
+//        return "/managerlist";
+//    }
 
     /* 게시글 상세 목록*/
     @RequestMapping("/post/{no}")
