@@ -54,6 +54,12 @@ public class BoardController {
         return "/managerlist";
     }
 
+//    @GetMapping("/managerlist")
+//    public String list(Model model){
+//        List<BoardDto> boardList = boardService.getBoardlist();
+//        model.addAttribute("boardList", boardList);
+//    }
+
     @GetMapping("/countmanagerlist")
     public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlist(pageNum);
