@@ -83,7 +83,8 @@
 
                             <div>
                                 <input type="text" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_address" name="address" placeholder="상세주소" style="width:50%;font-size:20px;"
+                                       id="sample5_address" name="address" placeholder="상세주소"
+                                       style="width:50%;font-size:20px;"
                                        onclick="sample5_execDaumPostcode()"/>
                             </div>
                         </div>
@@ -140,48 +141,16 @@
         $.ajax({
             data: form_data,
             type: "POST",
-            url: '/post',
+            url: '/image',
             cache: false,
             contentType: false,
             enctype: 'multipart/form-data',
             processData: false,
-            success : onSuccess
-
-        });
-
-
-
-        // Hanlder
-
-        function onSuccess(res, status, xhr) {
-
-            if(res.err == "Error"){
-
-                location.href="/test/error/accessError.do";
-
-                return;
-
+            success: function (url) {
+                $(el).summernote('insertImage', url, function ($image) {
+                    $image.css('width', "50%");
+                });
             }
-
-
-
-            var data = res.result;
-
-            var key = res.key;
-
-
-
-            if(data != null){
-
-                alert(data);
-
-                opener.goSearch();
-
-                window.close();
-
-            }
-
-        }
         });
     }
 </script>

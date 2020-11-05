@@ -1,4 +1,3 @@
-
 var mapContainer = document.getElementById('map'),// 지도를 표시할div
     mapOption = {
         center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
@@ -7,7 +6,8 @@ var mapContainer = document.getElementById('map'),// 지도를 표시할div
 //지도를 미리 생성
 var map = new daum.maps.Map(mapContainer, mapOption); //주소-좌표 변환 객체를 생성
 var geocoder = new daum.maps.services.Geocoder(); //마커를 미리 생성
-var marker = new daum.maps.Marker({position: new daum.maps.LatLng(37.537187, 127.005476), map: map});
+// 마커를 표시할 위치와 title 객체 배열입니다
+
 
 function sample5_execDaumPostcode() {
     new daum.Postcode({
@@ -35,10 +35,47 @@ function sample5_execDaumPostcode() {
                     mapContainer.style.display = "block";
                     map.relayout(); // 지도 중심을 변경한다.
                     map.setCenter(coords); // 마커를 결과값으로 받은 위치로 옮긴다.
+                    marker.setImage(markerImage2)
                     marker.setPosition(coords)
-
+                    document.getElementById("sample5_address").value = fullAddr; // 주소로 상세 정보를 검색
+                    positions.push('title')
                 }
             });
         }
     }).open();
+}
+
+var positions = [
+    {
+        title: '카카오',
+        latlng: new kakao.maps.LatLng(37.492189, 126.823639)
+    },
+    {
+        title: '생태연못',
+        latlng: new kakao.maps.LatLng(37.492189, 126.823638)
+    },
+
+];
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc1 = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png";
+var imageSrc2 = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+
+for (var i = 0; i < positions.length; i++) {
+
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(40, 40);
+
+    // 마커 이미지를 생성합니다
+    var markerImage1 = new kakao.maps.MarkerImage(imageSrc1, imageSize);
+    var markerImage2 = new kakao.maps.MarkerImage(imageSrc2, imageSize);
+
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image: markerImage1 // 마커 이미지
+    });
+
 }
