@@ -81,5 +81,6 @@ public class BoardDto {
         this.writer = writer;
         this.imgname = imgname;
 
+
     }
 }

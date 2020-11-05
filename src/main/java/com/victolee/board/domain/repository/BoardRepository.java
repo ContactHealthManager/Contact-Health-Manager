@@ -2,6 +2,7 @@ package com.victolee.board.domain.repository;
 
 import com.victolee.board.domain.entity.BoardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
@@ -9,7 +10,6 @@ import java.util.List;
 // Containing: 특정 키워드 포함 여부
 
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
-
 
 
     List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword,String contentkeyword);

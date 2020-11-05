@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
@@ -81,5 +82,6 @@ public class BoardEntity extends TimeEntity {
         this.address = address;
         this.writer = writer;
         this.imgname = imgname;
+
     }
 }
