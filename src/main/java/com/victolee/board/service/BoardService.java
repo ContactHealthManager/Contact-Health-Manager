@@ -53,10 +53,12 @@ public class BoardService {
 
         for (BoardEntity boardEntity : boardEntities) {
             boardDtoList.add(this.convertEntityToDto(boardEntity));
+
         }
 
         return boardDtoList;
     }
+
     @Transactional
     public List<BoardDto> getBoardlist() { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
         List<BoardEntity> boardEntities = boardRepository.findAll();
@@ -69,26 +71,30 @@ public class BoardService {
         return boardDtoList;
     }
 
-    @Transactional
-    public List<BoardDto> getcountBoardlist(Integer pageNum) { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
-        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1, PAGE_POST_COUNT,
-                Sort.by(Sort.Direction.DESC, "bcount")));
 
+    @Transactional
+    public List<BoardDto> getBoardlistcount() {
+        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(0,5,Sort.by(Sort.Direction.DESC, "bcount")));
+        List<BoardDto> boardDtoList = new ArrayList<>(5);
         List<BoardEntity> boardEntities = page.getContent();
-        List<BoardDto> boardDtoList = new ArrayList<>();
 
         for (BoardEntity boardEntity : boardEntities) {
+
+
             boardDtoList.add(this.convertEntityToDto(boardEntity));
+
+
         }
 
+
         return boardDtoList;
+
     }
 
     @Transactional //게시물의 총개수
     public Long getBoardCount() {
         return boardRepository.count();
     }
-
 
 
     @Transactional
@@ -114,7 +120,7 @@ public class BoardService {
     @Transactional
     public List<BoardDto> searchPosts(String keyword) { // 게시물 검색 , 키워드는 제목과 내용
         List<BoardEntity> boardEntities = boardRepository
-                .findByTitleContainingOrContentContaining(keyword,keyword);
+                .findByTitleContainingOrContentContaining(keyword, keyword);
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         if (boardEntities.isEmpty()) return boardDtoList;
@@ -134,7 +140,7 @@ public class BoardService {
         Double postsTotalCount = Double.valueOf(this.getBoardCount());
 
         // 총 게시글 기준으로 계산한 마지막 페이지 번호 계산
-        Integer totalLastPageNum = (int)(Math.ceil((postsTotalCount/PAGE_POST_COUNT)));
+        Integer totalLastPageNum = (int) (Math.ceil((postsTotalCount / PAGE_POST_COUNT)));
 
         // 현재 페이지를 기준으로 블럭의 마지막 페이지 번호 계산
         Integer blockLastPageNum = (totalLastPageNum > curPageNum + BLOCK_PAGE_NUM_COUNT)
@@ -178,5 +184,6 @@ public class BoardService {
                 .y(boardEntity.getY())
                 .build();
     }
+
 
 }

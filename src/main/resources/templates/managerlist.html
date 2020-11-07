@@ -30,12 +30,12 @@
                    class="nav-link float-lg-right btn btn-primary btn-lg">조회수순서</a>
             </div>
             <div class="row large-gutters">
-                <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4 border border-success">
+                <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4 ">
                     <a th:href="@{'/post/' + ${board.id}}">
 
-                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image"
-                             class="img-fluid mb-5"
-                             width="300px" height="100px"/>
+                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">
+                        <!--                             th:href="@{'/post/' + ${board.id}}">-->
+
 
                         <p class="mb-4 opacity-7">
                             <span th:text="${board.title}"></span>
@@ -45,7 +45,10 @@
                     </a>
                 </div>
             </div>
+
+
         </div>
+
 
     </div>
 
@@ -60,7 +63,6 @@
 
 
 </div>
-
 
 
 

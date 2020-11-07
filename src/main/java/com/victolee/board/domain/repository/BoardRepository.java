@@ -15,7 +15,9 @@ import java.util.Optional;
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
 
+
     List<BoardIdAddress> findAllBy();
+
 
     List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword,String contentkeyword);
     BoardEntity findById(Integer id);

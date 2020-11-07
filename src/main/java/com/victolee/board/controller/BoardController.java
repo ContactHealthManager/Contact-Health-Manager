@@ -41,7 +41,8 @@ public class BoardController {
     @GetMapping("/")
     public String list(@AuthenticationPrincipal UserEntity userEntity,Model model) {
         String role = userEntity.getRole();
-
+        List<BoardDto> boardList = boardService.getBoardlistcount();
+        model.addAttribute("boardList", boardList);
         model.addAttribute("role",role);
         return "/index";
     }
@@ -58,6 +59,7 @@ public class BoardController {
 
         return "/managerlist";
     }
+
 
 
     //게시물 아이디와 게시물 주소값 가져오기
@@ -101,6 +103,8 @@ public class BoardController {
 
         return "/managerlist";
     }
+
+
 
     /* 게시글 상세 목록*/
     @RequestMapping("/post/{no}")
