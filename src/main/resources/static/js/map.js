@@ -24,6 +24,7 @@ function sample5_execDaumPostcode() {
                 } // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
                 fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
             } // 주소 정보를 해당 필드에 넣는다.
+
             document.getElementById("sample5_address").value = fullAddr; // 주소로 상세 정보를 검색
             geocoder.addressSearch(data.address, function (results, status) {
                 // 정상적으로 검색이 완료됐으면
@@ -34,6 +35,8 @@ function sample5_execDaumPostcode() {
                     map.relayout(); // 지도 중심을 변경한다.
                     map.setCenter(coords); // 마커를 결과값으로 받은 위치로 옮긴다.
                     marker.setPosition(coords)
+                    document.getElementById("sample5_x").value = result.x;
+                    document.getElementById("sample5_y").value = result.y;
                     alert(coords)
                 }
             });

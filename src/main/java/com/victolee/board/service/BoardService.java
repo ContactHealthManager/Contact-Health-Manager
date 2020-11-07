@@ -1,8 +1,10 @@
 package com.victolee.board.service;
 
 import com.victolee.board.domain.entity.BoardEntity;
+import com.victolee.board.domain.repository.BoardIdAddress;
 import com.victolee.board.domain.repository.BoardRepository;
 import com.victolee.board.dto.BoardDto;
+import com.victolee.board.dto.BoardIdAddressDto;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,7 +21,7 @@ import java.util.Optional;
 public class BoardService {
     private BoardRepository boardRepository;
 
-    private static final int BLOCK_PAGE_NUM_COUNT = 6;  // 블럭에 존재하는 페이지 번호 수
+    private static final int BLOCK_PAGE_NUM_COUNT = 5;  // 블럭에 존재하는 페이지 번호 수
     private static final int PAGE_POST_COUNT = 6;       // 한 페이지에 존재하는 게시글 수
 
 //    @Transactional
@@ -27,11 +29,24 @@ public class BoardService {
 //    countRepository.increaseBoardCount(no);
 //    }
 
+    // getBoardIdAddress 함수는 board테이블의 id와 address, 좌표 x y 만 가져옴
+    @Transactional
+    public List<BoardIdAddressDto> getBoardIdAddress(){
+        List<BoardIdAddress> boardEntities = boardRepository.findAllBy();
+        List<BoardIdAddressDto> boardDtoList = new ArrayList<>();
+
+        for (BoardIdAddress boardEntity : boardEntities) {
+
+            boardDtoList.add(this.convertEntityToDto_address(boardEntity));
+        }
+
+        return boardDtoList;
+    }
+
 
     @Transactional
     public List<BoardDto> getBoardlist(Integer pageNum) { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
-        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1, PAGE_POST_COUNT,
-                Sort.by(Sort.Direction.ASC, "createdDate")));
+        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1, PAGE_POST_COUNT, Sort.by(Sort.Direction.ASC, "createdDate")));
 
         List<BoardEntity> boardEntities = page.getContent();
         List<BoardDto> boardDtoList = new ArrayList<>();
@@ -42,17 +57,17 @@ public class BoardService {
 
         return boardDtoList;
     }
-//    @Transactional
-//    public List<BoardDto> getBoardlist() { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
-//        List<BoardEntity> boardEntities = boardRepository.findAll();
-//        List<BoardDto> boardDtoList = new ArrayList<>();
-//
-//        for (BoardEntity boardEntity : boardEntities) {
-//            boardDtoList.add(this.convertEntityToDto(boardEntity));
-//        }
-//
-//        return boardDtoList;
-//    }
+    @Transactional
+    public List<BoardDto> getBoardlist() { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
+        List<BoardEntity> boardEntities = boardRepository.findAll();
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        for (BoardEntity boardEntity : boardEntities) {
+            boardDtoList.add(this.convertEntityToDto(boardEntity));
+        }
+
+        return boardDtoList;
+    }
 
     @Transactional
     public List<BoardDto> getcountBoardlist(Integer pageNum) { //게시물 목록을 그 페이지에 맞게 리스트에 담음.
@@ -111,6 +126,7 @@ public class BoardService {
         return boardDtoList;
     }
 
+    @Transactional
     public Integer[] getPageList(Integer curPageNum) {  //pagenation
         Integer[] pageList = new Integer[BLOCK_PAGE_NUM_COUNT];
 
@@ -136,6 +152,7 @@ public class BoardService {
         return pageList;
     }
 
+    //글쓰기 상세정보 출력을 위한 엔티티 테이블에 있는 값들을 디티오 변수에 get
     private BoardDto convertEntityToDto(BoardEntity boardEntity) { //엔티티 객체 변수를 디티오 객체 변수로 변환
         return BoardDto.builder()
                 .id(boardEntity.getId())
@@ -149,6 +166,16 @@ public class BoardService {
                 .address(boardEntity.getAddress())
                 .writer(boardEntity.getWriter())
                 .imgname(boardEntity.getImgname())
+                .build();
+    }
+    // 게시글 상세 정보중에 특정칼럼 아이디, 주소값 좌표 x,y를 가져올때 엔티티에서 변수로 바꿔주는 함수
+
+    private BoardIdAddressDto convertEntityToDto_address(BoardIdAddress boardEntity){
+        return BoardIdAddressDto.builder()
+                .id(boardEntity.getId())
+                .address(boardEntity.getAddress())
+                .x(boardEntity.getX())
+                .y(boardEntity.getY())
                 .build();
     }
 

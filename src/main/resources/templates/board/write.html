@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 
-<head >
+<head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width"/>
     <title>Example</title>
@@ -45,15 +45,15 @@
     <h2 class="section-title mb-3">매니저등록</h2>
     <div class="site-section" id="contact-section">
 
-        <form th:action="@{/post}" method="POST"enctype="multipart/form-data">
+        <form th:action="@{/post}" method="POST" enctype="multipart/form-data">
 
             <div class="halfmain">
 
                 <div class="halfleft">
                     <label class="col-form-label text-md-right
                             col-12 col-md-3 col-lg-3">사진 업로드</label>
-                    <div class="col-sm-12 col-md-7" >
-                        <input type="file" name="img" class=""  value="사진업로드">
+                    <div class="col-sm-12 col-md-7">
+                        <input type="file" name="img" class="" value="사진업로드">
                     </div>
                 </div>
 
@@ -80,10 +80,18 @@
                                    autocomplete="off" required/>
                         </div>
                         <div class="col-md-6">
-                            <input type="text" name="address"
-                                   class="form-control"
-                                   placeholder="소속 주소"
-                                   autocomplete="off" required/>
+
+                            <div>
+                                <input type="text" class="d-inline-block form-control text-light bg-dark"
+                                       id="sample5_address" name="address" placeholder="상세주소" style="width:50%;font-size:20px;"
+                                       onclick="sample5_execDaumPostcode()"/>
+                                <input type="hidden" class="d-inline-block form-control text-light bg-dark"
+                                       id="sample5_x" name="x" placeholder="상세주소 x좌표" style="width:50%;font-size:20px;"
+                                       onclick="sample5_execDaumPostcode()"/>
+                                <input type="hidden" class="d-inline-block form-control text-light bg-dark"
+                                       id="sample5_y" name="y" placeholder="상세주소 y좌표" style="width:50%;font-size:20px;"
+                                       onclick="sample5_execDaumPostcode()"/>
+                            </div>
                         </div>
 
                     </div>
@@ -103,6 +111,15 @@
 
 
         </form>
+        <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
+        </div>
+        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
+        </script>
+        <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
+
+        </script>
+        <script src="/js/map.js">
+        </script>
     </div>
 </div>
 

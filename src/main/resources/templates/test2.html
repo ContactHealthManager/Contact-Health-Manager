@@ -1,10 +1,203 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/common/header.html :: head">
 </head>
-<body>
-$END$
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+
+<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+        th:replace="/common/header.html :: header">
+</header>
+
+<div class="site-section section-2" id="classes-section">
+    <div class="site-section " id="contact-section">
+        <div class="container">
+            <div>
+
+
+                <div class="text-center">
+
+                    <input type="text" class="d-inline-block form-control text-light bg-dark"
+                           id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px;"
+                           onclick="sample5_execDaumPostcode()">
+                    <input type="button" class="d-inline-block btn btn-primary active btn-lg"
+                           value="주소 검색" onclick="sample5_execDaumPostcode()">
+                </div>
+                <!--                <form>-->
+                <!--                    <input type="button" class="d-inline-block btn btn-info active btn-lg"-->
+                <!--                           value="위치 설정"> &lt;!&ndash;나중에 위치 저장할 수 있게 만들거임 &ndash;&gt;-->
+                <!--                </form>-->
+                <div>
+                    <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
+                    </div>
+                    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
+                    </script>
+                    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
+                    </script>
+                    <script>
+
+                        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";
+                        var mapContainer = document.getElementById('map'),// 지도를 표시할div
+                            mapOption = {
+                                center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+                                level: 5 // 지도의 확대 레벨
+                            };
+                        //지도를 미리 생성
+                        var map = new daum.maps.Map(mapContainer, mapOption); //주소-좌표 변환 객체를 생성
+
+                        var positions = [
+                            {
+                                title: "94",
+                                latlng: new kakao.maps.LatLng(37.5182112402056, 127.023150432187)
+                            },
+                            {
+                                title: '95',
+                                latlng: new kakao.maps.LatLng(37.3898417625267, 127.058366542493)
+                            },
+                            {
+                                title: '96',
+                                latlng: new kakao.maps.LatLng(37.3628227148113, 126.966080445674)
+                            },
+                            {
+                                title: '97',
+                                latlng: new kakao.maps.LatLng(37.3980698712845, 126.924832325498)
+                            },
+                            {
+                                title: '98',
+                                latlng: new kakao.maps.LatLng(37.3845452187377, 126.956325109879)
+                            },
+                            {
+                                title: '99',
+                                latlng: new kakao.maps.LatLng(37.4004978865193, 126.921690171193)
+                            }
+                        ];
+                        var geocoder = new daum.maps.services.Geocoder(); //마커를 미리 생성
+
+
+
+                        for (var i = 0; i < positions.length; i++) {
+
+                            // 마커 이미지의 이미지 크기 입니다
+                            var imageSize = new kakao.maps.Size(24, 35);
+
+                            // 마커 이미지를 생성합니다
+                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                            // 마커를 생성합니다
+                            var marker = new kakao.maps.Marker({
+                                map: map, // 마커를 표시할 지도
+                                position: positions[i].latlng, // 마커를 표시할 위치
+                                title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                                image: markerImage // 마커 이미지
+                            });
+                        }
+
+
+                        function sample5_execDaumPostcode() {
+                            new daum.Postcode({
+                                oncomplete: function (data) {
+                                    // 각 주소의 노출 규칙에 따라 주소를 조합한다.
+                                    // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+                                    var fullAddr = data.address; // 최종 주소 변수
+                                    var extraAddr = ''; // 조합형 주소 변수 // 기본 주소가 도로명 타입일때 조합한다.
+                                    if (data.addressType === 'R') { //법정동명이 있을 경우 추가한다.
+                                        if (data.bname !== '') {
+                                            extraAddr += data.bname;
+                                        } // 건물명이 있을 경우 추가한다.
+                                        if (data.buildingName !== '') {
+                                            extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                                        } // 조합형주소의 유무에 따라 양쪽에 괄호를 추가하여 최종 주소를 만든다.
+                                        fullAddr += (extraAddr !== '' ? ' (' + extraAddr + ')' : '');
+                                    } // 주소 정보를 해당 필드에 넣는다.
+                                    document.getElementById("sample5_address").value = fullAddr; // 주소로 상세 정보를 검색
+                                    geocoder.addressSearch(data.address, function (results, status) {
+                                        // 정상적으로 검색이 완료됐으면
+                                        if (status === daum.maps.services.Status.OK) {
+                                            var result = results[0]; //첫번째 결과의 값을 활용 // 해당 주소에 대한 좌표를 받아서
+                                            var coords = new daum.maps.LatLng(result.y, result.x); // 지도를 보여준다.
+                                            mapContainer.style.display = "block";
+                                            map.relayout(); // 지도 중심을 변경한다.
+                                            map.setCenter(coords); // 마커를 결과값으로 받은 위치로 옮긴다.
+                                            marker.setPosition(coords)
+                                            alert(coords)
+                                        }
+                                    });
+                                }
+                            }).open();
+                        }
+
+                    </script>
+
+                    <!--                    <script>-->
+                    <!--                        var mapContainer = document.getElementById('map'), // 지도를 표시할 div-->
+                    <!--                            mapOption = {-->
+                    <!--                                center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표-->
+                    <!--                                level: 3 // 지도의 확대 레벨-->
+                    <!--                            };-->
+
+                    <!--                        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다-->
+
+                    <!--                        // 마커를 표시할 위치와 title 객체 배열입니다-->
+                    <!--                        var positions = [-->
+                    <!--                            {-->
+                    <!--                                title: '카카오',-->
+                    <!--                                latlng: new kakao.maps.LatLng(33.450705, 126.570677)-->
+                    <!--                            },-->
+                    <!--                            {-->
+                    <!--                                title: '생태연못',-->
+                    <!--                                latlng: new kakao.maps.LatLng(33.450936, 126.569477)-->
+                    <!--                            },-->
+                    <!--                            {-->
+                    <!--                                title: '텃밭',-->
+                    <!--                                latlng: new kakao.maps.LatLng(33.450879, 126.569940)-->
+                    <!--                            },-->
+                    <!--                            {-->
+                    <!--                                title: '근린공원',-->
+                    <!--                                latlng: new kakao.maps.LatLng(33.451393, 126.570738)-->
+                    <!--                            }-->
+                    <!--                        ];-->
+
+                    <!--                        // 마커 이미지의 이미지 주소입니다-->
+                    <!--                        var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png";-->
+
+                    <!--                        for (var i = 0; i < positions.length; i ++) {-->
+
+                    <!--                            // 마커 이미지의 이미지 크기 입니다-->
+                    <!--                            var imageSize = new kakao.maps.Size(24, 35);-->
+
+                    <!--                            // 마커 이미지를 생성합니다-->
+                    <!--                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);-->
+
+                    <!--                            // 마커를 생성합니다-->
+                    <!--                            var marker = new kakao.maps.Marker({-->
+                    <!--                                map: map, // 마커를 표시할 지도-->
+                    <!--                                position: positions[i].latlng, // 마커를 표시할 위치-->
+                    <!--                                title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다-->
+                    <!--                                image : markerImage // 마커 이미지-->
+                    <!--                            });-->
+                    <!--                        }-->
+                    <!--                    </script>-->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer-section" th:replace="/common/footer.html :: footer">
+</footer>
+
 </body>
 </html>
+
