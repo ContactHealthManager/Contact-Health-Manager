@@ -44,6 +44,10 @@ public class BoardDto {
 
     private String imgname;
 
+    private double x;
+
+    private double y;
+
 
     public BoardEntity toEntity() { //글쓰기 저장을 위한 엔티티
         BoardEntity boardEntity = BoardEntity.builder()
@@ -57,6 +61,8 @@ public class BoardDto {
                 .address(address)
                 .writer(writer)
                 .imgname(imgname)
+                .x(x)
+                .y(y)
                 .build();
         return boardEntity;
     }
@@ -66,7 +72,8 @@ public class BoardDto {
     public BoardDto(Long id, String title, String content,
                     LocalDateTime createdDate, LocalDateTime modifiedDate,
                     String companyphone, String companyname, Integer bcount,
-                    Integer sumlike, String address,String writer,String imgname) {
+                    Integer sumlike, String address, String writer, String imgname,
+                    double x, double y) {
 
         this.id = id;
         this.title = title;
@@ -80,7 +87,11 @@ public class BoardDto {
         this.address = address;
         this.writer = writer;
         this.imgname = imgname;
+        this.x = x;
+        this.y = y;
 
 
     }
+
+
 }

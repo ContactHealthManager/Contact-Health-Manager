@@ -2,9 +2,13 @@ package com.victolee.board.domain.repository;
 
 import com.victolee.board.domain.entity.BoardEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 // findByXXX: XXX 컬럼을 키워드로 검색
 // Containing: 특정 키워드 포함 여부
@@ -12,9 +16,13 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
 
+
+    List<BoardIdAddress> findAllBy();
+
+
     List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword,String contentkeyword);
     BoardEntity findById(Integer id);
-    List<BoardEntity> findAllBy();
+
 
 }
 

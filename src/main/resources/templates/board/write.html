@@ -83,8 +83,13 @@
 
                             <div>
                                 <input type="text" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_address" name="address" placeholder="상세주소"
-                                       style="width:50%;font-size:20px;"
+                                       id="sample5_address" name="address" placeholder="상세주소" style="width:50%;font-size:20px;"
+                                       onclick="sample5_execDaumPostcode()"/>
+                                <input type="hidden" class="d-inline-block form-control text-light bg-dark"
+                                       id="sample5_x" name="x" placeholder="상세주소 x좌표" style="width:50%;font-size:20px;"
+                                       onclick="sample5_execDaumPostcode()"/>
+                                <input type="hidden" class="d-inline-block form-control text-light bg-dark"
+                                       id="sample5_y" name="y" placeholder="상세주소 y좌표" style="width:50%;font-size:20px;"
                                        onclick="sample5_execDaumPostcode()"/>
                             </div>
                         </div>
