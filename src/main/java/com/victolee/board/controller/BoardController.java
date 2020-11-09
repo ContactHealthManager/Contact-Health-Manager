@@ -1,7 +1,6 @@
 package com.victolee.board.controller;
 
 import com.victolee.board.domain.entity.UserEntity;
-import com.victolee.board.domain.repository.BoardIdAddress;
 import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.BoardIdAddressDto;
 import com.victolee.board.service.BoardService;
@@ -136,7 +135,6 @@ System.out.println(jsonObject);
 
 
     /* 게시글 쓰기 */ /* 로그인한 유저가 작성자가 되도록 해줌.*/
-
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         System.out.println("넘어오나용");
