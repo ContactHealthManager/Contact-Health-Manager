@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+test 페이지 : 보드 테이블의 보드 게시물 번호와 보드 게시물 주소 값을 출력해주는 예제
+
+<div th:each="boardDtoList : ${boardDtoList}">
+    <div th:text="${boardDtoList.id}"></div>
+    <div th:text="${boardDtoList.address}"></div>
+</div>
+
+</body>
+</html>

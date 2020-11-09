@@ -1,15 +1,10 @@
 package com.victolee.board.service;
 
-import com.victolee.board.domain.entity.BoardEntity;
 import com.victolee.board.domain.entity.CartEntity;
 import com.victolee.board.domain.repository.CartRepository;
-import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.CartDto;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -30,8 +25,24 @@ public class CartService {
     }
 
     @Transactional
-    public List<CartDto> getCartlist(){
+    public List<CartDto> getCartlist(){ // 이거는 잘못 사용했습니다. 카트 테이블에 있는거 전부다 꺼내버렸습니다.
+
+
         List<CartEntity> cartEntities = cartRepository.findAll();
+
+        List<CartDto> cartDtoList = new ArrayList<>();
+
+        for(CartEntity cartEntity : cartEntities){
+            cartDtoList.add(this.convertEntityToDto(cartEntity));
+        }
+
+        return cartDtoList;
+    }
+    @Transactional
+    public List<CartDto> getCartlistUser(String loginId){  // 카트테이블에 있는것중에 유저가 장바구니에 고른것들만 표시하게함
+
+
+        List<CartEntity> cartEntities = cartRepository.findCartEntityByUser_Id(loginId);
 
         List<CartDto> cartDtoList = new ArrayList<>();
 
@@ -55,6 +66,7 @@ public class CartService {
                 .writer(cartEntity.getBoard().getWriter())
                 .build();
     }
+
 }
 
 
