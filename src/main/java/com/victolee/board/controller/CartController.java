@@ -36,7 +36,7 @@ public class CartController {
         List<CartDto> cartList = cartService.getCartlistUser(loginId);
 
 
-        model.addAttribute("cartList2", cartList);
+        model.addAttribute("cartList", cartList);
 
 
         return "/cart";
