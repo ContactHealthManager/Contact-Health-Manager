@@ -83,8 +83,7 @@ public class BoardController {
                 BoardIdAddressDto value = entry.getValue();
                 jsonObject.put(key, value);
             }
-
-
+System.out.println(jsonObject);
         return jsonObject;
     }
 
