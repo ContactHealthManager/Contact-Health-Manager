@@ -8,6 +8,8 @@ public interface BoardIdAddress {   // 보드테이블에서 특정 칼럼 , 아
     String getAddress();
     double getX();
     double getY();
+    String getTitle();
+    String getWriter();
 
 
 }

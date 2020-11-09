@@ -29,7 +29,7 @@ public class BoardService {
 //    countRepository.increaseBoardCount(no);
 //    }
 
-    // getBoardIdAddress 함수는 board테이블의 id와 address, 좌표 x y 만 가져옴
+    // getBoardIdAddress 함수는 board테이블의 id와 address, 좌표 x ,y 그리고 title 이랑 작성자 만 가져옴
     @Transactional
     public List<BoardIdAddressDto> getBoardIdAddress(){
         List<BoardIdAddress> boardEntities = boardRepository.findAllBy();
@@ -121,6 +121,7 @@ public class BoardService {
     public List<BoardDto> searchPosts(String keyword) { // 게시물 검색 , 키워드는 제목과 내용
         List<BoardEntity> boardEntities = boardRepository
                 .findByTitleContainingOrContentContaining(keyword, keyword);
+
         List<BoardDto> boardDtoList = new ArrayList<>();
 
         if (boardEntities.isEmpty()) return boardDtoList;
@@ -128,7 +129,7 @@ public class BoardService {
         for (BoardEntity boardEntity : boardEntities) {
             boardDtoList.add(this.convertEntityToDto(boardEntity));
         }
-
+        System.out.println(boardDtoList);
         return boardDtoList;
     }
 
@@ -182,6 +183,8 @@ public class BoardService {
                 .address(boardEntity.getAddress())
                 .x(boardEntity.getX())
                 .y(boardEntity.getY())
+                .title(boardEntity.getTitle())
+                .writer(boardEntity.getWriter())
                 .build();
     }
 

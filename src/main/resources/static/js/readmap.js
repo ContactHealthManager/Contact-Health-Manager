@@ -15,6 +15,8 @@ var boardx = [];
 var boardy = [];
 var positions = [];
 var boardaddress = [];
+var boardtitle = [];
+var boardwriter = [];
 var marker;
 
 
@@ -44,6 +46,14 @@ $.ajax({
         for (var i = 0; i < Object.keys(data).length; i++) {
 
             boardy[i] = data[boardid[i]].y
+        }
+        for (var i = 0; i < Object.keys(data).length; i++) {
+
+            boardtitle[i] = data[boardid[i]].title
+        }
+        for (var i = 0; i < Object.keys(data).length; i++) {
+
+            boardwriter[i] = data[boardid[i]].writer
         }
         for (var i = 0; i < Object.keys(data).length; i++) {
             positions[i] =

@@ -74,13 +74,12 @@ $(function () {
                     title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                     image: markerImage, // 마커 이미지
                 });
+
             }
         }
     });
 });
 ;
-
-
 
 
 
