@@ -1,18 +1,14 @@
 package com.victolee.board.controller;
 
-import com.victolee.board.domain.entity.BoardEntity;
-import com.victolee.board.domain.entity.CartEntity;
-import com.victolee.board.domain.entity.UserEntity;
-import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.CartDto;
-import com.victolee.board.service.BoardService;
 import com.victolee.board.service.CartService;
 import lombok.AllArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
 import java.util.List;
