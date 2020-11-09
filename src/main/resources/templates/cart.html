@@ -30,7 +30,7 @@
                         <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}">
 
                             <p th:text="${cart.boardId}"></p>
-                            <a th:href="@{'/post/' + ${cart.boardId}}">1
+                            <a th:href="@{'/post/' + ${cart.boardId}}">
                                 <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
                                      th:href="@{'/post/' + ${cart.boardId}}">
                                 <p class="mb-4 opacity-7">

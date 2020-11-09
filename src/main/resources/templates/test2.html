@@ -2,7 +2,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="/common/header.html :: head">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Contact Health manager</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <link rel="stylesheet" th:href="@{/css/board.css}">
+
+    <link th:href="@{https://fonts.googleapis.com/css?family=Muli:300,400,700,900}" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{fonts/icomoon/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/jquery-ui.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.carousel.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+    <link rel="stylesheet" th:href="@{/css/owl.theme.default.min.css}">
+
+    <link rel="stylesheet" th:href="@{/css/jquery.fancybox.min.css}">
+
+    <link rel="stylesheet" th:href="@{/css/bootstrap-datepicker.css}">
+
+    <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
+
+    <link rel="stylesheet" th:href="@{/css/aos.css}">
+    <link th:href="@{css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <link rel="stylesheet" th:href="@{/css/half.css}">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -55,52 +86,79 @@
                         //지도를 미리 생성
                         var map = new daum.maps.Map(mapContainer, mapOption); //주소-좌표 변환 객체를 생성
 
-                        var positions = [
-                            {
-                                title: "94",
-                                latlng: new kakao.maps.LatLng(37.5182112402056, 127.023150432187)
-                            },
-                            {
-                                title: '95',
-                                latlng: new kakao.maps.LatLng(37.3898417625267, 127.058366542493)
-                            },
-                            {
-                                title: '96',
-                                latlng: new kakao.maps.LatLng(37.3628227148113, 126.966080445674)
-                            },
-                            {
-                                title: '97',
-                                latlng: new kakao.maps.LatLng(37.3980698712845, 126.924832325498)
-                            },
-                            {
-                                title: '98',
-                                latlng: new kakao.maps.LatLng(37.3845452187377, 126.956325109879)
-                            },
-                            {
-                                title: '99',
-                                latlng: new kakao.maps.LatLng(37.4004978865193, 126.921690171193)
-                            }
-                        ];
                         var geocoder = new daum.maps.services.Geocoder(); //마커를 미리 생성
+                        var marker1 = new daum.maps.Marker({position: new daum.maps.LatLng(37.537187, 127.005476), map: map})
+                        //현위치 마커 1생성 . 
 
+                        var boardid = [];
+                        var boardx = [];
+                        var boardy = [];
+                        var positions = [];
+                        var marker;
 
+                        $(function () {
+                            $.ajax({
+                                type: "GET",
+                                url: '/board/address',
+                                dataType: "json",
+                                success: function (data) {
+                                    console.log("접속 성공");
+                                    console.log(Object.keys(data));
+                                    console.log(Object.keys(data)[0]);
+                                    console.log(Object.keys(data).length);
 
-                        for (var i = 0; i < positions.length; i++) {
+                                    for (var i = 0; i < Object.keys(data).length; i++) {
 
-                            // 마커 이미지의 이미지 크기 입니다
-                            var imageSize = new kakao.maps.Size(24, 35);
+                                        boardid[i] = Object.keys(data)[i];
+                                    }
+                                    console.log(boardid);
+                                    console.log(boardid[1]);
+                                    console.log(data[boardid[0]]);
+                                    console.log(data[boardid[0]].x);
+                                    for (var i = 0; i < Object.keys(data).length; i++) {
 
-                            // 마커 이미지를 생성합니다
-                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+                                        boardx[i] = data[boardid[i]].x
+                                    }
+                                    console.log(boardx)
+                                    for (var i = 0; i < Object.keys(data).length; i++) {
 
-                            // 마커를 생성합니다
-                            var marker = new kakao.maps.Marker({
-                                map: map, // 마커를 표시할 지도
-                                position: positions[i].latlng, // 마커를 표시할 위치
-                                title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-                                image: markerImage // 마커 이미지
+                                        boardy[i] = data[boardid[i]].y
+                                    }
+                                    console.log(boardy)
+
+                                    for (var i = 0; i < Object.keys(data).length; i++) {
+                                        positions[i] =
+                                            {
+                                                title: boardid[i],
+                                                latlng: new kakao.maps.LatLng(boardy[i], boardx[i])
+                                            };
+
+                                    }
+                                    console.log(positions)
+
+                                    for (var i = 0; i < Object.keys(data).length; i++) {
+
+                                        // 마커 이미지의 이미지 크기 입니다
+                                        var imageSize = new kakao.maps.Size(24, 35);
+
+                                        // 마커 이미지를 생성합니다
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+
+                                        // 마커를 생성합니다
+                                        marker = new kakao.maps.Marker({
+                                            map: map, // 마커를 표시할 지도
+                                            position: positions[i].latlng, // 마커를 표시할 위치
+                                            title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+                                            image: markerImage, // 마커 이미지
+                                        });
+                                    }
+                                }
                             });
-                        }
+                        });
+                       ;
+
+
+
 
 
                         function sample5_execDaumPostcode() {
@@ -128,8 +186,12 @@
                                             mapContainer.style.display = "block";
                                             map.relayout(); // 지도 중심을 변경한다.
                                             map.setCenter(coords); // 마커를 결과값으로 받은 위치로 옮긴다.
-                                            marker.setPosition(coords)
-                                            alert(coords)
+                                            console.log(coords);
+                                            console.log(positions[0].latlng);
+
+                                            marker1.setPosition(coords);
+
+                                            alert(coords);
                                         }
                                     });
                                 }
