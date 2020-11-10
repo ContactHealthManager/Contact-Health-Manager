@@ -30,22 +30,18 @@ public class CartController {
 
     /* 게시글 목록 */ /*페이지를 담는 리스트와 그 페이지 안의 목록들을 담은 리스트 */
     @GetMapping("/cart")
-    public String cartlist(Model model,Principal principal) {
-        List<CartDto> cartList = cartService.getCartlist();
+    public String cartlist(Model model, Principal principal) {
+
+        String loginId = principal.getName();
+        List<CartDto> cartList = cartService.getCartlistUser(loginId);
 
 
-        for (int i=0; i<cartList.size(); i++){
+        model.addAttribute("cartList", cartList);
 
-            if (cartList.get(i).getUserId().equals(principal.getName())) {
-                System.out.println(cartList.get(i).getUserId());
-                model.addAttribute("loginId", principal.getName());
-                model.addAttribute("cartList", cartList);
-            }
-        }
 
         return "/cart";
     }
-//리스트들의 담은것이 카트번호 id,카트 상태 , status
+//리스트들의 담은것이 카트번호 id,카트 status
 
 
 }

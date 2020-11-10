@@ -1,11 +1,7 @@
 package com.victolee.board.dto;
 
 
-import com.victolee.board.domain.entity.BoardEntity;
-import com.victolee.board.domain.repository.BoardIdAddress;
 import lombok.*;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,12 +18,18 @@ public class BoardIdAddressDto {
 
     private double y;
 
+    private String title;
+
+    private String writer;
+
 
     @Builder
-    public BoardIdAddressDto(Long id, String address, double x, double y) {
+    public BoardIdAddressDto(Long id, String address, double x, double y,String title,String writer) {
         this.id = id;
         this.address = address;
         this.x = x;
         this.y = y;
+        this.title = title;
+        this.writer = writer;
     }
 }
