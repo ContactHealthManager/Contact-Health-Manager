@@ -30,6 +30,7 @@ $.ajax({
             var y = data[key];
             var address = data[key];
             console.log("attribute:" + key + ',value:' + x.x + "," + y.y);
+
         }
 
         for (var i = 0; i < Object.keys(data).length; i++) {
@@ -83,28 +84,29 @@ $.ajax({
                 image: markerImage1, // 마커 이미지
 
             });
-
+            var url = "post/"+boardid[i];
+            var a = document.getElementById('b')
             // 마커에 표시할 인포윈도우를 생성합니다
             var infowindow = new kakao.maps.InfoWindow({
+
                 content:   '    <div class="info">' +
-                    '        <div class="title">' +
-                    boardid[i] +
+                    '        <div class="title" style="color: black">' +
+                    boardtitle[i] +
                     '            <div class="close" onclick=infowindow.close() title="닫기"></div>' +
                     '        </div>' +
-                    '        <div class="body">' +
+                    '        <div class="body" style="font-size: 15px">' +
                     '            <div class="desc">' +
-                    '                <div class="ellipsis">'+boardaddress[i]+'</div>' +
-                    '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
+                    '                <div class="ellipsis">'+boardaddress[i]+'</div>'+
+                    '                <div><a href="post/'+boardid[i]+'" starget="_self" class="link">홈페이지</a></div>'+
                     '            </div>' +
                     '        </div>' +
                     '    </div>'
             });
-
             // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
             // 이벤트 리스너로는 클로저를 만들어 등록합니다
             // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
             kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-
+            // kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
         }
         // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
         function makeOverListener(map, marker, infowindow) {
@@ -112,7 +114,12 @@ $.ajax({
                 infowindow.open(map, marker);
             };
         }
-
+// // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+//         function makeOutListener(infowindow) {
+//             return function() {
+//                 infowindow.close();
+//             };
+//         }
 
         console.log("성공");
         console.log(data)
