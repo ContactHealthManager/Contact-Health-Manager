@@ -134,7 +134,7 @@ h1, h2, h3, h4, h5,
   padding: 2.5em 0; }
 @media (min-width: 768px) {
   .site-section {
-    padding: 5em 0; } }
+    padding: 0em 0; } }
 .site-section.site-section-sm {
   padding: 4em 0; }
 
@@ -611,7 +611,8 @@ h1, h2, h3, h4, h5,
 
 /* Blocks */
 .intro-section {
-  position: relative; }
+  position: relative;
+ }
 .intro-section, .intro-section .container .row {
   height: 100vh;
   min-height: 900px; }
@@ -620,11 +621,13 @@ h1, h2, h3, h4, h5,
   position: absolute;
   height: 100%;
   width: 100%;
-  background: #222;
   border-bottom-right-radius: 0px;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat; }
+  background-repeat: no-repeat;
+  background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/hero_1.jpg') center center no-repeat;
+  /* 메인화면 이미지*/
+}
 @media (max-width: 991.98px) {
   .intro-section:before {
     width: 100%; } }
