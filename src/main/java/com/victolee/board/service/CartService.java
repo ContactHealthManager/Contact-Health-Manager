@@ -64,6 +64,7 @@ public class CartService {
                 .boardId(cartEntity.getBoard().getId())
                 .title(cartEntity.getBoard().getTitle())
                 .writer(cartEntity.getBoard().getWriter())
+                .imgname((cartEntity.getBoard().getImgname()))
                 .build();
     }
 

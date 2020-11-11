@@ -29,8 +29,10 @@
 
                             <p th:text="${cart.boardId}"></p>
                             <a th:href="@{'/post/' + ${cart.boardId}}">
-                                <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
+                                <img th:src="@{/images/media/} + ${cart.imgname}" alt="Image" class="img-fluid mb-5"
                                      th:href="@{'/post/' + ${cart.boardId}}">
+
+<!--                                <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid mb-5"/>-->
                                 <p class="mb-4 opacity-7">
                                     <span th:text="${cart.title}"></span>
                                 </p>

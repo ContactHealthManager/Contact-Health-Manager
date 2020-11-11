@@ -32,7 +32,7 @@ public class CartDto {
 
     private String writer;
 
-
+    private String imgname;
 
     public CartEntity toEntity() { //저장을 위한 엔티티
         CartEntity cartEntity = CartEntity.builder()
@@ -49,7 +49,7 @@ public class CartDto {
     @Builder
     public CartDto(Long id, Integer status, UserEntity user,
                    BoardEntity board,String userId,Long boardId,
-                   String title,String writer) {
+                   String title,String writer,String imgname) {
         this.id = id;
         this.status = status;
         this.user = user;
@@ -58,5 +58,6 @@ public class CartDto {
         this.boardId = boardId;
         this.title = title;
         this.writer = writer;
+        this.imgname = imgname;
     }
 }

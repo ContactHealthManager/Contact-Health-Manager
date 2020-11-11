@@ -92,7 +92,7 @@ $.ajax({
                 content:   '    <div class="info">' +
                     '        <div class="title" style="color: black">' +
                     boardtitle[i] +
-                    '            <div class="close" onclick=infowindow.close() title="닫기"></div>' +
+                    '            <div class="close" onclick="InfoWindow.close()" title="닫기"></div>' +
                     '        </div>' +
                     '        <div class="body" style="font-size: 15px">' +
                     '            <div class="desc">' +
