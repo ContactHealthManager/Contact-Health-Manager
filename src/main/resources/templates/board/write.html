@@ -7,6 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width"/>
     <title>Example</title>
+
     <!-- include libraries(jQuery, bootstrap) -->
     <link
             href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
@@ -45,7 +46,7 @@
 </header>
 
 <div class="site-section section-2" id="classes-section">
-    <h2 class="section-title mb-3">매니저등록</h2>
+
     <div class="site-section" id="contact-section">
 
         <form th:action="@{/post}" method="POST" enctype="multipart/form-data">
@@ -53,11 +54,22 @@
             <div class="halfmain">
 
                 <div class="halfleft">
-                    <label class="col-form-label text-md-right
-                            col-12 col-md-3 col-lg-3">사진 업로드</label>
-                    <div class="col-sm-12 col-md-7">
-                        <input type="file" name="img" class="" value="사진업로드">
-                    </div>
+                    <label class="col-form-label" style="font-size: 30px">
+                        <div class="text-center">
+                            <input type="file" name="img" class="" value="사진업로드" onchange="setThumbnail(event);"
+                                   style='display: none;'>
+                            <input type='text' name='file2' id='file2' style='display: none;'>
+
+                            <svg width="2em" height="2em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor"
+                                 xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                      d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                            </svg> <!--버튼 이미지 <!-->
+                        </div>
+                        사진 업로드</label>
+
+                    <div id="image_container"></div> <!--썸네일 화면 <!-->
+
                 </div>
 
                 <div class="halfright">
@@ -86,13 +98,14 @@
 
                             <div>
                                 <input type="text" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_address" name="address" placeholder="상세주소" style="width:50%;font-size:20px;"
+                                       id="sample5_address" name="address" placeholder="상세주소"
+
                                        onclick="sample5_execDaumPostcode()"/>
                                 <input type="hidden" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_x" name="x" placeholder="상세주소 x좌표" style="width:50%;font-size:20px;"
+                                       id="sample5_x" name="x" placeholder="상세주소 x좌표"
                                        onclick="sample5_execDaumPostcode()"/>
                                 <input type="hidden" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_y"  name="y" placeholder="상세주소 y좌표" style="width:50%;font-size:20px;"
+                                       id="sample5_y" name="y" placeholder="상세주소 y좌표"
                                        onclick="sample5_execDaumPostcode()"/>
                             </div>
                         </div>
@@ -101,7 +114,9 @@
                     <div class="form-group row">
 
 <textarea class="form-control" id="content" name="content"
-          placeholder="content" maxlength="140" rows="7"></textarea>
+          placeholder="content" maxlength="140" rows="7">
+
+</textarea>
 
                     </div>
 
@@ -129,10 +144,13 @@
 <script>
     $(document).ready(function () {
         $('#content').summernote({
+            width: 800,
             height: 300,
             minHeight: null,
             maxHeight: null,
             focus: true,
+            popover: false,
+
             callbacks: {
                 onImageUpload: function (files, editor, welEditable) {
                     for (var i = 0; i < files.length; i++) {
@@ -162,5 +180,15 @@
         });
     }
 </script>
+<script> function setThumbnail(event) {
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var img = document.createElement("img");
+        img.setAttribute("src", event.target.result);
+        document.querySelector("div#image_container").appendChild(img);
+    };
+    reader.readAsDataURL(event.target.files[0]);
+} </script>
+
 </body>
 </html>

@@ -116,7 +116,7 @@ function sample5_execDaumPostcode() {
 
                     marker1.setPosition(coords);
 
-                    alert(coords);
+
                 }
             });
         }

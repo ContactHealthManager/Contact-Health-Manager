@@ -164,11 +164,28 @@ public class BoardController {
     }
     /* 수정 폼에서 수정 완료*/
     @PutMapping("/post/edit/{no}")
-    public String update(BoardDto boardDto,Principal principal) {
-        String userid = principal.getName();
+    public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
+        try {
 
-        boardDto.setWriter(userid);
-        boardService.savePost(boardDto);
+
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+
+
+            String filePath = baseDir + "\\" + files.getOriginalFilename();
+            String fileName = files.getOriginalFilename();
+            files.transferTo(new File(filePath));//해당 위치에 저장 형준 수정
+
+            String userid = principal.getName();
+            boardDto.setImgname(fileName);
+            boardDto.setWriter(userid);
+            boardService.savePost(boardDto);
+
+            return "redirect:/managerlist";
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+//        String filePath = files.getOriginalFilename();
+//        files.transferTo(new File("\\static\\images\\media\\"+filePath));
 
         return "redirect:/managerlist";
     }
