@@ -19,14 +19,13 @@
 </div>
 
 
-
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
 
 <div class="site-section section-2" id="classes-section">
-    <div class="site-section bg-dark" id="contact-section" >
-        <div class="container" >
+    <div class="site-section bg-dark" id="contact-section">
+        <div class="container">
 
 
             <div class="wrap ftco-animate" style="border:5px solid #48d494; margin-bottom: 30px;">
@@ -46,11 +45,16 @@
                         <input type="hidden" name="board" th:value="${boardDto.id}"/>
                         <input type="hidden" name="user" th:value="${userId}"/>
                         <input type="hidden" name="status" th:value="${'1'}"/>
-                        <input type="submit" class="float-lg-left btn btn-outline-primary" value="찜하기"/>
+                        <input type="submit" class="float-lg-left btn btn-outline-primary"
+                               id="button1" onclick="button1_click();" value="찜하기"/>
                     </form>
+                    <script>
+                        function button1_click() {
+                            alert("이 게시물이 찜되었습니다.")
+                            alert("내가 좋아하는 게시물로 이동합니다.")
+                        }
+                    </script>
 
-
-                    <button class="float-lg-left btn btn-outline-primary">찜취소</button>
                     <button class="float-lg-left btn-md btn btn-outline-primary">1대1상담하기</button>
                     <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>
                     <h1>[[${boardDto.id}]]</h1>
@@ -86,10 +90,9 @@
                             <!-- 삭제하기 -->
                             <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post"><input
                                     type="hidden" name="_method" value="delete"/>
-                                <button class="float-lg-right btn btn-outline-primary"
-                                >삭제하기
+                                <button class="float-lg-right btn btn-outline-primary">삭제하기
                                 </button>
-                                </a></form>
+                            </form>
 
                         </div>
                     </div>

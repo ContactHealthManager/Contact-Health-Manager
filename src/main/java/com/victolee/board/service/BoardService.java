@@ -97,6 +97,7 @@ public class BoardService {
     }
 
 
+
     @Transactional
     public BoardDto getPost(Long id) { //게시물 상세정보 수정할때,게시물 테이블의 여러 상세 정보를 객체에 담음
         Optional<BoardEntity> boardEntityWrapper = boardRepository.findById(id);

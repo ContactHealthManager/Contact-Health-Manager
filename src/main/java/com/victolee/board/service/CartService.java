@@ -21,6 +21,7 @@ public class CartService {
     @Transactional
     public Long saveCart(CartDto cartDto){
 
+
         return cartRepository.save(cartDto.toEntity()).getId();
     }
 
@@ -52,6 +53,10 @@ public class CartService {
 
         return cartDtoList;
     }
+    @Transactional
+    public void deleteCart(Long id) {// 게시물 삭제
+        cartRepository.deleteById(id);
+    }
 
 
     private CartDto convertEntityToDto(CartEntity cartEntity) { //엔티티 객체 변수를 디티오 객체 변수로 변환
@@ -64,6 +69,7 @@ public class CartService {
                 .boardId(cartEntity.getBoard().getId())
                 .title(cartEntity.getBoard().getTitle())
                 .writer(cartEntity.getBoard().getWriter())
+                .imgname(cartEntity.getBoard().getImgname())
                 .build();
     }
 

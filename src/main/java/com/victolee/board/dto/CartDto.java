@@ -28,9 +28,11 @@ public class CartDto {
 
     private Long boardId ; // boardEntity 객체 board에서 id를 빼온다
 
-    private String title;
+    private String title; //boardEntity 객체 board에서 title을 빼온다
 
-    private String writer;
+    private String writer; //boardEntity 객체 board에서 writer을 빼온다.
+
+    private String imgname;
 
 
 
@@ -49,7 +51,7 @@ public class CartDto {
     @Builder
     public CartDto(Long id, Integer status, UserEntity user,
                    BoardEntity board,String userId,Long boardId,
-                   String title,String writer) {
+                   String title,String writer,String imgname) {
         this.id = id;
         this.status = status;
         this.user = user;
@@ -58,5 +60,6 @@ public class CartDto {
         this.boardId = boardId;
         this.title = title;
         this.writer = writer;
+        this.imgname = imgname;
     }
 }

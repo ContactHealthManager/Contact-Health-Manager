@@ -18,6 +18,8 @@ public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
     //제목과 내용을 검색하기 위한 쿼리 메소드
 
 
+
+
 }
 
 //
