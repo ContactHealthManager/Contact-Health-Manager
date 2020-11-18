@@ -1,6 +1,5 @@
 package com.victolee.board.domain.entity;
 
-import com.victolee.board.dto.UserInfoDto;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -11,6 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
+//@NamedQuery(name="CartEntity.findDistinctBoardByUserId", query = "SELECT distinct c.board.id from CartEntity as c where c.user.id = 'jaebin129'")
 @Table(name = "cart")
 public class CartEntity {
 

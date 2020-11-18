@@ -24,19 +24,16 @@ public class CartController {
 
     /*장바구니 저장*/
     @RequestMapping(value = "/post/{no}", method = RequestMethod.POST) //카트에다가 저장.
-    public String cartsave(CartDto cartDto,Principal principal) {
+    public String cartsave(CartDto cartDto, Principal principal) {
 
-
-        cartService.saveCart(cartDto);
-
-
-        System.out.println(cartDto.getBoard().getId());
+        // 작성자가 자기자신의 게시물을 찜할수 없도록 조건을 걸어줌.
+        if(!cartDto.getBoard().getWriter().equals(principal.getName())) {
+            cartService.saveCart(cartDto);
+        }
         BoardDto boardDto = boardService.getPost(cartDto.getBoard().getId());
-        System.out.println(boardDto);
 
-        if(!cartDto.getBoard().getWriter().equals(principal.getName())) { //저장했을때 , 좋아요 수 1증가
+        if (!cartDto.getBoard().getWriter().equals(principal.getName())) { //저장했을때 , 좋아요 수 1증가
             int sumlike = cartDto.getBoard().getSumlike();
-            System.out.println(sumlike);
             sumlike = sumlike + 1;
             boardDto.setSumlike(sumlike);
             boardService.savePost(boardDto);
@@ -50,7 +47,10 @@ public class CartController {
     public String cartlist(Model model, Principal principal) {
 
         String loginId = principal.getName();
+
         List<CartDto> cartList = cartService.getCartlistUser(loginId);
+//        List<CartDto> cartList0 = cartService.getCartlistBoard();
+//        System.out.println(cartList0);
 
 
         model.addAttribute("cartList", cartList);
@@ -61,9 +61,21 @@ public class CartController {
 //리스트들의 담은것이 카트번호 id,카트 status
 
     /* 게시글 삭제 */
-    @DeleteMapping("/cart/{no}")
-    public String delete(@PathVariable("no") Long no) {
+    @DeleteMapping("/cart/{no}/{boardno}")
+    public String delete(@PathVariable("no") Long no, @PathVariable("boardno") Long boardno, Principal principal) {
         cartService.deleteCart(no);
+
+
+        BoardDto boardDto = boardService.getPost(boardno);
+
+
+        int sumlike = boardDto.getSumlike();
+        if (sumlike >= 1) {
+            sumlike = sumlike - 1;
+            boardDto.setSumlike(sumlike);
+            boardService.savePost(boardDto);
+        }
+
 
         return "redirect:/cart";
     }

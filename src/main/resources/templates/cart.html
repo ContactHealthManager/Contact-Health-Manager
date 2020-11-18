@@ -41,7 +41,7 @@
                             </a>
 
                             <!-- 삭제하기 -->
-                            <form id="delete-form" th:action="@{'/cart/' + ${cart.Id}}" method="post">
+                            <form id="delete-form" th:action="@{'/cart/' +${cart.Id}+'/'+${cart.boardId}}" method="post">
 
 
                                 <button class="float-lg-right btn btn-outline-primary"

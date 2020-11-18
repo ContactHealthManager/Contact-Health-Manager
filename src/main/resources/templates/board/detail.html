@@ -47,11 +47,11 @@
                     <!-- 작성자 -->
                     <p v-bind:id="uuid" v-bind:value="[[${ boardDto.writer}]]"> asdsad</p>
 
-                    <form th:action="@{'/post/'+${boardDto.id}}" method="POST">
+                    <form class="float-lg-left" th:action="@{'/post/'+${boardDto.id}}" method="POST">
                         <input type="hidden" name="board" th:value="${boardDto.id}"/>
                         <input type="hidden" name="user" th:value="${userId}"/>
                         <input type="hidden" name="status" th:value="${'1'}"/>
-                        <input type="submit" class="float-lg-left btn btn-outline-primary"
+                        <input type="submit" class=" btn btn-outline-primary"
                                id="button1" onclick="button1_click();" value="찜하기"/>
 
                     </form>
@@ -63,19 +63,14 @@
                     </script>
 
 
-                    <button class="float-lg-left btn-md btn btn-outline-primary">1대1상담하기</button>
-                    <div class="container" id="app" v-cloak>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <label class="input-group-text">방제목</label>
-                            </div>
+<!--                    채팅방 버튼-->
+                    <div class="float-lg-left" id="app" v-cloak>
+
                             <input type="hidden" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
 
-<!--                            <h1> [[${boardDto.writer}]] &nbsp;</h1>-->
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
-                            </div>
-                        </div>
+
+                                <button class=" btn-md btn btn-outline-primary" type="button" @click="createRoom">1대1상담하기</button>
+
 
                     </div>
 

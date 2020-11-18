@@ -34,7 +34,7 @@ public class CartDto {
 
     private String imgname;
 
-    private String imgname;
+
 
     public CartEntity toEntity() { //저장을 위한 엔티티
         CartEntity cartEntity = CartEntity.builder()
