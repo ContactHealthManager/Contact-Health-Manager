@@ -1,5 +1,2 @@
-# spring_practice
-#9월 24일 
-1. BoardDTO 클래스 컬럼 추가  
-2. myinfo 작성  
-3. database 설계
+# Springboot_jpa_chatting  
+websoket을 이용한 Springboot 채팅 구현 (캡스톤디자인 contactHealth test chat)

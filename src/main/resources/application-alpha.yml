@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: alpha
   redis:
-    host: Standalone Redis 호스트
-    port: Standalone Redis 포트
+    host: localhost
+    port: 6379

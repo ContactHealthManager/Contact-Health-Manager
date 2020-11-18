@@ -26,9 +26,16 @@ spring:
       enabled: true
     restart:
       enabled=false:
+
   freemarker:
-    cache: false
+    template-loader-path: classpath:/templates
     suffix: .ftl
+    cache: false
+
+
+  jwt:
+    secret: govlepel@$&
+
 
   profiles:
     active: local

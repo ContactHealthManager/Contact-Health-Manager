@@ -56,8 +56,9 @@ dependencies {
     compile 'org.apache.tomcat.embed:tomcat-embed-jasper'
     compile 'javax.servlet:jstl'
     compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'mysql:mysql-connector-java'
-    annotationProcessor 'org.projectlombok:lombok'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
