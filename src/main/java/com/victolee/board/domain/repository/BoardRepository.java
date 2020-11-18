@@ -11,9 +11,12 @@ import java.util.List;
 public interface BoardRepository extends JpaRepository<BoardEntity, Long> {
 
 
+
+    List<BoardIdAddress> findAllBy(); //특정 열만 전체 보기 하기 위해서 특정열은 BoardIdAddress에 들어있다.
+
     List<BoardEntity> findByTitleContainingOrContentContaining(String titlekeyword,String contentkeyword);
-    BoardEntity findById(Integer id);
-    List<BoardEntity> findAllBy();
+    //제목과 내용을 검색하기 위한 쿼리 메소드
+
 
 }
 

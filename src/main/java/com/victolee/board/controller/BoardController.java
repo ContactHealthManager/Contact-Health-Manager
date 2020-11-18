@@ -2,9 +2,11 @@ package com.victolee.board.controller;
 
 import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.dto.BoardDto;
+import com.victolee.board.dto.BoardIdAddressDto;
 import com.victolee.board.service.BoardService;
 import com.victolee.board.service.CartService;
 import lombok.AllArgsConstructor;
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,7 +21,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.security.Principal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -56,13 +60,48 @@ public class BoardController {
     }
 
 
+
+    //게시물 아이디와 게시물 주소값 , 좌표값 , 그리고 게시물 제목과 작성자 가져오기
+    @RequestMapping(value = "/board/address", method = RequestMethod.GET)
+    public @ResponseBody Map<Long,BoardIdAddressDto> getboardIdAddressList(Model model){
+        List<BoardIdAddressDto> boardDtoList = boardService.getBoardIdAddress(); // DB에 등록된 User List를 받아온다.
+        
+
+        Map<Long,BoardIdAddressDto> result = new HashMap<Long,BoardIdAddressDto>();
+        for (BoardIdAddressDto i : boardDtoList) result.put(i.getId(),i);
+        
+            JSONObject jsonObject = new JSONObject();
+            for( Map.Entry<Long, BoardIdAddressDto> entry : result.entrySet() ) {
+                Long key = entry.getKey();
+                BoardIdAddressDto value = entry.getValue();
+                jsonObject.put(key, value);
+            }
+
+
+        return jsonObject;
+    }
+    
+
+    @GetMapping("/countmanagerlist")
+    public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
+        Integer[] pageList = boardService.getPageList(pageNum);
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("pageList", pageList);
+
+        return "/managerlist";
+    }
+
+
+
     /* 게시글 상세 목록*/
     @RequestMapping("/post/{no}")
     public String detail(@PathVariable("no") Long no, Model model
             ,Principal principal) {
 
         BoardDto boardDto = boardService.getPost(no);
-//        CartDto cartDto = cartService.getCartlist();
+
 
         if(!boardDto.getWriter().equals(principal.getName())) {
             int count = boardDto.getBcount();
@@ -86,9 +125,9 @@ public class BoardController {
 
 
     /* 게시글 쓰기 */ /* 로그인한 유저가 작성자가 되도록 해줌.*/
-
+    /* 게시물의 썸네일 파일업로드 포함*/
     @RequestMapping(value = "/post", method = RequestMethod.POST)
-    public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal) {
+    public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         System.out.println("넘어오나용");
         try {
 
@@ -153,17 +192,22 @@ public class BoardController {
     }
 
 
-    /* 게시글 목록 */
-
-    /* 주소찾기 */
+    /* 주소를 검색하여 찾는곳  */
     @GetMapping("/map")
     public String map(){
 
         return "/map";
     }
+    /* 주소찾기 테스트 페이지*/
+    @GetMapping("/maptest")
+    public String maptest(){
+
+        return "/test2";
+    }
 
 
 
+    //섬머노트 기능 ,다중 파일 업로드를 위해.
     @RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
                             HttpServletResponse response, MultipartHttpServletRequest multiFile
