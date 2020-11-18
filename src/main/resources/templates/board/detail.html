@@ -2,9 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml"
-      xmlns:c="http://www.w3.org/1999/XSL/Transform">
+      xmlns:c="http://www.w3.org/1999/XSL/Transform" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-model="http://www.w3.org/1999/xhtml">
 
 <head th:replace="/common/header.html :: head">
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
 </head>
 
 
@@ -40,18 +46,35 @@
                     <!-- 글 제목 -->
                     <h1 style="text-align: center; margin-bottom: 20px;" th:text="${boardDto.title}"></h1>
                     <!-- 작성자 -->
-
+                    <p v-bind:id="uuid" v-bind:value="[[${ boardDto.writer}]]"> asdsad</p>
 
                     <form th:action="@{'/post/'+${boardDto.id}}" method="POST">
                         <input type="hidden" name="board" th:value="${boardDto.id}"/>
                         <input type="hidden" name="user" th:value="${userId}"/>
-                        <input type="hidden" name="status" th:value="${'1'}"/>
                         <input type="submit" class="float-lg-left btn btn-outline-primary" value="찜하기"/>
                     </form>
 
-
                     <button class="float-lg-left btn btn-outline-primary">찜취소</button>
-                    <button class="float-lg-left btn-md btn btn-outline-primary">1대1상담하기</button>
+                    <div class="container" id="app" v-cloak>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">방제목</label>
+                            </div>
+                            <input type="hidden" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
+
+<!--                            <h1> [[${boardDto.writer}]] &nbsp;</h1>-->
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" @click="createRoom">채팅방 개설</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+<!--                    <a th:href="@{/chat/room}">asdasdas</a>-->
+
                     <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>
                     <h1>[[${boardDto.id}]]</h1>
                     <hr style="border: solid 2px #48d494;">
@@ -131,7 +154,8 @@
 <script src="js/jquery.fancybox.min.js"></script>
 <script src="js/jquery.sticky.js"></script>
 <script src="js/jquery.mb.YTPlayer.min.js"></script>
-
+<script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
+<script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>
 
 <script src="js/main.js"></script>
 
@@ -147,6 +171,54 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+
 </div>
+
+<!--채팅 js-->
+<!-- room_name : '[[${boardDto.writer}]] 님과 [[${userId}]]님의 채팅' 채팅방 이름 설정 구문  -->
+<script>
+
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            room_name : '[[${boardDto.writer}]] 님과 [[${userId}]]님의 채팅',
+            chatrooms: [
+            ]
+        },
+        created() {
+            this.findAllRoom();
+        },
+        methods: {
+            findAllRoom: function() {
+                axios.get('/chat/rooms').then(response => { this.chatrooms = response.data; });
+            },
+            createRoom: function() {
+                if("" === this.room_name) {
+                    alert("방 제목을 입력해 주십시요.");
+                    return;
+                } else {
+                    var params = new URLSearchParams();
+                    params.append("name",this.room_name);
+                    axios.post('/chat/room', params)
+                        .then(
+                            response => {
+                                alert(response.data.name+"방 개설")
+                                this.room_name = '';
+                                this.findAllRoom();
+                                location.href="/chat/room/";
+                            }
+                        )
+                        .catch( response => { alert("채팅방 개설에 실패하였습니다."); } );
+                }
+            },
+            enterRoom: function(roomId, roomName) {
+                localStorage.setItem('wschat.roomId',roomId);
+                localStorage.setItem('wschat.roomName',roomName);
+                location.href="/chat/room/enter/"+roomId;
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
