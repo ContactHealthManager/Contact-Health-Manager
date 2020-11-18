@@ -13,6 +13,9 @@ public class BoardApplication {
     }
     @Bean(name = "uploadPath")
     public String uploadPath() {
-        return "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+
+        return "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+
+
     }
 }

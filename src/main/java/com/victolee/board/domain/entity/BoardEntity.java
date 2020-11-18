@@ -3,6 +3,7 @@ package com.victolee.board.domain.entity;
 import lombok.*;
 
 import javax.persistence.*;
+import java.text.DecimalFormat;
 
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter

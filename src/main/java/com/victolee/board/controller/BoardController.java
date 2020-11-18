@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import sun.jvm.hotspot.gc.parallel.PSYoungGen;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
@@ -77,7 +78,6 @@ public class BoardController {
                 jsonObject.put(key, value);
             }
 
-
         return jsonObject;
     }
     
@@ -132,7 +132,7 @@ public class BoardController {
         try {
 
 
-            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -164,11 +164,28 @@ public class BoardController {
     }
     /* 수정 폼에서 수정 완료*/
     @PutMapping("/post/edit/{no}")
-    public String update(BoardDto boardDto,Principal principal) {
-        String userid = principal.getName();
+    public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
+        try {
 
-        boardDto.setWriter(userid);
-        boardService.savePost(boardDto);
+
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+
+
+            String filePath = baseDir + "\\" + files.getOriginalFilename();
+            String fileName = files.getOriginalFilename();
+            files.transferTo(new File(filePath));//해당 위치에 저장 형준 수정
+
+            String userid = principal.getName();
+            boardDto.setImgname(fileName);
+            boardDto.setWriter(userid);
+            boardService.savePost(boardDto);
+
+            return "redirect:/managerlist";
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+//        String filePath = files.getOriginalFilename();
+//        files.transferTo(new File("\\static\\images\\media\\"+filePath));
 
         return "redirect:/managerlist";
     }
@@ -229,7 +246,7 @@ public class BoardController {
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
 
@@ -283,7 +300,7 @@ public class BoardController {
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
-        String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
 
         String sDirPath = path + uid + "_" + fileName;
 

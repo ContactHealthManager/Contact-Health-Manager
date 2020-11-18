@@ -23,7 +23,9 @@
 
 <div>
     <div class="site-section" id="trainer-section">
+
         <div class="container">
+
             <div class="float-lg-right">
                 <a href="map.html" th:href="@{/map}" class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>&nbsp;
                 <a href="map.html" th:href="@{/countmanagerlist}"
@@ -33,8 +35,9 @@
                 <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4 ">
                     <a th:href="@{'/post/' + ${board.id}}">
 
-                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">
-                        <!--                             th:href="@{'/post/' + ${board.id}}">-->
+                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid mb-5"/>
+
+<!--                             th:href="@{'/post/' + ${board.id}}">-->
 
 
                         <p class="mb-4 opacity-7">

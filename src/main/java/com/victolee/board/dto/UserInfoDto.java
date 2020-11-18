@@ -25,6 +25,8 @@ public class UserInfoDto {
     //유저 닉네임
     private String nicname;
 
+    private String token;
+
     public UserEntity toEntity(){
         return UserEntity.builder()
                 .id(id)
@@ -40,7 +42,7 @@ public class UserInfoDto {
 
     @Builder
     public UserInfoDto(String id,String password,String phone,String email,String address
-            ,String role,String career,String nicname){
+            ,String role,String career,String nicname,String token){
         this.id =id;
         this.password = password;
         this.phone = phone;
@@ -49,6 +51,7 @@ public class UserInfoDto {
         this.role = role;
         this.career = career;
         this.nicname = nicname;
+        this.token=token;
     }
 
 }
