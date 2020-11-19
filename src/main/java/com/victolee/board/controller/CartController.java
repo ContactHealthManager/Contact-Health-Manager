@@ -37,7 +37,7 @@ public class CartController {
 
         String loginId = principal.getName();
         List<CartDto> cartList1 = cartService.getCartlistUser(loginId);
-        Set<CartDto> cartList =  Sets.newHashSet(cartList1);
+        Set<CartDto> cartList =  Sets.newHashSet(cartList1);gi
         System.out.println("씨발"+cartList);
 
         model.addAttribute("cartList", cartList);
