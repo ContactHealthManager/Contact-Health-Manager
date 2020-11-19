@@ -19,8 +19,6 @@ public class ChatMessageEntity {
     public String getRoomid() {
         return roomid;
     }
-    @Column(name = "name", length = 100, nullable = false)
-    private String name;
 
     @Column(name = "sender", length = 100, nullable = false)
     private String sender;
