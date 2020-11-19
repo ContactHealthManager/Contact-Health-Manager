@@ -8,6 +8,7 @@ spring:
     password: 8532007
 
 
+
   mail:
     host: smtp.gmail.com
     port: 587
@@ -64,6 +65,5 @@ logging:
           descriptor:
             sql:
               BasicBinder: TRACE
-
 
 

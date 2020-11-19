@@ -1,7 +1,7 @@
 
 var mapContainer = document.getElementById('map'),// 지도를 표시할div
     mapOption = {
-        center: new daum.maps.LatLng(37.537187, 127.005476), // 지도의 중심좌표
+        center: new daum.maps.LatLng(37.4875235978289, 126.826163535057), // 지도의 중심좌표
         level: 5 // 지도의 확대 레벨
     };
 //지도를 미리 생성
@@ -30,14 +30,16 @@ $.ajax({
             var y = data[key];
             var address = data[key];
             console.log("attribute:" + key + ',value:' + x.x + "," + y.y);
-        }
-        for (var i = 0; i < Object.keys(data).length; i++) {
 
-            boardaddress[i] = Object.keys(data).address;
         }
+
         for (var i = 0; i < Object.keys(data).length; i++) {
 
             boardid[i] = Object.keys(data)[i];
+        }
+        for (var i = 0; i < Object.keys(data).length; i++) {
+
+            boardaddress[i] = data[boardid[i]].address
         }
         for (var i = 0; i < Object.keys(data).length; i++) {
 
@@ -73,33 +75,52 @@ $.ajax({
 
             // 마커 이미지를 생성합니다
             var markerImage1 = new kakao.maps.MarkerImage(imageSrc1, imageSize);
-            var content = '<div class="wrap">' +
-                '    <div class="info">' +
-                '        <div class="title">' +
-                boardid[i] +
-                '            <div class="close" onclick="closeOverlay()" title="닫기"></div>' +
-                '        </div>' +
-                '        <div class="body">' +
-                '            <div class="img">' +
-                '                <img src="https://cfile181.uf.daum.net/image/250649365602043421936D" width="73" height="70">' +
-                '           </div>' +
-                '            <div class="desc">' +
-                '               <div class="ellipsis">제주특별자치도 제주시 첨단로 242</div>' +
-                '                <div class="jibun ellipsis">(우) 63309 (지번) 영평동 2181</div>' +
-                '                <div><a href="https://www.kakaocorp.com/main" target="_blank" class="link">홈페이지</a></div>' +
-                '            </div>' +
-                '        </div>' +
-                '    </div>' +
-                '</div>';
+
             // 마커를 생성합니다
-            marker = new kakao.maps.CustomOverlay({
+            marker = new kakao.maps.Marker({
                 map: map, // 마커를 표시할 지도
                 position: positions[i].latlng, // 마커를 표시할 위치
                 title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image: markerImage1, // 마커 이미지
-                content: content,
+
             });
+            var url = "post/"+boardid[i];
+            var a = document.getElementById('b')
+            // 마커에 표시할 인포윈도우를 생성합니다
+            var infowindow = new kakao.maps.InfoWindow({
+
+                content:   '    <div class="info">' +
+                    '        <div class="title" style="color: black">' +
+                    boardtitle[i] +
+                    '            <div class="close" onclick="InfoWindow.close()" title="닫기"></div>' +
+                    '        </div>' +
+                    '        <div class="body" style="font-size: 15px">' +
+                    '            <div class="desc">' +
+                    '                <div class="ellipsis">'+boardaddress[i]+'</div>'+
+                    '                <div><a href="post/'+boardid[i]+'" starget="_self" class="link">홈페이지</a></div>'+
+                    '            </div>' +
+                    '        </div>' +
+                    '    </div>'
+            });
+            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
+            // 이벤트 리스너로는 클로저를 만들어 등록합니다
+            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            // kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
         }
+        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+// // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+//         function makeOutListener(infowindow) {
+//             return function() {
+//                 infowindow.close();
+//             };
+//         }
+
         console.log("성공");
         console.log(data)
 

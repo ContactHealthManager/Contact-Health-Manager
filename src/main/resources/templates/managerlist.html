@@ -25,17 +25,26 @@
     <div class="site-section" id="trainer-section">
 
         <div class="container">
+            <div class="container" style="margin-bottom: 20px">
+                <div class="row">
+                    <div class="col-sm">
 
-            <div class="float-lg-right">
-                <a href="map.html" th:href="@{/map}" class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>&nbsp;
-                <a href="map.html" th:href="@{/countmanagerlist}"
-                   class="nav-link float-lg-right btn btn-primary btn-lg">조회수순서</a>
+                        <a href="map.html" th:href="@{/map}"
+                           class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>
+                        <a th:href="@{/countmanagerlist}"
+                           class="nav-link float-lg-right btn btn-primary btn-lg" style="margin-right: 10px">조회순</a>
+                        <a th:href="@{/countmanagerlist}"
+                           class="nav-link float-lg-right btn btn-primary btn-lg" style="margin-right: 10px">날짜순</a>
+
+                    </div>
+                </div>
             </div>
             <div class="row large-gutters">
-                <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4 ">
+                <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4">
                     <a th:href="@{'/post/' + ${board.id}}">
 
-                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">
+                        <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid mb-5"/>
+
                         <!--                             th:href="@{'/post/' + ${board.id}}">-->
 
 
@@ -65,7 +74,6 @@
 
 
 </div>
-
 
 
 <footer class="footer-section" th:replace="/common/footer.html :: footer">

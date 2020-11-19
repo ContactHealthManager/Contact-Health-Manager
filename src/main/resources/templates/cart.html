@@ -26,20 +26,38 @@
         <div class="container" data-aos="fade-up">
             <div class="row large-gutters">
 
+                <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}">
 
-                        <div class="col-md-6 person col-lg-4 mb-4 mb-lg-0" th:each="cart : ${cartList}">
+                    <p th:text="${cart.boardId}"></p>
+                    <a th:href="@{'/post/' + ${cart.boardId}}">
+                        <img th:src="@{/images/media/} + ${cart.imgname}" alt="Image" class="img-fluid mb-5"
+                             th:href="@{'/post/' + ${cart.boardId}}">
 
-                            <p th:text="${cart.boardId}"></p>
-                            <a th:href="@{'/post/' + ${cart.boardId}}">
-                                <img th:src="@{/images/person_1.jpg}" alt="Image" class="img-fluid mb-5"
-                                     th:href="@{'/post/' + ${cart.boardId}}">
-                                <p class="mb-4 opacity-7">
-                                    <span th:text="${cart.title}"></span>
-                                </p>
-                                <p><span th:text="${cart.writer}"></span></p>
-                            </a>
+                        <!--                                <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid mb-5"/>-->
+                        <p class="mb-4 opacity-7">
+                            <span th:text="${cart.title}"></span>
+                        </p>
+                        <p><span th:text="${cart.writer}"></span></p>
+                    </a>
 
-                        </div>
+                    <!-- 삭제하기 -->
+                    <form id="delete-form" th:action="@{'/cart/' +${cart.Id}+'/'+${cart.boardId}}" method="post">
+
+
+                        <button class="float-lg-right btn btn-outline-primary"
+                                id="button2" onclick="button2_click();">삭제하기
+                        </button>
+                        <input type="hidden" name="_method" value="delete"/>
+                    </form>
+                    <script>
+
+                        function button2_click() {
+                            alert("삭제되었습니다.")
+                        }
+
+                    </script>
+
+                </div>
 
 
             </div>

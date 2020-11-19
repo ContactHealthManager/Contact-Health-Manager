@@ -90,6 +90,7 @@ public class BoardDto {
         this.x = x;
         this.y = y;
 
+
     }
 
 

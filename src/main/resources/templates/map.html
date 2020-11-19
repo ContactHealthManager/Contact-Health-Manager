@@ -53,6 +53,7 @@
         .info .link {color: #5085BB;}
     </style>
 
+
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -64,7 +65,6 @@
     </div>
     <div class="site-mobile-menu-body"></div>
 </div>
-
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
         th:replace="/common/header.html :: header">
 </header>
@@ -78,7 +78,6 @@
                     </div>
                 </div>
                 <form class="text-center">
-
                     <input type="text" class="d-inline-block form-control text-light bg-dark"
                            id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px;"
                            onclick="sample5_execDaumPostcode()">
@@ -90,7 +89,7 @@
 <!--                           value="위치 설정"> &lt;!&ndash;나중에 위치 저장할 수 있게 만들거임 &ndash;&gt;-->
 <!--                </form>-->
                 <div>
-                    <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
+                    <div id="map" style="width:100%;height:500px;margin-top:10px;">
                     </div>
                     <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
                     </script>
@@ -98,6 +97,7 @@
                     </script>
                     <script src="/js/readmap.js">
                     </script>
+
                 </div>
             </div>
 
