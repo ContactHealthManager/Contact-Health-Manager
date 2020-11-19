@@ -63,13 +63,13 @@
                     </script>
 
 
-<!--                    채팅방 버튼-->
+                    <!--                    채팅방 버튼-->
                     <div class="float-lg-left" id="app" v-cloak>
 
-                            <input type="hidden" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
+                        <input type="hidden" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
 
 
-                                <button class=" btn-md btn btn-outline-primary" type="button" @click="createRoom">1대1상담하기</button>
+                        <button class=" btn-md btn btn-outline-primary" type="button" @click="createRoom">1대1상담하기</button>
 
 
                     </div>
@@ -77,7 +77,7 @@
 
 
 
-<!--                    <a th:href="@{/chat/room}">asdasdas</a>-->
+                    <!--                    <a th:href="@{/chat/room}">asdasdas</a>-->
 
 
                     <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>
