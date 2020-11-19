@@ -1,7 +1,7 @@
 package com.victolee.board.config.handler;
 
-import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
