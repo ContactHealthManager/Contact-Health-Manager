@@ -1,8 +1,8 @@
 package com.victolee.board.controller;
 
 
-import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;

@@ -128,11 +128,11 @@ public class BoardController {
     /* 게시물의 썸네일 파일업로드 포함*/
     @RequestMapping(value = "/post", method = RequestMethod.POST)
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
-        System.out.println("넘어오나용");
+
         try {
 
 
-            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -148,8 +148,6 @@ public class BoardController {
         } catch(Exception e) {
             e.printStackTrace();
         }
-//        String filePath = files.getOriginalFilename();
-//        files.transferTo(new File("\\static\\images\\media\\"+filePath));
 
         return "redirect:/managerlist";
     }
@@ -229,7 +227,7 @@ public class BoardController {
             byte[] bytes = upload.getBytes();
 
             //이미지 경로 생성
-            String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
 
@@ -283,7 +281,7 @@ public class BoardController {
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
-        String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
 
         String sDirPath = path + uid + "_" + fileName;
 

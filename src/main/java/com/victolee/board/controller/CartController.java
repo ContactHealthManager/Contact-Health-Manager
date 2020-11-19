@@ -1,5 +1,6 @@
 package com.victolee.board.controller;
 
+import com.google.common.collect.Sets;
 import com.victolee.board.dto.CartDto;
 import com.victolee.board.service.CartService;
 import lombok.AllArgsConstructor;
@@ -11,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.security.Principal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @AllArgsConstructor
@@ -33,8 +36,9 @@ public class CartController {
     public String cartlist(Model model, Principal principal) {
 
         String loginId = principal.getName();
-        List<CartDto> cartList = cartService.getCartlistUser(loginId);
-
+        List<CartDto> cartList1 = cartService.getCartlistUser(loginId);
+        Set<CartDto> cartList =  Sets.newHashSet(cartList1);
+        System.out.println("씨발"+cartList);
 
         model.addAttribute("cartList", cartList);
 

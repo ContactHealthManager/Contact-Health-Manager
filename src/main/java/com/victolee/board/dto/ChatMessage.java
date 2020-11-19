@@ -12,8 +12,7 @@ import lombok.Setter;
 @Setter
 public class ChatMessage {
 
-    public ChatMessage() {
-    }
+
 
     @Builder
     public ChatMessage(MessageType type, String roomId, String sender, String message, long userCount) {
