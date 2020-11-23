@@ -60,16 +60,16 @@ public class ChatRoomController {
     }
 
 
-    @GetMapping("/room/enter/{roomId}") //채팅방 목록중에 한 채팅방 안으로 들어감
-    public String roomDetail(Model model, @PathVariable String roomId) {
-        model.addAttribute("roomId", roomId);
+    @GetMapping("/room/enter/{roomid}") //채팅방 목록중에 한 채팅방 안으로 들어감
+    public String roomDetail(Model model, @PathVariable String roomid) {
+        model.addAttribute("roomid", roomid);
         return "/chat/roomdetail";
     }
 
-    @GetMapping("/room/{roomId}") //채팅방 목록중 한 채팅방 찾기
+    @GetMapping("/room/{roomid}") //채팅방 목록중 한 채팅방 찾기
     @ResponseBody
-    public ChatRoom roomInfo(@PathVariable String roomId) {
-        return chatRoomRepository.findRoomById(roomId);
+    public ChatRoom roomInfo(@PathVariable String roomid) {
+        return chatRoomRepository.findRoomById(roomid);
     }
     //로그인 유저 정보 조회
     @GetMapping("/user")

@@ -228,10 +228,10 @@
                         .catch( response => { alert("채팅방 개설에 실패하였습니다."); } );
                 }
             },
-            enterRoom: function(roomId, roomName) {
-                localStorage.setItem('wschat.roomId',roomId);
+            enterRoom: function(roomid, roomName) {
+                localStorage.setItem('wschat.roomid',roomid);
                 localStorage.setItem('wschat.roomName',roomName);
-                location.href="/chat/room/enter/"+roomId;
+                location.href="/chat/room/enter/"+roomid;
             }
         }
     });

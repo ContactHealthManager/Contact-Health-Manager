@@ -16,7 +16,7 @@ public class ChatRoomEntity {
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)//방번호
     private String roomid;
 
-    public String getRoomId() {
+    public String getRoomid() {
         return roomid;
     }
 

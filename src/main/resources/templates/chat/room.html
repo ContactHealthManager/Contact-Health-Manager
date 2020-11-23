@@ -39,7 +39,7 @@
         </div>
     </div>
     <ul class="list-group">
-        <li class="list-group-item list-group-item-action" v-for="item in chatrooms" v-bind:key="item.roomId" v-on:click="enterRoom(item.roomId, item.name)">
+        <li class="list-group-item list-group-item-action" v-for="item in chatrooms" v-bind:key="item.roomid" v-on:click="enterRoom(item.roomid, item.name)">
             <h6>{{item.name}} <span class="badge badge-info badge-pill">{{item.userCount}}</span></h6>
         </li>
     </ul>
@@ -85,11 +85,11 @@
                         .catch( response => { alert("채팅방 개설에 실패하였습니다."); } );
                 }
             },
-            enterRoom: function(roomId, roomName) {
+            enterRoom: function(roomid, roomName) {
                 
-                localStorage.setItem('wschat.roomId',roomId);
+                localStorage.setItem('wschat.roomid',roomid);
                 localStorage.setItem('wschat.roomName',roomName);
-                location.href="/chat/room/enter/"+roomId;
+                location.href="/chat/room/enter/"+roomid;
             }
         }
     });

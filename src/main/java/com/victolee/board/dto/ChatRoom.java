@@ -42,8 +42,8 @@ public class ChatRoom implements Serializable {
 //    public ChatRoom (){};
 //
     @Builder
-    public ChatRoom(String roomid,String name){
-        this.roomid =roomid;
+    public ChatRoom(String roomid, String name){
+        this.roomid = roomid;
         this.name = name;
     }
 

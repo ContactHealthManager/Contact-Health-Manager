@@ -43,12 +43,12 @@ public class ChatRoomRepository {
     }
 
     // 유저가 입장한 채팅방ID와 유저 세션ID 맵핑 정보 저장
-    public void setUserEnterInfo(String sessionId, String roomId) {
-        hashOpsEnterInfo.put(ENTER_INFO, sessionId, roomId);
+    public void setUserEnterInfo(String sessionId, String roomid) {
+        hashOpsEnterInfo.put(ENTER_INFO, sessionId, roomid);
     }
 
     // 유저 세션으로 입장해 있는 채팅방 ID 조회
-    public String getUserEnterRoomId(String sessionId) {
+    public String getUserEnterRoomid(String sessionId) {
         return hashOpsEnterInfo.get(ENTER_INFO, sessionId);
     }
 
@@ -58,18 +58,18 @@ public class ChatRoomRepository {
     }
 
     // 채팅방 유저수 조회
-    public long getUserCount(String roomId) {
-        return Long.valueOf(Optional.ofNullable(valueOps.get(USER_COUNT + "_" + roomId)).orElse("0"));
+    public long getUserCount(String roomid) {
+        return Long.valueOf(Optional.ofNullable(valueOps.get(USER_COUNT + "_" + roomid)).orElse("0"));
     }
 
     // 채팅방에 입장한 유저수 +1
-    public long plusUserCount(String roomId) {
-        return Optional.ofNullable(valueOps.increment(USER_COUNT + "_" + roomId)).orElse(0L);
+    public long plusUserCount(String roomid) {
+        return Optional.ofNullable(valueOps.increment(USER_COUNT + "_" + roomid)).orElse(0L);
     }
 
     // 채팅방에 입장한 유저수 -1
-    public long minusUserCount(String roomId) {
-        return Optional.ofNullable(valueOps.decrement(USER_COUNT + "_" + roomId)).filter(count -> count > 0).orElse(0L);
+    public long minusUserCount(String roomid) {
+        return Optional.ofNullable(valueOps.decrement(USER_COUNT + "_" + roomid)).filter(count -> count > 0).orElse(0L);
     }
 
 
