@@ -7,7 +7,15 @@ spring:
     username: root
     password: wlq960505
 
-
+  redis:
+    host: localhost
+    port: 6379
+  session:
+    timeout: 600
+    store-type: redis
+    redis:
+      flush-mode: immediate
+      namespace: spring:session
 
 
   mail:

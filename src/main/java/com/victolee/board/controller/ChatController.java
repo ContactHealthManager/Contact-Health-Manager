@@ -2,13 +2,18 @@ package com.victolee.board.controller;
 
 import com.victolee.board.domain.repository.ChatRoomRepository;
 import com.victolee.board.dto.ChatMessage;
+import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.annotation.Resource;
 //import java.security.Principal;
 
 @Slf4j
@@ -32,5 +37,7 @@ public class ChatController {
         message.setUserCount(chatRoomRepository.getUserCount(message.getRoomId()));
         // Websocket에 발행된 메시지를 redis로 발행(publish)
         chatService.sendChatMessage(message);
+
     }
+
 }

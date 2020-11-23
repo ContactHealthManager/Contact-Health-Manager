@@ -2,6 +2,7 @@ package com.victolee.board.controller;
 
 
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.JwtTokenProvider;
@@ -9,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 import java.security.Principal;
 import java.util.List;
 
@@ -16,6 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/chat")
 public class ChatRoomController {
+
 
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
@@ -31,6 +35,7 @@ public class ChatRoomController {
     public List<ChatRoom> room() {
         List<ChatRoom> chatRooms = chatRoomRepository.findAllRoom();
         chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getRoomId())));
+
         return chatRooms;
     }
 
