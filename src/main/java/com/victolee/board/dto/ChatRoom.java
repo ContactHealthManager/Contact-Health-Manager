@@ -38,9 +38,7 @@ public class ChatRoom implements Serializable {
         return chatRoomEntity;
     }
 
-//    @Builder
-//    public ChatRoom (){};
-//
+
     @Builder
     public ChatRoom(String roomid, String name){
         this.roomid = roomid;

@@ -63,26 +63,25 @@
                     </script>
 
 
-<!--                    채팅방 버튼-->
-
+                    <!--                    채팅방 버튼-->
 
                     <div class="float-lg-left" id="app" v-cloak>
-<!--                        <form th:action="@{'/chat/room'}" method="POST">-->
-                            <input type="hidden" class="form-control" v-model="room_name"
-                                   v-on:keyup.enter="createRoom">
+                        <!--                        <form th:action="@{'/chat/room'}" method="POST">-->
+                        <input type="hidden" class="form-control" v-model="room_name"
+                               v-on:keyup.enter="createRoom">
+
                         <button class=" btn-md btn btn-outline-primary"
-                                type="submit" @click="createRoom">1대1상담하기</button>
+                                type="submit" @click="createRoom">1대1상담하기
+                        </button>
 
 
-<!--                        </form>-->
+                        <!--                        </form>-->
 
-<!--                        <input type="hidden" class="form-control" th:name="name"-->
-<!--                               th:value="${boardDto.writer} 트레이너님과 ${userId}님의 채팅">-->
-<!--                        <input type="hidden" class="form-control" th:name="roomId"-->
-<!--                               th:value="${item.userCount}">-->
+                        <!--                        <input type="hidden" class="form-control" th:name="name"-->
+                        <!--                               th:value="${boardDto.writer} 트레이너님과 ${userId}님의 채팅">-->
+                        <!--                        <input type="hidden" class="form-control" th:name="roomId"-->
+                        <!--                               th:value="${item.userCount}">-->
                     </div>
-
-
 
 
                     <!--                    <a th:href="@{/chat/room}">asdasdas</a>-->
@@ -198,40 +197,43 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            room_name : '[[${boardDto.writer}]] 트레이너님과 [[${userId}]]님의 채팅',
-            chatrooms: [
-            ]
+            room_name: '[[${boardDto.writer}]] 트레이너님과 [[${userId}]]님의 채팅',
+            chatrooms: []
         },
         created() {
             this.findAllRoom();
         },
         methods: {
-            findAllRoom: function() {
-                axios.get('/chat/rooms').then(response => { this.chatrooms = response.data; });
+            findAllRoom: function () {
+                axios.get('/chat/rooms').then(response => {
+                    this.chatrooms = response.data;
+                });
             },
-            createRoom: function() {
-                if("" === this.room_name) {
+            createRoom: function () {
+                if ("" === this.room_name) {
                     alert("방 제목을 입력해 주십시요.");
                     return;
                 } else {
                     var params = new URLSearchParams();
-                    params.append("name",this.room_name);
+                    params.append("name", this.room_name);
                     axios.post('/chat/room', params)
                         .then(
                             response => {
-                                alert(response.data.name+"방 개설")
+                                alert(response.data.name + "방 개설")
                                 this.room_name = '';
                                 this.findAllRoom();
-                                location.href="/chat/room/";
+                                location.href = "/chat/room/";
                             }
                         )
-                        .catch( response => { alert("채팅방 개설에 실패하였습니다."); } );
+                        .catch(response => {
+                            alert("채팅방 개설에 실패하였습니다.");
+                        });
                 }
             },
-            enterRoom: function(roomid, roomName) {
-                localStorage.setItem('wschat.roomid',roomid);
-                localStorage.setItem('wschat.roomName',roomName);
-                location.href="/chat/room/enter/"+roomid;
+            enterRoom: function (roomid, roomName) {
+                localStorage.setItem('wschat.roomid', roomid);
+                localStorage.setItem('wschat.roomName', roomName);
+                location.href = "/chat/room/enter/" + roomid;
             }
         }
     });
