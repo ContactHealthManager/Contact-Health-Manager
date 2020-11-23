@@ -45,7 +45,7 @@
                     <!-- 글 제목 -->
                     <h1 style="text-align: center; margin-bottom: 20px;" th:text="${boardDto.title}"></h1>
                     <!-- 작성자 -->
-                    <p v-bind:id="uuid" v-bind:value="[[${ boardDto.writer}]]"> asdsad</p>
+                    <p v-bind:id="uuid" v-bind:value="[[${ boardDto.writer}]]"></p>
 
                     <form class="float-lg-left" th:action="@{'/post/'+${boardDto.id}}" method="POST">
                         <input type="hidden" name="board" th:value="${boardDto.id}"/>
@@ -57,21 +57,30 @@
                     </form>
                     <script>
                         function button1_click() {
-                            alert("이 게시물이 찜되었습니다.")
-                            alert("내가 좋아하는 게시물로 이동합니다.")
+                            alert("이 게시물이 찜되었습니다.\n내가 좋아하는 게시물로 이동합니다.\n")
+                            alert("중복된 찜은 지워집니다.")
                         }
                     </script>
 
 
 <!--                    채팅방 버튼-->
+
                     <div class="float-lg-left" id="app" v-cloak>
+<!--                        <form th:action="@{'/chat/room'}" method="POST">-->
+                            <input type="hidden" class="form-control" v-model="room_name"
+                                   v-on:keyup.enter="createRoom">
 
-                            <input type="hidden" class="form-control" v-model="room_name" v-on:keyup.enter="createRoom">
+                        <button class=" btn-md btn btn-outline-primary"
+                                type="submit" @click="createRoom">1대1상담하기</button>
 
 
-                                <button class=" btn-md btn btn-outline-primary" type="button" @click="createRoom">1대1상담하기</button>
 
+<!--                        </form>-->
 
+<!--                        <input type="hidden" class="form-control" th:name="name"-->
+<!--                               th:value="${boardDto.writer} 트레이너님과 ${userId}님의 채팅">-->
+<!--                        <input type="hidden" class="form-control" th:name="roomId"-->
+<!--                               th:value="${item.userCount}">-->
                     </div>
 
 
@@ -114,10 +123,15 @@
                             <!-- 삭제하기 -->
                             <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post"><input
                                     type="hidden" name="_method" value="delete"/>
-                                <button class="float-lg-right btn btn-outline-primary">삭제하기
+                                <button class="float-lg-right btn btn-outline-primary" onclick="button2_click();">삭제하기
                                 </button>
                             </form>
+                            <script>
+                                function button2_click() {
+                                    alert("게시물이 삭제되었습니다.")
 
+                                }
+                            </script>
                         </div>
                     </div>
                 </div>
@@ -185,7 +199,7 @@
     var vm = new Vue({
         el: '#app',
         data: {
-            room_name : '[[${boardDto.writer}]] 님과 [[${userId}]]님의 채팅',
+            room_name : '[[${boardDto.writer}]] 트레이너님과 [[${userId}]]님의 채팅',
             chatrooms: [
             ]
         },
