@@ -47,8 +47,10 @@
             display: none;
         }
         .container1 {
+            background-color: white;
+
             width: 450px;
-            height: 240px;
+            height: 340px;
             overflow: auto;
 
         }
@@ -64,7 +66,12 @@
             border-radius: 10px;
             box-shadow: inset 0px 0px 5px white;
         }
-
+        div.container1 {
+            transform: rotate(180deg);
+        }
+        div.container1 li.list-group-item{
+            transform: rotate(-180deg);
+        }
 
     </style>
 
@@ -98,30 +105,27 @@
 
 
             <div class="row justify-content-center" >
+
+                <div class="container1">
+                    <ul class="list-group">
+
+                        <li class="list-group-item" v-for="message in messages" style="background-color: #2cbd7b">
+                            {{message.sender}} - {{message.message}}</a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="input-group col-md-8 ">
-                    <div class="input-group-prepend">
+                    <div class="input-group-prepend" >
                         <label class="input-group-text">내용</label>
                     </div>
-                    <input type="textarea" maxlength="140" rows="7"
+                    <input type="textarea" maxlength="140" rows="6"
                            class="form-control" v-model="message" v-on:keypress.enter="sendMessage('TALK')">
                     <div class="input-group-append">
                         <button class="btn btn-primary" type="button" @click="sendMessage('TALK')">보내기</button>
                     </div>
                 </div>
-                <div class="container1">
-                    <ul class="list-group">
-
-
-
-
-
-
-                        <li class="list-group-item" v-for="message in messages">
-                            {{message.sender}} - {{message.message}}</a>
-                        </li>
-                    </ul>
-                </div>
             </div>
+
         </div>
     </div>
 </div>

@@ -25,21 +25,31 @@
     <div class="site-section" id="trainer-section">
 
         <div class="container">
-            <div class="container" style="margin-bottom: 20px">
+
+            <!-- Single button -->
+            <!-- Split button -->
+
+            <br>
+            <br>
+            <br>
+            <div class="container"style="text-align: center">
                 <div class="row">
                     <div class="col-sm">
-                        <a href="map.html" th:href="@{/chat/room/}"
-                           class="nav-link float-lg-right btn btn-primary btn-lg">채팅방목록가기</a>
-                        <a href="map.html" th:href="@{/map}"
-                           class="nav-link float-lg-right btn btn-primary btn-lg">주소로 찾기</a>
-                        <a th:href="@{/countmanagerlist}"
-                           class="nav-link float-lg-right btn btn-primary btn-lg" style="margin-right: 10px">조회순</a>
-                        <a th:href="@{/countmanagerlist}"
-                           class="nav-link float-lg-right btn btn-primary btn-lg" style="margin-right: 10px">날짜순</a>
+
+                        <div class="btn-group btn-group-lg" role="group" aria-label="..."><a href="map.html" th:href="@{/map}"
+                                                                                             class="nav-link btn btn-outline-light">주소로 찾기</a></div>
+
+                        <div class="btn-group btn-group-lg" role="group" aria-label="..."> <a th:href="@{/countmanagerlist}"
+                                                                                              class="nav-link btn btn-outline-light">조회순</a></div>
+                        <div class="btn-group btn-group-lg" role="group" aria-label="..."> <a th:href="@{/Datemanagerlist}"
+                                                                                              class="nav-link btn btn-outline-light">날짜순</a></div>
 
                     </div>
                 </div>
             </div>
+            <br>
+            <br>
+            <br>
             <div class="row large-gutters">
                 <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4">
                     <a th:href="@{'/post/' + ${board.id}}">

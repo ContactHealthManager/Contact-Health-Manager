@@ -10,7 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
+import java.util.Date;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
@@ -71,9 +71,38 @@ public class BoardService {
         return boardDtoList;
     }
 
+    @Transactional
+    public List<BoardDto> getBoardlistcountsort(Integer pageNum) {//메니저리스트에 조회순 정렬
+        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1, PAGE_POST_COUNT,Sort.by(Sort.Direction.DESC, "bcount")));
+        List<BoardEntity> boardEntities = page.getContent();
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        for (BoardEntity boardEntity : boardEntities) {
+            boardDtoList.add(this.convertEntityToDto(boardEntity));
+
+        }
+
+        return boardDtoList;
+    }
+    @Transactional
+    public List<BoardDto> getBoardlistdate(Integer pageNum) {
+
+        Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(pageNum - 1, PAGE_POST_COUNT,Sort.by(Sort.Direction.DESC, "id")));
+        List<BoardEntity> boardEntities = page.getContent();
+        List<BoardDto> boardDtoList = new ArrayList<>();
+
+        for (BoardEntity boardEntity : boardEntities) {
+            boardDtoList.add(this.convertEntityToDto(boardEntity));
+
+        }
+
+        return boardDtoList;
+
+    }
+
 
     @Transactional
-    public List<BoardDto> getBoardlistcount() {
+    public List<BoardDto> getBoardlistcount() {//인기게시물 5개 보여주기
         Page<BoardEntity> page = boardRepository.findAll(PageRequest.of(0,5,Sort.by(Sort.Direction.DESC, "bcount")));
         List<BoardDto> boardDtoList = new ArrayList<>(5);
         List<BoardEntity> boardEntities = page.getContent();
@@ -90,6 +119,7 @@ public class BoardService {
         return boardDtoList;
 
     }
+
 
     @Transactional //게시물의 총개수
     public Long getBoardCount() {
@@ -130,7 +160,7 @@ public class BoardService {
         for (BoardEntity boardEntity : boardEntities) {
             boardDtoList.add(this.convertEntityToDto(boardEntity));
         }
-        System.out.println(boardDtoList);
+
         return boardDtoList;
     }
 
