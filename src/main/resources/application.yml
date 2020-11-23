@@ -29,8 +29,6 @@ spring:
       enabled=false:
 
 
-
-
   jwt:
     secret: govlepel@$&
 

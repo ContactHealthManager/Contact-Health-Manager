@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class ChatController {
 
+
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatRoomRepository chatRoomRepository;
     private final ChatService chatService;
@@ -33,4 +34,5 @@ public class ChatController {
         // Websocket에 발행된 메시지를 redis로 발행(publish)
         chatService.sendChatMessage(message);
     }
+
 }

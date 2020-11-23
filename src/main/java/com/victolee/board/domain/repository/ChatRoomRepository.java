@@ -26,7 +26,7 @@ public class ChatRoomRepository {
     @Resource(name = "redisTemplate")
     private ValueOperations<String, String> valueOps;
 
-    // 모든 채팅방 조회
+    // 모든 채팅방 조회 // 잠시 안씁니다.
     public List<ChatRoom> findAllRoom() {
         return hashOpsChatRoom.values(CHAT_ROOMS);
     }
@@ -39,7 +39,7 @@ public class ChatRoomRepository {
     // 채팅방 생성 : 서버간 채팅방 공유를 위해 redis hash에 저장한다.
     public ChatRoom createChatRoom(String name) {
         ChatRoom chatRoom = ChatRoom.create(name);
-        hashOpsChatRoom.put(CHAT_ROOMS, chatRoom.getRoomId(), chatRoom);
+        hashOpsChatRoom.put(CHAT_ROOMS, chatRoom.getRoomid(), chatRoom);
         return chatRoom;
     }
 
@@ -72,4 +72,6 @@ public class ChatRoomRepository {
     public long minusUserCount(String roomId) {
         return Optional.ofNullable(valueOps.decrement(USER_COUNT + "_" + roomId)).filter(count -> count > 0).orElse(0L);
     }
+
+
 }
