@@ -31,7 +31,6 @@ public class ChatMessageEntity {
     public ChatMessageEntity(String roomid, String sender, String message) {
 
         this.roomid = roomid;
-
         this.sender = sender;
         this.message = message;
 

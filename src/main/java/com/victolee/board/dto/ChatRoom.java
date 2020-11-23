@@ -31,7 +31,7 @@ public class ChatRoom implements Serializable {
 
     public ChatRoomEntity toEntity() { //저장을 위한 엔티티
         ChatRoomEntity chatRoomEntity = ChatRoomEntity.builder()
-                .roomId(roomid)
+                .roomid(roomid)
                 .name(name)
                 .build();
 
