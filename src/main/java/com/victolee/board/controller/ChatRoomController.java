@@ -5,14 +5,17 @@ import com.victolee.board.domain.repository.ChatRoomRepository;
 import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
+import com.victolee.board.service.ChatRoomService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -21,11 +24,14 @@ import java.util.List;
 public class ChatRoomController {
 
 
+
+    @Autowired
+    private ChatRoomService chatRoomService;
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
-    // 채팅 리스트 화면
-    @GetMapping("/room")
+
+    @GetMapping("/room") //채팅방 목록 페이지로 연결
     public String rooms(Model model) {
         return "/chat/room";
     }
@@ -34,7 +40,7 @@ public class ChatRoomController {
     @ResponseBody
     public List<ChatRoom> room() {
         List<ChatRoom> chatRooms = chatRoomRepository.findAllRoom();
-        chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getRoomId())));
+        chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getRoomid())));
 
         return chatRooms;
     }
@@ -43,16 +49,24 @@ public class ChatRoomController {
     @PostMapping("/room")
     @ResponseBody
     public ChatRoom createRoom(@RequestParam String name) {
-        return chatRoomRepository.createChatRoom(name);
+        ChatRoom createChatRoom = chatRoomRepository.createChatRoom(name);
+
+
+        //         채팅방 목록을 저장 한다.
+       chatRoomService.saveChatRoom(createChatRoom);
+
+
+        return createChatRoom; //chatRoomRepository의 채팅방 생성 함수를 사용해 채팅방 생성.
     }
-    // 채팅방 입장 화면
-    @GetMapping("/room/enter/{roomId}")
+
+
+    @GetMapping("/room/enter/{roomId}") //채팅방 목록중에 한 채팅방 안으로 들어감
     public String roomDetail(Model model, @PathVariable String roomId) {
         model.addAttribute("roomId", roomId);
         return "/chat/roomdetail";
     }
-    // 특정 채팅방 조회
-    @GetMapping("/room/{roomId}")
+
+    @GetMapping("/room/{roomId}") //채팅방 목록중 한 채팅방 찾기
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
         return chatRoomRepository.findRoomById(roomId);

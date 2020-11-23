@@ -21,6 +21,7 @@ import javax.annotation.Resource;
 @Controller
 public class ChatController {
 
+
     private final JwtTokenProvider jwtTokenProvider;
     private final ChatRoomRepository chatRoomRepository;
     private final ChatService chatService;

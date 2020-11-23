@@ -38,13 +38,6 @@ spring:
       enabled=false:
 
 
-#  freemarker:
-#    template-loader-path: classpath:/templates
-#    suffix: .ftl
-#    cache: false
-
-
-
   jwt:
     secret: govlepel@$&
 

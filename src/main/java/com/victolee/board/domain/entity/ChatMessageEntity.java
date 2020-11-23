@@ -27,11 +27,11 @@ public class ChatMessageEntity {
     private String message;
 
 
-
     @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
     public ChatMessageEntity(String roomid, String sender, String message) {
 
         this.roomid = roomid;
+
         this.sender = sender;
         this.message = message;
 

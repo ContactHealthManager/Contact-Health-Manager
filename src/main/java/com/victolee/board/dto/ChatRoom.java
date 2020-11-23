@@ -1,30 +1,50 @@
 package com.victolee.board.dto;
 
 
-import lombok.Getter;
-import lombok.Setter;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
-import org.springframework.web.context.WebApplicationContext;
+
+import com.victolee.board.domain.entity.ChatRoomEntity;
+import lombok.*;
+
 
 import java.io.Serializable;
 import java.util.UUID;
 
 @Getter
 @Setter
-@Scope(value = WebApplicationContext.SCOPE_SESSION, proxyMode = ScopedProxyMode.TARGET_CLASS)
+@ToString
+@NoArgsConstructor
+
 public class ChatRoom implements Serializable {
 
     private static final long serialVersionUID = 6494678977089006639L;
 
-    private String roomId;
+    private String roomid;
     private String name;
     private long userCount; // 채팅방 인원수
 
     public static ChatRoom create(String name) {
         ChatRoom chatRoom = new ChatRoom();
-        chatRoom.roomId = UUID.randomUUID().toString();
+        chatRoom.roomid = UUID.randomUUID().toString();
         chatRoom.name = name;
         return chatRoom;
     }
+
+    public ChatRoomEntity toEntity() { //저장을 위한 엔티티
+        ChatRoomEntity chatRoomEntity = ChatRoomEntity.builder()
+                .roomId(roomid)
+                .name(name)
+                .build();
+
+        return chatRoomEntity;
+    }
+
+//    @Builder
+//    public ChatRoom (){};
+//
+    @Builder
+    public ChatRoom(String roomid,String name){
+        this.roomid =roomid;
+        this.name = name;
+    }
+
 }
