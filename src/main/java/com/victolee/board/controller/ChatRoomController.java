@@ -46,7 +46,8 @@ public class ChatRoomController {
 //        System.out.println(farawaychatRooms);
         for (int i=0; i<farawaychatRooms.size(); i++) {
             if(farawaychatRooms.get(i).getName().contains(username))
-                chatRooms.add(farawaychatRooms.get(i));
+            chatRooms.add(farawaychatRooms.get(i));
+
         }
 
 

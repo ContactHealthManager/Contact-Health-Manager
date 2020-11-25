@@ -14,8 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import sun.jvm.hotspot.gc.parallel.PSYoungGen;
-
 import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +82,17 @@ public class BoardController {
 
     @GetMapping("/countmanagerlist")
     public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
-        List<BoardDto> boardList = boardService.getBoardlist(pageNum);
+        List<BoardDto> boardList = boardService.getBoardlistcountsort(pageNum);
+        Integer[] pageList = boardService.getPageList(pageNum);
+
+        model.addAttribute("boardList", boardList);
+        model.addAttribute("pageList", pageList);
+
+        return "/managerlist";
+    }
+    @GetMapping("/Datemanagerlist")
+    public String Datelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
+        List<BoardDto> boardList = boardService.getBoardlistdate(pageNum);
         Integer[] pageList = boardService.getPageList(pageNum);
 
         model.addAttribute("boardList", boardList);
@@ -163,9 +171,7 @@ public class BoardController {
     @PutMapping("/post/edit/{no}")
     public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         try {
-
-
-            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
