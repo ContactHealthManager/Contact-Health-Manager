@@ -2,18 +2,16 @@ package com.victolee.board.controller;
 
 
 import com.victolee.board.domain.repository.ChatRoomRepository;
-import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.ChatRoomService;
+import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import javax.annotation.Resource;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +22,9 @@ import java.util.List;
 public class ChatRoomController {
 
 
-
     @Autowired
     private ChatRoomService chatRoomService;
+
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -35,43 +33,53 @@ public class ChatRoomController {
     public String rooms(Model model) {
         return "/chat/room";
     }
-    // 모든 채팅방 목록 반환
+
     @GetMapping("/rooms")
     @ResponseBody
-    public List<ChatRoom> room() {
-        List<ChatRoom> chatRooms = chatRoomRepository.findAllRoom();
-        chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getRoomid())));
+    public List<ChatRoom> room(Principal principal) { // 채팅방 목록 모든 채팅방을 보여준다. 모든 조회.
+        // 이거원래 채팅방 생성되면 생성된거 다보여주는 건데 DB에 저장안되서 다시짰음. 밑에 있는게 다보여주는거
+//        List<ChatRoom> chatRooms = chatRoomRepository.findAllRoom();
+        String username = principal.getName();
+        List<ChatRoom> chatRooms = new ArrayList<>();
 
+        List<ChatRoom> farawaychatRooms =chatRoomService.getchatroomlist();
+//        System.out.println(farawaychatRooms);
+        for (int i=0; i<farawaychatRooms.size(); i++) {
+            if(farawaychatRooms.get(i).getName().contains(username))
+                chatRooms.add(farawaychatRooms.get(i));
+        }
+
+
+        chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getRoomid())));
         return chatRooms;
     }
 
-    // 채팅방 생성
-    @PostMapping("/room")
+
+    @PostMapping("/room") //채팅방 생성
     @ResponseBody
     public ChatRoom createRoom(@RequestParam String name) {
         ChatRoom createChatRoom = chatRoomRepository.createChatRoom(name);
 
 
         //         채팅방 목록을 저장 한다.
-       chatRoomService.saveChatRoom(createChatRoom);
+        chatRoomService.saveChatRoom(createChatRoom);
 
 
         return createChatRoom; //chatRoomRepository의 채팅방 생성 함수를 사용해 채팅방 생성.
     }
 
-
-    @GetMapping("/room/enter/{roomid}") //채팅방 목록중에 한 채팅방 안으로 들어감
-    public String roomDetail(Model model, @PathVariable String roomid) {
-        model.addAttribute("roomid", roomid);
+    @GetMapping("/room/enter/{roomId}") //채팅방 목록중에 한 채팅방 안으로 들어감
+    public String roomDetail(Model model, @PathVariable String roomId) {
+        model.addAttribute("roomId", roomId);
         return "/chat/roomdetail";
     }
 
-    @GetMapping("/room/{roomid}") //채팅방 목록중 한 채팅방 찾기
+    @GetMapping("/room/{roomId}") //채팅방 목록중 한 채팅방 찾기
     @ResponseBody
-    public ChatRoom roomInfo(@PathVariable String roomid) {
-        return chatRoomRepository.findRoomById(roomid);
+    public ChatRoom roomInfo(@PathVariable String roomId) {
+        return chatRoomRepository.findRoomById(roomId);
     }
-    //로그인 유저 정보 조회
+
     @GetMapping("/user")
     @ResponseBody
     public UserInfoDto getUserInfo(Principal principal) {

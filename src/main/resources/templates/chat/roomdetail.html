@@ -66,46 +66,45 @@
 
 <div class="site-section section-2" id="classes-section">
     <div class="site-section bg-dark" id="contact-section">
-        <div class="container" id="app" v-cloak>
 
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <h3>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h3>
-                </div>
-
-            </div>
-
-            <div class="row justify-content-center">
-
-                <ul class="list-group">
-
-                    <div class="input-group col-md-16 ">
-                        <div class="input-group-prepend">
-                            <label class="input-group-text">내용</label>
-                        </div>
-                        <input type="textarea" maxlength="140" rows="7"
-                               class="form-control" v-model="message" v-on:keypress.enter="sendMessage('TALK')">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" @click="sendMessage('TALK')">보내기</button>
-                        </div>
+            <div class="container" id="app" v-cloak>
+                <div class="row justify-content-center">
+                    <div class="col-md-12 text-center">
+                        <h3>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h3>
                     </div>
 
+                </div>
+
+                <div class="row justify-content-center">
+
+                    <ul class="list-group">
+
+                        <div class="input-group col-md-16 ">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text">내용</label>
+                            </div>
+
+                            <input type="textarea" maxlength="140" rows="7"
+                                   class="form-control" name="message" v-model="message"
+                                   v-on:keypress.enter="sendMessage('TALK')">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button" @click="sendMessage('TALK')">보내기</button>
+                            </div>
+
+                        </div>
 
 
+                        <li class="list-group-item" v-for="message in messages">
+                            {{message.sender}} - {{message.message}}</a>
+                        </li>
 
-                    <li class="list-group-item" v-for="message in messages">
-                        {{message.sender}} - {{message.message}}</a>
-                    </li>
-                </ul>
+                    </ul>
+
+                </div>
             </div>
-        </div>
+
     </div>
 </div>
-
-
-
-
-
 
 
 <!--<div class="container" id="app" v-cloak>-->
@@ -159,25 +158,29 @@
             var _this = this;
             axios.get('/chat/user').then(response => {
                 _this.token = response.data.token;
-                ws.connect({"token":_this.token}, function(frame) {
-                    ws.subscribe("/sub/chat/room/"+_this.roomid, function(message) {
+                ws.connect({"token": _this.token}, function (frame) {
+                    ws.subscribe("/sub/chat/room/" + _this.roomid, function (message) {
                         var recv = JSON.parse(message.body);
                         _this.recvMessage(recv);
                     });
-                }, function(error) {
+                }, function (error) {
                     alert("서버 연결에 실패 하였습니다. 다시 접속해 주십시요.");
-                    location.href="/chat/room";
+                    location.href = "/chat/room";
                 });
             });
         },
         methods: {
-            sendMessage: function(type) {
-                ws.send("/pub/chat/message", {"token":this.token}, JSON.stringify({type:type, roomid:this.roomid, message:this.message}));
+            sendMessage: function (type) {
+                ws.send("/pub/chat/message", {"token": this.token}, JSON.stringify({
+                    type: type,
+                    roomid: this.roomid,
+                    message: this.message
+                }));
                 this.message = '';
             },
-            recvMessage: function(recv) {
+            recvMessage: function (recv) {
                 this.userCount = recv.userCount;
-                this.messages.unshift({"type":recv.type,"sender":recv.sender,"message":recv.message})
+                this.messages.unshift({"type": recv.type, "sender": recv.sender, "message": recv.message})
             }
         }
     });

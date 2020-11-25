@@ -12,8 +12,12 @@ import javax.persistence.*;
 public class ChatMessageEntity {
 
     @Id
+    @Column(name = "id")
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
+
+
     @Column(name = "roomid")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//방번호
     private String roomid;
 
     public String getRoomid() {
@@ -27,12 +31,14 @@ public class ChatMessageEntity {
     private String message;
 
 
-    @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
-    public ChatMessageEntity(String roomid, String sender, String message) {
 
+    @Builder // 빌더 패턴 클래스 생성, 생성자에 포함된 필드만 포함
+    public ChatMessageEntity(long id, String roomid, String sender, String message) {
+        this.id = id;
         this.roomid = roomid;
         this.sender = sender;
         this.message = message;
+
 
     }
 
