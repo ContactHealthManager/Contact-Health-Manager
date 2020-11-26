@@ -1,47 +1,36 @@
 package com.victolee.board.dto;
 
-
 import com.victolee.board.domain.entity.ChatMessageEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
-public class ChatMessage {
+public class ChatMessageDto{ //지우면안됨!!!!! 이거 다른거임
 
-    private MessageType type; // 메시지 타입
-    private String roomid; // 방번호
-
-    public String getroomid() {
-        return roomid;
-    }
     private Long id;
-
+    private String roomid; // 방번호
     private String sender; // 메시지 보낸사람
     private String message; // 메시지
-    private long userCount; // 채팅방 인원수, 채팅방 내에서 메시지가 전달될때 인원수 갱신시 사용
+    private LocalDateTime createdDate;// 등록날짜
 
+    public ChatMessageDto(){}
 
-    public ChatMessage() { }
 
     @Builder
-    public ChatMessage(MessageType type,String roomid, String sender, String message
-            , long userCount ,Long id)  {
-        this.id=id;
-        this.type = type;
+    public ChatMessageDto(Long id, String roomid, String sender, String message, LocalDateTime createdDate) {
+        this.id = id;
         this.roomid = roomid;
         this.sender = sender;
         this.message = message;
-        this.userCount = userCount;
+        this.createdDate =createdDate;
     }
 
-    // 메시지 타입 : 입장, 퇴장, 채팅
-    public enum MessageType {
-        ENTER, QUIT, TALK
-    }
     public ChatMessageEntity toEntity() { //저장을 위한 엔티티
         ChatMessageEntity chatMessageEntity = ChatMessageEntity.builder()
                 .id(id)
@@ -52,6 +41,4 @@ public class ChatMessage {
 
         return chatMessageEntity;
     }
-
-
 }

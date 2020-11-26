@@ -16,6 +16,11 @@ public class ChatRoom implements Serializable {
     private static final long serialVersionUID = 6494678977089006639L;
 
     private String roomid;
+
+    public String getroomid() {
+        return roomid;
+    }
+
     private String name;
     private long userCount; // 채팅방 인원수
 
@@ -28,7 +33,7 @@ public class ChatRoom implements Serializable {
 
     public ChatRoomEntity toEntity() { //저장을 위한 엔티티
         ChatRoomEntity chatRoomEntity = ChatRoomEntity.builder()
-                .roomId(roomid)
+                .roomid(roomid)
                 .name(name)
                 .build();
 

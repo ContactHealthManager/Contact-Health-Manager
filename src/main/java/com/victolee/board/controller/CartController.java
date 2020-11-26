@@ -38,6 +38,8 @@ public class CartController {
             boardDto.setSumlike(sumlike);
             boardService.savePost(boardDto);
         }
+        System.out.println(cartDto.getBoard());
+
 
         return "redirect:/cart";
     }

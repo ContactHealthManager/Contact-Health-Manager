@@ -33,11 +33,11 @@ var vm = new Vue({
                     });
             }
         },
-        enterRoom: function (roomId) {
+        enterRoom: function (roomid) {
             var writer = prompt('대화명을 입력해 주세요.');
             localStorage.setItem('wschat.writer', writer);
-            localStorage.setItem('wschat.roomId', roomId);
-            location.href = "/chat/room/enter/" + roomId;
+            localStorage.setItem('wschat.roomid', roomid);
+            location.href = "/chat/room/enter/" + roomid;
         }
     }
 });
