@@ -28,18 +28,18 @@ public class CartService {
     public Long saveCart(CartDto cartDto){
 
         List<CartEntity> cartEntities =cartRepository.findByUserIdAndBoardId(cartDto.getUser().getId(),cartDto.getBoard().getId());
-    // 테이블안에 있는 게시물들을 가져오기위해서 잠깐 출력함.
+        // 테이블안에 있는 게시물들을 가져오기위해서 잠깐 출력함.
         List<CartDto> cartDtoList = new ArrayList<>();
         for(CartEntity cartEntity : cartEntities){
             cartDtoList.add(this.convertEntityToDto(cartEntity));
         }
 
-    // 똑같은 게시물을 중복해서 장바구니에 담을수 없게 만듬.
+        // 똑같은 게시물을 중복해서 장바구니에 담을수 없게 만듬.
         // 그 게시물의 번호랑 지금 테이블 안에 있는 게시물의 번호 들이랑
         Loop:
         for(int i=0;i<cartDtoList.size();i++) {
             if (!(cartDto.getBoard().getId().equals(cartDtoList.get(i).getBoardId()))) {
-               break Loop;
+                break Loop;
             } else {
                 CartDto cartDto1 = new CartDto();
                 cartDto1.setId(cartEntities.get(i).getId());

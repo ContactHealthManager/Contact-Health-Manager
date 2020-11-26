@@ -1,8 +1,10 @@
 package com.victolee.board.dto;
 
 
+
 import com.victolee.board.domain.entity.ChatRoomEntity;
 import lombok.*;
+
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -11,6 +13,7 @@ import java.util.UUID;
 @Setter
 @ToString
 @NoArgsConstructor
+
 public class ChatRoom implements Serializable {
 
     private static final long serialVersionUID = 6494678977089006639L;
@@ -40,12 +43,10 @@ public class ChatRoom implements Serializable {
         return chatRoomEntity;
     }
 
-//    @Builder
-//    public ChatRoom (){};
-//
+
     @Builder
-    public ChatRoom(String roomid,String name){
-        this.roomid =roomid;
+    public ChatRoom(String roomid, String name){
+        this.roomid = roomid;
         this.name = name;
     }
 

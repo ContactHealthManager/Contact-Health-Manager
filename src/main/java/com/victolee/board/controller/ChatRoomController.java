@@ -5,6 +5,7 @@ import com.victolee.board.domain.repository.ChatRoomRepository;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.ChatRoomService;
+import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ public class ChatRoomController {
 
     @Autowired
     private ChatRoomService chatRoomService;
+
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -35,16 +37,20 @@ public class ChatRoomController {
 
     @GetMapping("/rooms")
     @ResponseBody
-    public List<ChatRoom> room() { // 채팅방 목록 모든 채팅방을 보여준다. 모든 조회.
+    public List<ChatRoom> room(Principal principal) { // 채팅방 목록 모든 채팅방을 보여준다. 모든 조회.
         // 이거원래 채팅방 생성되면 생성된거 다보여주는 건데 DB에 저장안되서 다시짰음. 밑에 있는게 다보여주는거
 //        List<ChatRoom> chatRooms = chatRoomRepository.findAllRoom();
-
+        String username = principal.getName();
         List<ChatRoom> chatRooms = new ArrayList<>();
 
         List<ChatRoom> farawaychatRooms =chatRoomService.getchatroomlist();
-//        System.out.println(farawaychatRooms); 담겨진 전체칼럼들이 잘나오나 확인
+
+//        System.out.println(farawaychatRooms);
+
         for (int i=0; i<farawaychatRooms.size(); i++) {
+            if(farawaychatRooms.get(i).getName().contains(username))
             chatRooms.add(farawaychatRooms.get(i));
+
         }
 
         chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getroomid())));
@@ -58,7 +64,7 @@ public class ChatRoomController {
         ChatRoom createChatRoom = chatRoomRepository.createChatRoom(name);
 
         //         채팅방 목록을 저장 한다.
-       chatRoomService.saveChatRoom(createChatRoom);
+        chatRoomService.saveChatRoom(createChatRoom);
 
         return createChatRoom; //chatRoomRepository의 채팅방 생성 함수를 사용해 채팅방 생성.
     }

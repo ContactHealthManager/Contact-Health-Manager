@@ -95,15 +95,6 @@ public class ServiceCenterController {
 
         return "redirect:/servicecenter";
     }
-//    /* 게시글 검색 */
-//    @GetMapping("/ServiceCenter/search")
-//    public String search(@RequestParam(value="keyword") String keyword, Model model) {
-//        List<ServiceCenterDto> ServiceCenterDtoList = ServiceCenterService.searchPosts(keyword);
-//
-//        model.addAttribute("ServiceCenterList", ServiceCenterDtoList);
-//
-//        return "/managerlist";
-//    }
 
 
 

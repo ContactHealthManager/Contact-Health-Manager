@@ -36,7 +36,7 @@ public class ChatRoomService {
 
     @Transactional //방목록들을 저장해주는 save
     public String saveChatRoom(ChatRoom chatRoom) {
-        return chatRoomJpaRepository.save(chatRoom.toEntity()).getroomid();
+        return chatRoomJpaRepository.save(chatRoom.toEntity()).getRoomid();
     }
 
     @Transactional // 저장되어있었던 방목록들 전체를 출력해주는 getlist
@@ -56,7 +56,7 @@ public class ChatRoomService {
 
     private ChatRoom convertEntityToDto(ChatRoomEntity chatRoomEntity) { //엔티티 객체 변수를 디티오 객체 변수로 변환
         return ChatRoom.builder()
-                .roomid(chatRoomEntity.getroomid())
+                .roomid(chatRoomEntity.getRoomid())
                 .name(chatRoomEntity.getName())
                 .build();
     }

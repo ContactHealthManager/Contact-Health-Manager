@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Optional;
@@ -54,7 +53,9 @@ public class ChatRoomRepository {
     }
 
     // 유저 세션으로 입장해 있는 채팅방 ID 조회
-    public String getUserEnterroomid(String sessionId) {
+
+    public String getUserEnterRoomid(String sessionId) {
+
         return hashOpsEnterInfo.get(ENTER_INFO, sessionId);
     }
 

@@ -1,7 +1,7 @@
 package com.victolee.board.config.handler;
 
-import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
@@ -36,9 +36,12 @@ public class StompHandler implements ChannelInterceptor {
             jwtTokenProvider.validateToken(jwtToken);
 
         } else if (StompCommand.SUBSCRIBE == accessor.getCommand()) { // 채팅룸 구독요청
-            // header정보에서 구독 destination정보를 얻고, roomid를 추출한다.
-            String roomid = chatService.getroomid(Optional.ofNullable((String) message.getHeaders().get("simpDestination")).orElse("Invalidroomid"));
-            // 채팅방에 들어온 클라이언트 sessionId를 roomid와 맵핑해 놓는다.(나중에 특정 세션이 어떤 채팅방에 들어가 있는지 알기 위함)
+
+            // header정보에서 구독 destination정보를 얻고, roomId를 추출한다.
+            String roomid = chatService.getRoomid(Optional.ofNullable((String) message.getHeaders().get("simpDestination")).orElse("InvalidRoomid"));
+            // 채팅방에 들어온 클라이언트
+            // sessionId를 roomId와 맵핑해 놓는다.(나중에 특정 세션이 어떤 채팅방에 들어가 있는지 알기 위함)
+
             String sessionId = (String) message.getHeaders().get("simpSessionId");
             chatRoomRepository.setUserEnterInfo(sessionId, roomid);
             // 채팅방의 인원수를 +1한다.
@@ -50,7 +53,9 @@ public class StompHandler implements ChannelInterceptor {
         } else if (StompCommand.DISCONNECT == accessor.getCommand()) { // Websocket 연결 종료
             // 연결이 종료된 클라이언트 sesssionId로 채팅방 id를 얻는다.
             String sessionId = (String) message.getHeaders().get("simpSessionId");
-            String roomid = chatRoomRepository.getUserEnterroomid(sessionId);
+
+            String roomid = chatRoomRepository.getUserEnterRoomid(sessionId);
+
             // 채팅방의 인원수를 -1한다.
             chatRoomRepository.minusUserCount(roomid);
             // 클라이언트 퇴장 메시지를 채팅방에 발송한다.(redis publish)
