@@ -52,7 +52,6 @@
         <form th:action="@{/post}" method="POST" enctype="multipart/form-data">
 
             <div class="halfmain">
-
                 <div class="halfleft">
                     <label class="col-form-label" style="font-size: 30px">
                         <div class="text-center">
@@ -122,13 +121,16 @@
 
 
                     <div class="col-md-6">
-                        <input type="submit" class="btn btn-primary py-3 px-5 btn-block " onclick="button3_click();"value="등록">
+                        <input type="submit" class="btn btn-primary py-3 px-5 btn-block " onclick="move()" value="등록">
                     </div>
                     <script>
-                        function button3_click() {
+
+                        function move() {
+
                             alert("게시물이 저장되었습니다.")
 
                         }
+
                     </script>
                 </div>
             </div>
@@ -146,7 +148,18 @@
         </script>
     </div>
 </div>
+<style>
+    #myProgress {
+        width: 100%;
+        background-color: grey;
+    }
 
+    #myBar {
+        width: 1%;
+        height: 30px;
+        background-color: green;
+    }
+</style>
 <script>
     $(document).ready(function () {
         $('#content').summernote({
