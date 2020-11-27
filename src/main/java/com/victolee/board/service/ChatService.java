@@ -1,11 +1,8 @@
 package com.victolee.board.service;
 
-
-
 // import 생략...
 
 import com.victolee.board.domain.entity.ChatMessageEntity;
-import com.victolee.board.domain.entity.ChatRoomEntity;
 import com.victolee.board.domain.repository.ChatMessageJpaRepository;
 import com.victolee.board.domain.repository.ChatRoomRepository;
 import com.victolee.board.dto.ChatMessage;
@@ -23,7 +20,7 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 @RequiredArgsConstructor
 @Service
@@ -51,9 +48,11 @@ public class ChatService {
     private final RedisTemplate redisTemplate;
     private final ChatRoomRepository chatRoomRepository;
 
+
     /**
-     * destination정보에서 roomId 추출
+     * destination정보에서 roomid 추출
      */
+
     public String getRoomid(String destination) {
         int lastIndex = destination.lastIndexOf('/');
         if (lastIndex != -1)
@@ -66,6 +65,7 @@ public class ChatService {
      * 채팅방에 메시지 발송
      */
     public void sendChatMessage(ChatMessage chatMessage) {
+
         chatMessage.setUserCount(chatRoomRepository.getUserCount(String.valueOf(chatMessage.getRoomid())));
         if (ChatMessage.MessageType.ENTER.equals(chatMessage.getType())) {
             chatMessage.setMessage(chatMessage.getSender() + "님이 방에 입장했습니다.");
@@ -80,7 +80,7 @@ public class ChatService {
     @Transactional
     public List<ChatMessage> getchatmessagelist(String roomid){
 //        hashOpsChatRoom.values(CHAT_ROOMS);
-        List<ChatMessageEntity> chatMessageEntities = chatMessageJpaRepository.findByRoomid(roomid,Sort.by(Sort.Direction.DESC, "id"));
+        List<ChatMessageEntity> chatMessageEntities = chatMessageJpaRepository.findByRoomid(roomid, Sort.by(Sort.Direction.DESC, "id"));
 
         List<ChatMessage> chatMessageList = new ArrayList<>();
 

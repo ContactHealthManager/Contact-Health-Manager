@@ -58,12 +58,10 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                         <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
-                        <li><a th:href="@{/chat/room/}" class="nav-link btn btn-outline-primary">컨헬 Talk</a>
-                        </li>
                         <li><a th:href="@{/managerlist}"
+                               class="nav-link btn btn-outline-primary">전체매니저</a></li>
+                        <li><a th:href="@{/map}"
                                class="nav-link btn btn-outline-primary">주변매니저</a></li>
-                        <li><a th:href="@{/community}" class="nav-link btn btn-outline-primary">커뮤니티</a>
-                        </li>
                         <li><a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">고객센터</a>
                         </li>
                         <li>
@@ -89,6 +87,13 @@
             <div class="ml-auto">
                 <nav class="site-navigation position-relative text-right" role="navigation">
                     <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
+
+
+                        <li class="cta">
+                            <button class="btn btn-outline-light">
+                            <a th:href="@{/chat/room/}">My Talk</a>
+                            </button>
+                        </li>
                         <li class="cta">
                             <button class="btn btn-outline-light">
                                 <a href="templates/myinfo.html" th:href="@{/myinfo}" sec:authentication="name"></a>

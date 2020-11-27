@@ -1,11 +1,9 @@
 package com.victolee.board.service;
 
 
-import com.victolee.board.domain.entity.ChatMessageEntity;
 import com.victolee.board.domain.entity.ChatRoomEntity;
 import com.victolee.board.domain.repository.ChatMessageJpaRepository;
 import com.victolee.board.domain.repository.ChatRoomJpaRepository;
-import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +16,6 @@ import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @RequiredArgsConstructor
 @AllArgsConstructor
@@ -47,7 +44,9 @@ public class ChatRoomService {
 
     @Transactional // 저장되어있었던 방목록들 전체를 출력해주는 getlist
     public List<ChatRoom> getchatroomlist(){  // 카트테이블에 있는것중에 유저가 장바구니에 고른것들만 표시하게함
-        hashOpsChatRoom.values(CHAT_ROOMS);
+
+//        hashOpsChatRoom.values(CHAT_ROOMS);
+
         List<ChatRoomEntity> chatRoomEntities = chatRoomJpaRepository.findAll();
 
         List<ChatRoom> chatRoomList = new ArrayList<>();
@@ -55,7 +54,6 @@ public class ChatRoomService {
         for(ChatRoomEntity chatRoomEntity : chatRoomEntities){
             chatRoomList.add(this.convertEntityToDto(chatRoomEntity));
         }
-
 
         return chatRoomList;
     }

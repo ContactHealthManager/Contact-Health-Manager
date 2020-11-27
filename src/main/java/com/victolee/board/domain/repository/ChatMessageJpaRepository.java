@@ -1,5 +1,6 @@
 package com.victolee.board.domain.repository;
 
+
 import com.victolee.board.domain.entity.BoardEntity;
 import com.victolee.board.domain.entity.CartEntity;
 import com.victolee.board.domain.entity.ChatMessageEntity;
@@ -16,3 +17,4 @@ import java.util.Optional;
 public interface ChatMessageJpaRepository extends JpaRepository<ChatMessageEntity, Long> {
     List<ChatMessageEntity> findByRoomid(String roomid, Sort id);
 }
+

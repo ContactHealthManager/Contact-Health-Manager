@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
@@ -47,15 +48,16 @@ public class ChatRoomController {
         List<ChatRoom> chatRooms = new ArrayList<>();
 
         List<ChatRoom> farawaychatRooms =chatRoomService.getchatroomlist();
+
 //        System.out.println(farawaychatRooms);
+
         for (int i=0; i<farawaychatRooms.size(); i++) {
             if(farawaychatRooms.get(i).getName().contains(username))
             chatRooms.add(farawaychatRooms.get(i));
 
         }
 
-
-        chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getRoomid())));
+        chatRooms.stream().forEach(room -> room.setUserCount(chatRoomRepository.getUserCount(room.getroomid())));
         return chatRooms;
     }
 
@@ -65,10 +67,8 @@ public class ChatRoomController {
     public ChatRoom createRoom(@RequestParam String name) {
         ChatRoom createChatRoom = chatRoomRepository.createChatRoom(name);
 
-
         //         채팅방 목록을 저장 한다.
         chatRoomService.saveChatRoom(createChatRoom);
-
 
         return createChatRoom; //chatRoomRepository의 채팅방 생성 함수를 사용해 채팅방 생성.
     }
@@ -83,13 +83,14 @@ public class ChatRoomController {
         model.addAttribute("roomId", roomId);
         model.addAttribute("chatMessage", chatMessage);
 
+
         return "/chat/roomdetail";
     }
 
-    @GetMapping("/room/{roomId}") //채팅방 목록중 한 채팅방 찾기
+    @GetMapping("/room/{roomid}") //채팅방 목록중 한 채팅방 찾기
     @ResponseBody
-    public ChatRoom roomInfo(@PathVariable String roomId) {
-        return chatRoomRepository.findRoomById(roomId);
+    public ChatRoom roomInfo(@PathVariable String roomid) {
+        return chatRoomRepository.findRoomById(roomid);
     }
 
     @GetMapping("/user")

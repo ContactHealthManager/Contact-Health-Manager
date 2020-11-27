@@ -2,7 +2,9 @@ package com.victolee.board.domain.repository;
 
 
 import com.victolee.board.dto.ChatRoom;
+import com.victolee.board.service.ChatRoomService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
@@ -25,20 +27,23 @@ public class ChatRoomRepository {
     @Resource(name = "redisTemplate")
     private ValueOperations<String, String> valueOps;
 
+    @Autowired
+    private ChatRoomService chatRoomService;
+
     // 모든 채팅방 조회 // 잠시 안씁니다.
     public List<ChatRoom> findAllRoom() {
         return hashOpsChatRoom.values(CHAT_ROOMS);
     }
 
     // 특정 채팅방 조회
-    public ChatRoom findRoomById(String id) {
-        return hashOpsChatRoom.get(CHAT_ROOMS, id);
+    public ChatRoom findRoomById(String roomid) {
+        return hashOpsChatRoom.get(CHAT_ROOMS, roomid);
     }
 
     // 채팅방 생성 : 서버간 채팅방 공유를 위해 redis hash에 저장한다.
     public ChatRoom createChatRoom(String name) {
         ChatRoom chatRoom = ChatRoom.create(name);
-        hashOpsChatRoom.put(CHAT_ROOMS, chatRoom.getRoomid(), chatRoom);
+        hashOpsChatRoom.put(CHAT_ROOMS, chatRoom.getroomid(), chatRoom);
         return chatRoom;
     }
 
@@ -48,7 +53,9 @@ public class ChatRoomRepository {
     }
 
     // 유저 세션으로 입장해 있는 채팅방 ID 조회
+
     public String getUserEnterRoomid(String sessionId) {
+
         return hashOpsEnterInfo.get(ENTER_INFO, sessionId);
     }
 
