@@ -2,18 +2,13 @@ package com.victolee.board.dto;
 
 
 import com.victolee.board.domain.entity.ChatMessageEntity;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 public class ChatMessage {
-
-
-
 
     @Builder
     public ChatMessage(MessageType type, int id, String roomid, String sender, String message, long userCount) {

@@ -78,9 +78,9 @@ public class ChatService {
     }
 
     @Transactional
-    public List<ChatMessage> getchatmessagelist(){
+    public List<ChatMessage> getchatmessagelist(String roomid){
 //        hashOpsChatRoom.values(CHAT_ROOMS);
-        List<ChatMessageEntity> chatMessageEntities = chatMessageJpaRepository.findAll();
+        List<ChatMessageEntity> chatMessageEntities = chatMessageJpaRepository.findByRoomid(roomid,Sort.by(Sort.Direction.DESC, "id"));
 
         List<ChatMessage> chatMessageList = new ArrayList<>();
 

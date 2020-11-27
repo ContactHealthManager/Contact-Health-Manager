@@ -112,7 +112,7 @@
                             {{message.sender}} - {{message.message}}
                         </li>
                         <li th:each="message : ${chatMessage}"class="list-group-item" style="background-color: #2cbd7b">
-                            '[[${message.sender}]] - [[${message.message}]]'
+                            [[${message.sender}]] - [[${message.message}]]
                         </li>
                     </ul>
                 </div>
