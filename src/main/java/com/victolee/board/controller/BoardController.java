@@ -64,21 +64,21 @@ public class BoardController {
     @RequestMapping(value = "/board/address", method = RequestMethod.GET)
     public @ResponseBody Map<Long,BoardIdAddressDto> getboardIdAddressList(Model model){
         List<BoardIdAddressDto> boardDtoList = boardService.getBoardIdAddress(); // DB에 등록된 User List를 받아온다.
-        
+
 
         Map<Long,BoardIdAddressDto> result = new HashMap<Long,BoardIdAddressDto>();
         for (BoardIdAddressDto i : boardDtoList) result.put(i.getId(),i);
-        
-            JSONObject jsonObject = new JSONObject();
-            for( Map.Entry<Long, BoardIdAddressDto> entry : result.entrySet() ) {
-                Long key = entry.getKey();
-                BoardIdAddressDto value = entry.getValue();
-                jsonObject.put(key, value);
-            }
+
+        JSONObject jsonObject = new JSONObject();
+        for( Map.Entry<Long, BoardIdAddressDto> entry : result.entrySet() ) {
+            Long key = entry.getKey();
+            BoardIdAddressDto value = entry.getValue();
+            jsonObject.put(key, value);
+        }
 
         return jsonObject;
     }
-    
+
 
     @GetMapping("/countmanagerlist")
     public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
@@ -139,7 +139,7 @@ public class BoardController {
 
         try {
 
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -171,7 +171,7 @@ public class BoardController {
     @PutMapping("/post/edit/{no}")
     public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         try {
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -250,7 +250,7 @@ public class BoardController {
 
             //이미지 경로 생성
 
-            String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
 
             String ckUploadPath = path + uid + "_" + fileName;
             File folder = new File(path);
@@ -306,7 +306,7 @@ public class BoardController {
 
         //서버에 저장된 이미지 경로
 
-        String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
 
 
         String sDirPath = path + uid + "_" + fileName;
@@ -347,4 +347,3 @@ public class BoardController {
     }
 
 }
-
