@@ -52,9 +52,6 @@
         <form th:action="@{/post}" method="POST" enctype="multipart/form-data">
 
             <div class="halfmain">
-                <div id="myProgress">
-                    <div id="myBar"></div>
-                </div>
                 <div class="halfleft">
                     <label class="col-form-label" style="font-size: 30px">
                         <div class="text-center">
@@ -126,7 +123,10 @@
                     <div class="col-md-6">
                         <input type="submit" class="btn btn-primary py-3 px-5 btn-block " onclick="move()" value="등록">
                     </div>
-                    <script>{
+                    <script>
+
+                        function move() {
+
                             alert("게시물이 저장되었습니다.")
 
                         }
