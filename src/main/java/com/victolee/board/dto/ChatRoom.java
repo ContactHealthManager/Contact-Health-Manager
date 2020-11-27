@@ -2,6 +2,7 @@ package com.victolee.board.dto;
 
 
 
+import com.victolee.board.domain.entity.ChatMessageEntity;
 import com.victolee.board.domain.entity.ChatRoomEntity;
 import lombok.*;
 
@@ -44,5 +45,7 @@ public class ChatRoom implements Serializable {
         this.roomid = roomid;
         this.name = name;
     }
+
+
 
 }

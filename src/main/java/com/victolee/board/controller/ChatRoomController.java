@@ -2,6 +2,8 @@ package com.victolee.board.controller;
 
 
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.BoardDto;
+import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
 import com.victolee.board.service.ChatRoomService;
@@ -24,7 +26,7 @@ public class ChatRoomController {
 
     @Autowired
     private ChatRoomService chatRoomService;
-
+    private ChatService chatService;
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -71,7 +73,17 @@ public class ChatRoomController {
 
     @GetMapping("/room/enter/{roomId}") //채팅방 목록중에 한 채팅방 안으로 들어감
     public String roomDetail(Model model, @PathVariable String roomId) {
+
+        System.out.println(roomId);
+
+        List<ChatMessage> chatMessageList= chatService.getchatmessagelist();
+        System.out.println(chatMessageList);
+
+//        List<ChatMessage> chatMessage = chatService.getchatmessagelist(roomId);
+
         model.addAttribute("roomId", roomId);
+        model.addAttribute(" chatMessageList",  chatMessageList);
+
         return "/chat/roomdetail";
     }
 

@@ -7,23 +7,37 @@ package com.victolee.board.service;
 import com.victolee.board.domain.entity.ChatMessageEntity;
 import com.victolee.board.domain.entity.ChatRoomEntity;
 import com.victolee.board.domain.repository.ChatMessageJpaRepository;
-import com.victolee.board.domain.repository.ChatRoomJpaRepository;
 import com.victolee.board.domain.repository.ChatRoomRepository;
 import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.redis.core.HashOperations;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @RequiredArgsConstructor
 @Service
 public class ChatService {
+    private static final String CHAT_ROOMS = "CHAT_ROOM"; // 채팅룸 저장
+    public static final String USER_COUNT = "USER_COUNT"; // 채팅룸에 입장한 클라이언트수 저장
+    public static final String ENTER_INFO = "ENTER_INFO"; // 채팅룸에 입장한 클라이언트의 sessionId와 채팅룸 id를 맵핑한 정보 저장
+
+    @Resource(name = "redisTemplate")
+    private HashOperations<String, String, ChatRoom> hashOpsChatRoom;
+    @Resource(name = "redisTemplate")
+    private HashOperations<String, String, String> hashOpsEnterInfo;
+    @Resource(name = "redisTemplate")
+    private ValueOperations<String, String> valueOps;
 
     @Autowired
     private ChatMessageJpaRepository chatMessageJpaRepository;
@@ -62,9 +76,10 @@ public class ChatService {
         }
         redisTemplate.convertAndSend(channelTopic.getTopic(), chatMessage);
     }
+
     @Transactional
     public List<ChatMessage> getchatmessagelist(){
-
+//        hashOpsChatRoom.values(CHAT_ROOMS);
         List<ChatMessageEntity> chatMessageEntities = chatMessageJpaRepository.findAll();
 
         List<ChatMessage> chatMessageList = new ArrayList<>();
@@ -79,10 +94,13 @@ public class ChatService {
 
     private ChatMessage convertEntityToDto(ChatMessageEntity chatMessageEntity) { //엔티티 객체 변수를 디티오 객체 변수로 변환
         return ChatMessage.builder()
+                .type(chatMessageEntity.getType())
+                .userCount(chatMessageEntity.getUserCount())
                 .id(chatMessageEntity.getId())
                 .roomid(chatMessageEntity.getRoomid())
                 .sender(chatMessageEntity.getSender())
                 .message(chatMessageEntity.getMessage())
                 .build();
     }
+
 }

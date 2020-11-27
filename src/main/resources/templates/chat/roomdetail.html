@@ -106,10 +106,13 @@
 
 
                 <div class="container1">
-                    <ul class="list-group">
 
+                    <ul class="list-group">
                         <li class="list-group-item" v-for="message in messages" style="background-color: #2cbd7b">
-                            {{message.sender}} - {{message.message}}</a>
+                            {{message.sender}} - {{message.message}}
+                        </li>
+                        <li th:each="message : ${chatMessage}"class="list-group-item" style="background-color: #2cbd7b">
+                            '[[${message.sender}]] - [[${message.message}]]'
                         </li>
                     </ul>
                 </div>
