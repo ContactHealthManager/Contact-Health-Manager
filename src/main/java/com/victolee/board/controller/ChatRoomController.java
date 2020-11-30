@@ -2,7 +2,6 @@ package com.victolee.board.controller;
 
 
 import com.victolee.board.domain.repository.ChatRoomRepository;
-import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
@@ -27,6 +26,7 @@ public class ChatRoomController {
 
     @Autowired
     private ChatRoomService chatRoomService;
+    @Autowired
     private ChatService chatService;
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;

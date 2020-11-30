@@ -44,11 +44,9 @@ var vm = new Vue({
 
 // pub/sub event
 ws.connect({}, function (frame) {
-<<<<<<< HEAD
+
     ws.subscribe("/sub/chat/room/" + vm.$data.roomid, function (message) {
-=======
-    ws.subscribe("/sub/chat/room/" + vm.$data.room, function (message) {
->>>>>>> master
+
         var receive = JSON.parse(message.body);
         vm.receiveMessage(receive);
     });
