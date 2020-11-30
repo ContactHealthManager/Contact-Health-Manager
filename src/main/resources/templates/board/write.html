@@ -53,19 +53,23 @@
 
             <div class="halfmain">
                 <div class="halfleft">
-                    <label class="col-form-label" style="font-size: 30px">
-                        <div class="text-center">
-                            <input type="file" name="img" class="" value="사진업로드" onchange="setThumbnail(event);"
-                                   style='display: none;'>
-                            <input type='text' name='file2' id='file2' style='display: none;'>
+                    <label class="col-form-label" style="font-size: 30px;">
+                        <div class="mt-5" style="width:350px; height: 350px">
+                            <div class="text-center">
+                                <input type="file" name="img" class="" value="사진업로드" onchange="setThumbnail(event);"
+                                       style='display: none;'>
+                                <input type='text' name='file2' id='file2' style='display: none;'>
 
-                            <svg width="2em" height="2em" viewBox="0 0 17 16" class="bi bi-image" fill="currentColor"
-                                 xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd"
-                                      d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                            </svg> <!--버튼 이미지 <!-->
+                                <svg width="2em" height="2em" viewBox="0 0 17 16" class="bi bi-image"
+                                     fill="currentColor"
+                                     xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                          d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                </svg> <!--버튼 이미지 <!-->
+                            </div>
+                            <span>사진업로드</span>
                         </div>
-                        사진 업로드</label>
+                    </label>
 
                     <div id="image_container"></div> <!--썸네일 화면 <!-->
 
@@ -121,7 +125,9 @@
 
 
                     <div class="col-md-6">
+
                         <input type="submit" class="btn btn-primary py-3 px-5 btn-block " onclick="move()" value="등록">
+
                     </div>
                     <script>
 
@@ -194,6 +200,7 @@
             success: function (url) {
                 $(el).summernote('insertImage', url, function ($image) {
                     $image.css('width', "50%");
+
                 });
             }
         });
@@ -203,6 +210,7 @@
     var reader = new FileReader();
     reader.onload = function (event) {
         var img = document.createElement("img");
+
         img.setAttribute("src", event.target.result);
         document.querySelector("div#image_container").appendChild(img);
     };
