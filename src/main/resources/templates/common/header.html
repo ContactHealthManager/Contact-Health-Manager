@@ -67,12 +67,12 @@
                         <li>
                             <!-- 검색 form -->
                             <form class="form-inline d-flex justify-content-end" action="/board/search" method="GET">
-                                <div class="form-group mx-sm-3 mb-2">
+                                <div class="form-group mx-sm-2 mb-2">
                                     <label for="keyword" class="sr-only">검색</label>
                                     <input class="form-control text-light bg-dark" id="keyword" name="keyword"
-                                           type="text"
-                                           placeholder="ex)제목,내용만"
-                                    >
+                                           type="text" style="width: 280px;height: 50px"
+                                           placeholder="ex)하체,상체,가슴,이두" autocomplete="off" required/>
+
                                 </div>
 
                                 <button type="submit" class="btn btn-light">매니저 찾기</button>
@@ -90,12 +90,12 @@
 
 
                         <li class="cta">
-                            <button class="btn btn-outline-light">
+                            <button class="btn btn-light">
                             <a th:href="@{/chat/room/}">My Talk</a>
                             </button>
                         </li>
                         <li class="cta">
-                            <button class="btn btn-outline-light">
+                            <button class="btn btn-light">
                                 <a href="templates/myinfo.html" th:href="@{/myinfo}" sec:authentication="name"></a>
                             </button>
                         </li>
@@ -104,7 +104,7 @@
                         <li class="cta">
                             <form id="logout" action="/logout" method="POST">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                <input type="submit" class="btn btn-outline-light" value="로그아웃"/>
+                                <input type="submit" class="btn btn-light"  value="로그아웃"/>
                             </form>
                         </li>
 

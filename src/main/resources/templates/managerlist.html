@@ -30,26 +30,22 @@
             <!-- Split button -->
 
             <br>
-            <br>
-            <br>
-            <div class="container"style="text-align: center">
+            <div class="container" style="text-align: center;">
                 <div class="row">
                     <div class="col-sm">
 
-                        <div class="btn-group btn-group-lg" role="group" aria-label="..."><a href="map.html" th:href="@{/map}"
+                        <div class="btn-group btn-group-lg  float-lg-right mr-2" role="group" aria-label="..."><a href="map.html" th:href="@{/map}"
                                                                                              class="nav-link btn btn-outline-light">주소로 찾기</a></div>
-
-                        <div class="btn-group btn-group-lg" role="group" aria-label="..."> <a th:href="@{/countmanagerlist}"
+                        <div class="btn-group btn-group-lg float-lg-right mr-2" role="group" aria-label="..."> <a th:href="@{/countmanagerlist}"
                                                                                               class="nav-link btn btn-outline-light">조회순</a></div>
-                        <div class="btn-group btn-group-lg" role="group" aria-label="..."> <a th:href="@{/Datemanagerlist}"
+                        <div class="btn-group btn-group-lg float-lg-right mr-2 " role="group" aria-label="..."> <a th:href="@{/Datemanagerlist}"
                                                                                               class="nav-link btn btn-outline-light">날짜순</a></div>
 
                     </div>
                 </div>
             </div>
             <br>
-            <br>
-            <br>
+
             <div class="row large-gutters">
                 <div th:each="board : ${boardList}" class="col-md-6 person col-lg-4 mb-4 mb-lg-4">
                     <a th:href="@{'/post/' + ${board.id}}">
@@ -59,10 +55,12 @@
                         <!--                             th:href="@{'/post/' + ${board.id}}">-->
 
 
-                        <p class="mb-4 opacity-7">
-                            <span th:text="${board.title}"></span>
-                        </p>
-                        <p><span th:text="${board.writer}"></span></p>
+                        <div class="mb-4 opacity-7 text-center">
+                            <span class="" th:text="${board.title}"
+                                  style="font-family: 'Bauhaus 93'; color:white; font-size:1.5em; text-align: center;"></span>
+                        </div>
+                        <p><span class="float-lg-right" th:text="${board.writer}"
+                                 style="font-family: 'Bauhaus 93'; color:white; font-size: large" ></span></p>
 
                     </a>
                 </div>
