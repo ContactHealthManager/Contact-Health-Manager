@@ -20,12 +20,12 @@
             float: left;
             width: 100%;
             height: 100%;
-            padding: 8%;
+            padding: 6.5% 8% 8% 8%;
 
         }
 
         .banner-sec {
-            background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg) no-repeat left bottom;
+            background: url(https://t1.daumcdn.net/news/201803/07/hankooki/20180307044638830dppv.jpg) no-repeat left bottom;
             background-size: cover;
             min-height: 500px;
             border-radius: 0 10px 10px 0;
@@ -98,11 +98,13 @@
             position: absolute;
             bottom: 40px;
             padding-left: 20px;
+            font-family: "Bauhaus 93"
         }
 
         .banner-text h2 {
             color: #fff;
             font-weight: 600;
+            font-family: "Bauhaus 93"
         }
 
         .banner-text h2:after {
@@ -113,10 +115,12 @@
             display: block;
             margin-top: 20px;
             border-radius: 3px;
+            font-family: "Bauhaus 93"
         }
 
         .banner-text p {
             color: #fff;
+            font-family: "Bauhaus 93"
         }
     </style>
 </head>
@@ -125,14 +129,15 @@
 <section class="login-block">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 login-sec">
-                <h2 class="text-center">Contact health manager</h2>
+            <div class="col-md-4 mt-5 login-sec">
+                    <h2 class="text-center mb-5">Contact health manager</h2>
+
                 <form class="login-form" action="/login" method="POST">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     <!--매개변수는 로그인 시 입력한 아이디인데, 엔티티의 PK를 뜻하는게 아니고 유저를 식별할 수 있는 어떤 값을 의미합니다.
                          Spring Security에서는 username라는 이름으로 사용합니다.
                         예제에서는 아이디가 아이디이며, 로그인을 하는 form에서 name="username"으로 요청해야 합니다.-->
-
+                    <div class="form-group mt-5">
                     <div class="form-group">
                         <input type="text" class="form-control" name="username" placeholder="아이디" maxlength="11"
                                autocomplete="off" required/>
@@ -142,12 +147,13 @@
                         <input type="password" class="form-control" name="password" placeholder="비밀번호" maxlength="11"
                                autocomplete="off" required/>
                     </div>
+
                     <div class="form-check">
-                        <label class="form-check-label">
-                            <a type="button" th:href="@{/signup}"
-                               class=" btn btn-outline-success" id="btn_joinForm">회원가입</a>
-                        </label>
+
                         <button type="submit" class=" btn btn-outline-danger float-right">로그인</button>
+                        <a type="button" th:href="@{/signup}"
+                           class=" btn btn-outline-success float-right mr-2" id="btn_joinForm">회원가입</a>
+                    </div>
                     </div>
                 </form>
                 <br>
@@ -160,17 +166,17 @@
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner" role="listbox">
                         <div class="carousel-item active">
-                            <img class="d-block img-fluid" src="https://static.pexels.com/photos/33972/pexels-photo.jpg"
-                                 alt="First slide">
-
-                            <div class="banner-text">
+                            <img class="d-block img-fluid">
+                            <div class="banner-sec">
+                                <div class="banner-text">
                                 <p>
-                                    운동을 어떻게 시작해야할까..? <br>
-                                    하나도 모르겠는데... <br>
+                                    운동을 어떻게 시작해야할까..?
                                 </p>
-                                <h2>Come on </h2>
+                                <h2 > Right now </h2>
+                                </div>
                             </div>
-                        </div>
+                            </div>
+
                     </div>
 
                 </div>
