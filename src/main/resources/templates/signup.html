@@ -17,13 +17,13 @@
             float: left;
             width: 100%;
             height: 100%;
-            padding: 8%;
+            padding: 2.3% 8% 2.3% 8%;
         }
 
         .banner-sec {
-            background: url(https://static.pexels.com/photos/33972/pexels-photo.jpg) no-repeat left bottom;
+            background: url(https://i.pinimg.com/originals/52/d3/21/52d3217fd5c5f08873bf056550a750db.jpg) no-repeat left bottom;
             background-size: cover;
-            min-height: 500px;
+            min-height: 650px;
             border-radius: 0 10px 10px 0;
             padding: 0;
         }
@@ -44,7 +44,7 @@
         }
 
         .login-sec {
-            padding: 50px 30px;
+            padding: 30px 30px;
             position: relative;
         }
 
@@ -122,10 +122,11 @@
 <section class="login-block">
     <div class="container">
         <div class="row">
-            <div class="col-md-4 login-sec">
+            <div class="col-md-4  login-sec">
                 <h2 class="text-center">회원가입</h2>
                 <form class="login-form" th:action="@{/user}" method="POST">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
                     <div class="form-group">
                         <input type="text" class="form-control" name="id" placeholder="아이디" maxlength="11"
                                autocomplete="off" required/>
@@ -154,22 +155,32 @@
                         <input type="textarea" class="form-control" name="career" placeholder="간단 경력"
                                maxlength="50" autocomplete="off" required/>
                     </div>
-                    <input type="radio" name="role" value="ROLE_TRAINER"> 트레이너
-                    <input type="radio" name="role" value="ROLE_HELLIN" checked="checked"> 헬린이 <br>
+                    <div class="form-group">
+                        <input type="radio" name="role" value="ROLE_TRAINER"> 트레이너
+                        <input type="radio" name="role" value="ROLE_HELLIN" checked="checked"> 헬린이 <br>
+                    </div>
 
-                    <div class="form-check">
+                    <div class="form-check mt-5">
                         <button type="submit" class="btn btn-login float-right">가입하기</button>
                     </div>
+                    <div>
+                        <a class="btn btn-outline-success float-right mr-2" th:href="@{/login}">뒤로가기</a>
+                    </div>
+
                 </form>
+
 
             </div>
             <div class="col-md-8 banner-sec">
-                <div class="banner-text">
-                    <p>
-                        운동을 어떻게 시작해야할까..? <br>
-                        하나도 모르겠는데... <br>
-                    </p>
-                    <h2>Come on ~</h2>
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="carousel-item active">
+                            <img class="d-block img-fluid">
+
+                        </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
