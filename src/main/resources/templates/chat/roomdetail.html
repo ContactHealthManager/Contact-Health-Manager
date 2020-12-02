@@ -94,24 +94,26 @@
 <div class="site-section section-2" id="classes-section">
     <div class="site-section bg-dark" id="contact-section">
 
-            <div class="container" id="app" v-cloak>
-                <div class="row justify-content-center">
-                    <div class="col-md-12 text-center">
-                        <h3>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h3>
-                    </div>
-
+        <div class="container" id="app" v-cloak>
+            <div class="row justify-content-center">
+                <div class="col-md-12 text-center">
+                    <h3>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h3>
                 </div>
 
-                <div class="row justify-content-center">
+            </div>
 
-
+            <div class="row justify-content-center" >
                 <div class="container1">
 
                     <ul class="list-group">
-                        <li class="list-group-item" v-for="message in messages" style="background-color: #2cbd7b">
+                        <li class="list-group-item" v-for="message in messages">
                             {{message.sender}} - {{message.message}}
                         </li>
+<<<<<<< HEAD
                         <li th:each="message : ${chatMessage}"class="list-group-item" style="background-color: #2cbd7b">
+=======
+                        <li th:each="message : ${chatMessage}"class="list-group-item">
+>>>>>>> origin/jaebin
                             [[${message.sender}]] - [[${message.message}]]
                         </li>
                     </ul>
@@ -126,11 +128,11 @@
                            class="form-control" v-model="message" v-on:keypress.enter="sendMessage('TALK')">
                     <div class="input-group-append">
 
-                            <input type="hidden" name="roomid" value="{{message.roomid}}"/>
-                            <input type="hidden" name="message" value="{{message.message}}"/>
-                            <input type="hidden" name="sender" value="{{message.sender}}"/>
+                        <input type="hidden" name="roomid" value="{{message.roomid}}"/>
+                        <input type="hidden" name="message" value="{{message.message}}"/>
+                        <input type="hidden" name="sender" value="{{message.sender}}"/>
 
-                            <button class="btn btn-primary" type="submit" @click="sendMessage('TALK')">보내기</button>
+                        <button class="btn btn-primary" type="submit" @click="sendMessage('TALK')">보내기</button>
 
 
 
@@ -145,31 +147,6 @@
 </div>
 
 
-<!--<div class="container" id="app" v-cloak>-->
-<!--    <div class="row">-->
-<!--        <div class="col-md-6">-->
-<!--            <h4>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h4>-->
-<!--        </div>-->
-<!--        <div class="col-md-6 text-right">-->
-<!--            <a class="btn btn-primary btn-sm" href="/logout">로그아웃</a>-->
-<!--            <a class="btn btn-info btn-sm" href="/chat/room">채팅방 나가기</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <div class="input-group">-->
-<!--        <div class="input-group-prepend">-->
-<!--            <label class="input-group-text">내용</label>-->
-<!--        </div>-->
-<!--        <input type="text" class="form-control" v-model="message" v-on:keypress.enter="sendMessage('TALK')">-->
-<!--        <div class="input-group-append">-->
-<!--            <button class="btn btn-primary" type="button" @click="sendMessage('TALK')">보내기</button>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--    <ul class="list-group">-->
-<!--        <li class="list-group-item" v-for="message in messages">-->
-<!--            {{message.sender}} - {{message.message}}</a>-->
-<!--        </li>-->
-<!--    </ul>-->
-<!--</div>-->
 <!-- JavaScript -->
 <script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
 <script src="/webjars/axios/0.17.1/dist/axios.min.js"></script>

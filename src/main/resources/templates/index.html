@@ -41,32 +41,14 @@
     </div>
 </div>
 <br><br><br>
+
 <h1 class="text-center">인기 게시글</h1>
 <div class="site-section" id="trainer-section">
     <div class="owl-carousel nonloop-block-13">
 
 
 
-
         <div th:each="board : ${boardList}">
-
-
-
-<!--            <a th:href="@{'/post/' + ${board.id}}" class="work-thumb">-->
-<!--                <div class="work-text">-->
-<!--                <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" class="img-fluid">-->
-
-<!--                &lt;!&ndash;                             th:href="@{'/post/' + ${board.id}}">&ndash;&gt;-->
-<!--                <p class="mb-4 opacity-7">-->
-<!--                    <span th:text="${board.title}"></span>-->
-<!--                </p>-->
-<!--                <h3><span th:text="${board.writer}"></span></h3>-->
-<!--                </div>-->
-<!--            </a>-->
-
-
-
-
             <a class="work-thumb" th:href="@{'/post/' + ${board.id}}">
                 <div class="work-text">
                     <h3><span th:text="${board.title}"></span></h3>
@@ -76,9 +58,6 @@
                 <img th:src="@{/images/media/} + ${board.imgname}" alt="Image" style=" "  class="img-fluid">
                 <h3><span th:text="${board.writer}"></span></h3>
             </a>
-
-
-
         </div>
 
 
