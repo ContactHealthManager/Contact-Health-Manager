@@ -46,7 +46,6 @@ public class ServiceCenterDto {
     private ServiceCenterDto(Long id , String title, String content,String email,String user,LocalDateTime createdDate,LocalDateTime modifiedDate) {
 
         this.id = id;
-
         this.title = title;
         this.content = content;
         this.email = email;

@@ -31,8 +31,7 @@ public class ChatRoomController {
     @Autowired
     private ChatRoomService chatRoomService;
     @Autowired
-    private  ChatService chatService;
-
+    private ChatService chatService;
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
