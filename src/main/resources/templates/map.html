@@ -51,6 +51,9 @@
         .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
         .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
         .info .link {color: #5085BB;}
+        .form-control{
+            color: black !important;
+        }
     </style>
 
 
@@ -78,10 +81,10 @@
                     </div>
                 </div>
                 <form class="text-center">
-                    <input type="text" class="d-inline-block form-control text-light bg-dark"
-                           id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px;"
+                    <input type="text" class="d-inline-block form-control text-light bg-white"
+                           id="sample5_address" placeholder="상세주소" style="width:50%;font-size:20px; color:#646464"
                            onclick="sample5_execDaumPostcode()">
-                    <input type="button" class="d-inline-block btn btn-primary active btn-lg"
+                    <input type="button" class="float-lg-right btn btn-outline-primary" style="color:#646464;"
                            value="주소 검색" onclick="sample5_execDaumPostcode()">
                 </form>
 <!--                <form>-->
@@ -109,5 +112,26 @@
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
 
+<!-- .site-wrap -->
+
+<script src="js/jquery-3.3.1.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/jquery.countdown.min.js"></script>
+<script src="js/bootstrap-datepicker.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.fancybox.min.js"></script>
+<script src="js/jquery.sticky.js"></script>
+<script src="js/jquery.mb.YTPlayer.min.js"></script>
+
+
+
+
+<script src="js/main.js"></script>
 </body>
 </html>

@@ -1,7 +1,6 @@
 #chatWrap {
-    width: 600px;
+    width:360px; margin: 0 auto;
     border: 1px solid #ddd;
-
 }
 
 #chatHeader {
@@ -14,10 +13,10 @@
 }
 
 #chatLog {
-    height: 700px;
+    height: 400px;
     overflow-y: auto;
     padding: 10px;
-
+    transform: rotate(180deg);
 }
 
 .myMsg {
@@ -27,6 +26,7 @@
 .anotherMsg {
     text-align: left;
     margin-bottom: 5px;
+    transform: rotate(-180deg);
 }
 
 .msg {
@@ -46,7 +46,6 @@
 .myMsg > .msg {
     background-color: #0084FF;
     color: #fff;
-
 }
 
 .anotherName {
@@ -78,13 +77,13 @@
 }
 
 #chatForm > input[type=submit] {
+    text-align: right;
     outline: none;
     border: none;
     background: none;
     color: #0084FF;
     font-size: 17px;
 }
-
 #contentCover{
     width: 1280px;
     margin: 0 auto;
@@ -94,4 +93,10 @@
 }
 [v-cloak] {
     display: none;
+}
+div.container1 {
+    transform: rotate(180deg);
+}
+div.container1 li.list-group-item{
+    transform: rotate(-180deg);
 }

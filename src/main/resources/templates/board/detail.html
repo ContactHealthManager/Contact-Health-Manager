@@ -10,6 +10,9 @@
         [v-cloak] {
             display: none;
         }
+        * {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
     </style>
 </head>
 
@@ -25,33 +28,33 @@
 </div>
 
 
-<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+<header class="site-navbar py-4 js-sticky-header site-navbar-target"role="banner"
         th:replace="/common/header.html :: header">
 </header>
 
 <div class="site-section section-2" id="classes-section">
-    <div class="site-section bg-dark" id="contact-section">
+    <div class="site-section bg-white" id="contact-section">
         <div class="container">
 
 
-            <div class="wrap ftco-animate" style="border:5px solid #48d494; margin-bottom: 30px;">
+            <div class="wrap ftco-animate" style="border:5px solid black; background-color: white; margin-bottom: 30px;">
                 <br>
-                <p th:inline="text" class="float-lg-right">
+                <p th:inline="text" class="float-lg-right" style="color:#646464;">
                     작성일 : [[${#temporals.format(boardDto.createdDate, 'yyyy-MM-dd HH:mm')}]]
                     &nbsp; &nbsp;
                     조회수 : [[${boardDto.bcount}]] &nbsp;
                     찜수 : [[${boardDto.sumlike}]]</p>
                 <div class="content" style="padding-left:8%; padding-right:8%; padding-top: 5%; padding-bottom: 10%;">
                     <!-- 글 제목 -->
-                    <h1 style="text-align: center; margin-bottom: 20px;" th:text="${boardDto.title}"></h1>
+                    <h1 style="text-align: center; margin-bottom: 20px; color: black" th:text="${boardDto.title}"></h1>
                     <!-- 작성자 -->
                     <p v-bind:id="uuid" v-bind:value="[[${ boardDto.writer}]]"></p>
 
-                    <form class="float-lg-left" th:action="@{'/post/'+${boardDto.id}}" method="POST">
+                    <form  class="float-lg-left" th:action="@{'/post/'+${boardDto.id}}" method="POST">
                         <input type="hidden" name="board" th:value="${boardDto.id}"/>
                         <input type="hidden" name="user" th:value="${userId}"/>
                         <input type="hidden" name="status" th:value="${'1'}"/>
-                        <input type="submit" class=" btn btn-outline-primary"
+                        <input type="submit" style="color:#646464;" class=" btn btn-outline-primary"
                                id="button1" onclick="button1_click();" value="찜하기"/>
 
                     </form>
@@ -70,7 +73,7 @@
                         <input type="hidden" class="form-control" v-model="room_name"
                                v-on:keyup.enter="createRoom">
 
-                        <button class=" btn-md btn btn-outline-primary"
+                        <button class=" btn-md btn btn-outline-primary" style="color:#646464;"
                                 type="submit" @click="createRoom">1대1상담하기
                         </button>
 
@@ -89,7 +92,7 @@
                     <!--                    <a th:href="@{/chat/room}">asdasdas</a>-->
 
 
-                    <h3 style="text-align: right; margin-right: 10px;" th:text="${boardDto.writer}"></h3>
+                    <h3 style="text-align: right; margin-right: 10px; color: black" th:text="${boardDto.writer}"></h3>
                     <h1>[[${boardDto.id}]]</h1>
                     <hr style="border: solid 2px #48d494;">
 
@@ -97,17 +100,17 @@
 
                     <!-- 글 나눔선  -->
                     <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">소속 회사 이름</strong>
-                    <p th:inline="text">[[${boardDto.companyname}]]</p>
+                    <strong style="color: black; font-size: 20px">소속 회사 이름</strong>
+                    <p th:inline="text"style="color: #646464; font-size: 15px">[[${boardDto.companyname}]]</p>
                     <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">소속 전화번호</strong>
-                    <p th:inline="text">[[${boardDto.companyphone}]]</p>
+                    <strong style="color: black; font-size: 20px">소속 전화번호</strong>
+                    <p th:inline="text"style="color: #646464; font-size: 15px">[[${boardDto.companyphone}]]</p>
                     <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">소속 주소</strong>
-                    <p th:inline="text">[[${boardDto.address}]]</p>
+                    <strong style="color: black; font-size: 20px">소속 주소</strong>
+                    <p th:inline="text"style="color: #646464; font-size: 15px">[[${boardDto.address}]]</p>
 
                     <hr style="border: solid 2px #48d494;">
-                    <strong style="font-size: 20px">내용</strong>
+                    <strong style="color: black; font-size: 20px">내용</strong>
                     <!-- 글 내용 -->
                     <p th:utext="${boardDto.content}"></p>
 
@@ -118,12 +121,12 @@
                         <!-- 수정하기 -->
                         <div style="text-align: right; margin-right: 10px;">
                             <a th:href="@{'/post/edit/' + ${boardDto.id}}">
-                                <button type="button" class="float-lg-right btn btn-outline-primary">수정하기</button>
+                                <button type="button" class="float-lg-right btn btn-outline-primary" style="color:#646464;">수정하기</button>
                             </a>
                             <!-- 삭제하기 -->
                             <form id="delete-form" th:action="@{'/post/' + ${boardDto.id}}" method="post"><input
                                     type="hidden" name="_method" value="delete"/>
-                                <button class="float-lg-right btn btn-outline-primary" onclick="button2_click();">삭제하기
+                                <button class="float-lg-right btn btn-outline-primary" style="color:#646464;" onclick="button2_click();">삭제하기
                                 </button>
                             </form>
                             <script>

@@ -140,6 +140,7 @@ public class BoardController {
         try {
 
 
+
             String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
@@ -173,7 +174,9 @@ public class BoardController {
     public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         try {
 
+
             String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -189,8 +192,7 @@ public class BoardController {
         } catch(Exception e) {
             e.printStackTrace();
         }
-//        String filePath = files.getOriginalFilename();
-//        files.transferTo(new File("\\static\\images\\media\\"+filePath));
+
 
         return "redirect:/managerlist";
     }
@@ -253,6 +255,7 @@ public class BoardController {
             //이미지 경로 생성
 
 
+
             String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
 
 
@@ -309,6 +312,7 @@ public class BoardController {
             throws ServletException, IOException{
 
         //서버에 저장된 이미지 경로
+
 
 
         String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";

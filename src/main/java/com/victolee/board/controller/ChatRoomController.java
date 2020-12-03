@@ -31,8 +31,7 @@ public class ChatRoomController {
     @Autowired
     private ChatRoomService chatRoomService;
     @Autowired
-    private  ChatService chatService;
-
+    private ChatService chatService;
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -56,7 +55,7 @@ public class ChatRoomController {
 
         for (int i=0; i<farawaychatRooms.size(); i++) {
             if(farawaychatRooms.get(i).getName().contains(username))
-            chatRooms.add(farawaychatRooms.get(i));
+                chatRooms.add(farawaychatRooms.get(i));
 
         }
 
@@ -77,11 +76,11 @@ public class ChatRoomController {
     }
 
     @GetMapping("/room/enter/{roomId}") //채팅방 목록중에 한 채팅방 안으로 들어감
+
     public String roomDetail(Model model, @PathVariable String roomId,Principal principal) {
+
         ModelAndView view = new ModelAndView();
         List<ChatMessage> chatMessage = chatService.getchatmessagelist(roomId);
-
-
 
         model.addAttribute("userId",principal.getName());
         model.addAttribute("roomId", roomId);

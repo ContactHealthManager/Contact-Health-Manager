@@ -1,9 +1,16 @@
 /* Base */
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+* {
+    font-family: 'Noto Sans KR', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+}
 body {
     line-height: 1.7;
     color: gray;
     font-weight: 300;
     font-size: 1.1rem;
+    background: white;
 
 }
 
@@ -84,7 +91,7 @@ h1, h2, h3, h4, h5,
 .btn {
     text-transform: uppercase;
     font-size: 12px;
-    font-weight: 900;
+    font-weight: 600;
     border-width: 2px;
 }
 
@@ -446,12 +453,12 @@ h1, h2, h3, h4, h5,
 }
 
 .site-navbar .site-navigation .site-menu .active {
-    color: #48d494;
+
     display: inline-block;
     padding: 5px 20px;
 }
 
-.site-navbar .site-navigation .site-menu a {
+.site-navbar .site-navigation .site-menu > a {
     text-decoration: none !important;
     display: inline-block;
 }
@@ -462,13 +469,13 @@ h1, h2, h3, h4, h5,
 
 .site-navbar .site-navigation .site-menu > li > a {
     padding: 5px 20px;
-    color: #fff;
+    color: white;
     display: inline-block;
     text-decoration: none !important;
 }
 
 .site-navbar .site-navigation .site-menu > li > a:hover {
-    color: #fff;
+    color: white;
 }
 
 .site-navbar .site-navigation .site-menu .has-children {
@@ -602,7 +609,7 @@ h1, h2, h3, h4, h5,
 }
 
 .site-mobile-menu {
-    width: 300px;
+    width: auto;
     position: fixed;
     right: 0;
     z-index: 2000;
@@ -620,6 +627,7 @@ h1, h2, h3, h4, h5,
 }
 
 .offcanvas-menu .site-mobile-menu {
+    background-color: grey;
     -webkit-transform: translateX(0%);
     -ms-transform: translateX(0%);
     transform: translateX(0%);
@@ -673,6 +681,7 @@ h1, h2, h3, h4, h5,
 }
 
 .site-mobile-menu .site-mobile-menu-body {
+    background-color: grey;
     overflow-y: scroll;
     -webkit-overflow-scrolling: touch;
     position: relative;
@@ -844,7 +853,7 @@ h1, h2, h3, h4, h5,
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-logo a {
-    color: #000;
+    color: white;
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu > li {
@@ -853,17 +862,17 @@ h1, h2, h3, h4, h5,
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a {
     padding: 5px 20px;
-    color: #000;
+    color: white;
     display: inline-block;
     text-decoration: none !important;
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a:hover {
-    color: #48d494;
+    color: white;
 }
 
 .sticky-wrapper.is-sticky .site-navbar .site-menu > li > a.active:after {
-    background: #48d494;
+    background: white;
 }
 
 .sticky-wrapper .shrink {
@@ -893,6 +902,8 @@ h1, h2, h3, h4, h5,
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/hero_1.jpg') center center no-repeat;
     /* 메인화면 이미지*/
 }
+
+
 
 @media (max-width: 991.98px) {
     .intro-section:before {
@@ -1339,8 +1350,9 @@ h1, h2, h3, h4, h5,
 }
 
 .tab-list-custom .nav-link.active {
-    background: #48d494;
-    border-color: #48d494;
+    background: white;
+    border-color: white;
+    text-decoration: none!important;
     color: #fff;
 }
 
@@ -1424,4 +1436,19 @@ div.note-toolbar.panel-heading {
     display: inline-block;
     text-align: left;
     vertical-align: middle;
+}
+.icon-menu:before {
+    content: "\e5d2";
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }

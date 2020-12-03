@@ -45,7 +45,7 @@
     <style>
 
 
-   </style>
+    </style>
 </head>
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
@@ -73,65 +73,52 @@
         <div  id="app" v-cloak>
             <div id="chatWrap">
                 <div  id="chatHeader">
-
-                    <h3>{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h3>
+                    <h3 style="color: #646464">{{roomName}} <span class="badge badge-info badge-pill">{{userCount}}</span></h3>
                 </div>
 
 
                 <div id="chatLog">
+                        <!--v-if="message1.sender ==='[[${userId}]]'"-->
+                        <!--                    <div  v-if="message.sender===userId">-->
+                        <div v-if="message1.sender ==='[[${userId}]]'" >
+                            <div class="myMsg" v-for="message in messages">
+                                <span class="myName"> {{message.sender}}</span>
+                                <span class="msg">{{message.message}}</span>
+                            </div>
 
-                <template>
-<!--v-if="message1.sender ==='[[${userId}]]'"-->
-                    <div  v-if="message.sender===userId">
+                            <div class="myMsg" th:each="message : ${chatMessage}">
+                                <span class="myName"> [[${message.sender}]]</span>
+                                <span class="msg"> [[${message.message}]]</span>
+                            </div>
 
-                                <div class="myMsg" v-for="message in messages">
+                        </div>
 
-                                    <span class="myName"> {{message.sender}}</span>
-                                    <span class="msg">{{message.message}}</span>
-                                </div>
-
-
-                                <div class="myMsg" th:each="message : ${chatMessage}" v-if="message.sender ==='[[${userId}]]'">
-                                    <span class="myName"> [[${message.sender}]]</span>
-                                    <span class="msg"> [[${message.message}]]</span>
-                                </div>
-                    </div>
-
-
-                                <div class="anotherMsg" v-for="message in messages">
-                                    <span class="anotherName"> {{message.sender}}</span>
-                                    <span class="msg">{{message.message}}</span>
-                                </div>
+                        <div v-else>
+                            <div class="anotherMsg" v-for="message in messages">
+                                <span class="anotherName"> {{message.sender}}</span>
+                                <span class="msg">{{message.message}}</span>
+                            </div>
 
 
-                                <div class="anotherMsg" th:each="message : ${chatMessage}">
-                                    <span class="anotherName"> [[${message.sender}]]</span>
-                                    <span class="msg"> [[${message.message}]]</span>
+                            <div class="anotherMsg" th:each="message : ${chatMessage}">
+                                <span class="anotherName"> [[${message.sender}]]</span>
+                                <span class="msg"> [[${message.message}]]</span>
 
-                                </div>
-
-
-                    </template >
-            </div>
-                <div id="chatForm">
-
-
+                            </div>
+                        </div>
+                </div>
+                <form id="chatForm">
                     <input type="text" autocomplete="off" size="30" id="message1" v-model="message" placeholder="메시지를 입력하세요" v-on:keypress.enter="sendMessage('TALK')">
                     <input type="hidden" name="roomid" value="{{message.roomid}}"/>
                     <input type="hidden" name="message" value="{{message.message}}"/>
                     <input type="hidden" name="sender" value="{{message.sender}}"/>
-                    <input type="submit" value="보내기" @click="sendMessage('TALK')">
+                    <input type="button" value="보내기" @click="sendMessage('TALK')">
 
-
-
-
-
-
-                </div>
-
+                </form>
             </div>
         </div>
     </div>
+</div>
 
 
 

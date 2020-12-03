@@ -36,11 +36,7 @@ var vm = new Vue({
         enterRoom: function (roomid) {
             var writer = prompt('대화명을 입력해 주세요.');
             localStorage.setItem('wschat.writer', writer);
-<<<<<<< HEAD
             localStorage.setItem('wschat.roomid', roomid);
-=======
-            localStorage.setItem('wschat.messageid', messageid);
->>>>>>> master
             location.href = "/chat/room/enter/" + roomid;
         }
     }
