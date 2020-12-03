@@ -23,7 +23,7 @@
 
 <div>
     <div class="site-section" id="trainer-section">
-
+<br><br>
         <div class="container">
 
             <!-- Single button -->
@@ -32,14 +32,14 @@
             <br>
             <div class="container" style="text-align: center;">
                 <div class="row">
-                    <div class="col-sm">
 
+                    <div class="col-sm">
                         <div class="btn-group btn-group-lg  float-lg-right mr-2" role="group" aria-label="..."><a href="map.html" th:href="@{/map}"
-                                                                                             class="nav-link btn btn-outline-light">주소로 찾기</a></div>
+                                                                                                                  class="float-lg-right btn btn-outline-primary" style="color:#646464;">주소로 찾기</a></div>
                         <div class="btn-group btn-group-lg float-lg-right mr-2" role="group" aria-label="..."> <a th:href="@{/countmanagerlist}"
-                                                                                              class="nav-link btn btn-outline-light">조회순</a></div>
+                                                                                                                  class="float-lg-right btn btn-outline-primary" style="color:#646464;">조회순</a></div>
                         <div class="btn-group btn-group-lg float-lg-right mr-2 " role="group" aria-label="..."> <a th:href="@{/Datemanagerlist}"
-                                                                                              class="nav-link btn btn-outline-light">날짜순</a></div>
+                                                                                                                   class="float-lg-right btn btn-outline-primary" style="color:#646464;">날짜순</a></div>
 
                     </div>
                 </div>
@@ -57,10 +57,12 @@
 
                         <div class="mb-4 opacity-7 text-center">
                             <span class="" th:text="${board.title}"
-                                  style="font-family: 'Bauhaus 93'; color:white; font-size:1.5em; text-align: center;"></span>
+                                  style="font-family: 'Bauhaus 93'; color:#646464; font-size:1.5em; text-align: center;"></span>
                         </div>
+                        <p><span class="float-lg-right" th:text="${board.address}"
+                                 style="font-family: 'Bauhaus 93'; color:#646464; font-size: large" ></span></p>
                         <p><span class="float-lg-right" th:text="${board.writer}"
-                                 style="font-family: 'Bauhaus 93'; color:white; font-size: large" ></span></p>
+                                 style="font-family: 'Bauhaus 93'; color:#646464; font-size: large" ></span></p>
 
                     </a>
                 </div>

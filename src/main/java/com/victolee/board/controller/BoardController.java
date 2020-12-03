@@ -140,7 +140,7 @@ public class BoardController {
         try {
 
 
-            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -173,7 +173,7 @@ public class BoardController {
     public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         try {
 
-            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -253,7 +253,7 @@ public class BoardController {
             //이미지 경로 생성
 
 
-            String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
 
 
             String ckUploadPath = path + uid + "_" + fileName;
@@ -311,7 +311,7 @@ public class BoardController {
         //서버에 저장된 이미지 경로
 
 
-        String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "C:\\Users\\oplm1\\OneDrive\\문서\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
 
 
 

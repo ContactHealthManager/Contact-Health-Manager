@@ -109,11 +109,8 @@
                         <li class="list-group-item" v-for="message in messages">
                             {{message.sender}} - {{message.message}}
                         </li>
-<<<<<<< HEAD
-                        <li th:each="message : ${chatMessage}"class="list-group-item" style="background-color: #2cbd7b">
-=======
                         <li th:each="message : ${chatMessage}"class="list-group-item">
->>>>>>> origin/jaebin
+
                             [[${message.sender}]] - [[${message.message}]]
                         </li>
                     </ul>

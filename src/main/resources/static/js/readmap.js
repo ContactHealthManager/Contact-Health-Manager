@@ -82,17 +82,17 @@ $.ajax({
                 position: positions[i].latlng, // 마커를 표시할 위치
                 title: positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
                 image: markerImage1, // 마커 이미지
-
+                clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
             });
             var url = "post/"+boardid[i];
             var a = document.getElementById('b')
+            var iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
             // 마커에 표시할 인포윈도우를 생성합니다
             var infowindow = new kakao.maps.InfoWindow({
 
                 content:   '    <div class="info">' +
                     '        <div class="title" style="color: black">' +
                     boardtitle[i] +
-                    '            <div class="close" onclick="InfoWindow.close()" title="닫기"></div>' +
                     '        </div>' +
                     '        <div class="body" style="font-size: 15px">' +
                     '            <div class="desc">' +
@@ -101,25 +101,16 @@ $.ajax({
                     '            </div>' +
                     '        </div>' +
                     '    </div>'
+                ,
+                removable : iwRemoveable
+
             });
-            // 마커에 mouseover 이벤트와 mouseout 이벤트를 등록합니다
-            // 이벤트 리스너로는 클로저를 만들어 등록합니다
-            // for문에서 클로저를 만들어 주지 않으면 마지막 마커에만 이벤트가 등록됩니다
-            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
-            // kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+
         }
-        // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-        function makeOverListener(map, marker, infowindow) {
-            return function() {
-                infowindow.open(map, marker);
-            };
-        }
-// // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-//         function makeOutListener(infowindow) {
-//             return function() {
-//                 infowindow.close();
-//             };
-//         }
+        kakao.maps.event.addListener(marker, 'click', function() {
+            // 마커 위에 인포윈도우를 표시합니다
+            infowindow.open(map, marker);
+        });
 
         console.log("성공");
         console.log(data)
