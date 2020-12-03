@@ -26,7 +26,9 @@
             <div>
                 <div>
                     <br>
-                    <a th:href="@{/servicepost}" class="nav-link btn btn-outline-light">지금 바로 문의사항 남기기 </a>
+                    <br>
+                    <br>
+                    <a th:href="@{/servicepost}" class="nav-link btn btn-outline-dark" style="color: black">지금 바로 문의사항 남기기 </a>
 <!--                    <a th:href="@{/mail}">-->
 <!--                        <button type="button" class="float-lg-right btn btn-outline-primary">답변하기(관리자만 보여야함)</button>-->
 <!--                    </a>-->
@@ -44,16 +46,16 @@
                         <!-- CONTENTS !-->
                         <tr th:each="servicecenter : ${servicecenterList}">
                             <td>
-                                <span th:text="${servicecenter.id}"></span>
+                                <span style="color: black" th:text="${servicecenter.id}"></span>
                             </td>
                             <td>
                                 <a th:href="@{'/servicepost/' + ${servicecenter.id}}">
-                                    <p><span th:text="${servicecenter.title}"></span></p>
+                                    <p><span style="color: black" th:text="${servicecenter.title}"></span></p>
 
                                 </a>
                             </td>
                             <td>
-                                <p><span th:text="${servicecenter.user}" style="color: white"></span></p>
+                                <p><span th:text="${servicecenter.user}" style="color: black"></span></p>
                             </td>
 
                         </tr>

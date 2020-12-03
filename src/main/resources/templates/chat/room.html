@@ -8,113 +8,106 @@
 </head>
 
 
-
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
 
-<style>
-    [v-cloak] {
-        display: none;
-    }
-</style>
-
-
 <div class="site-wrap">
-<div class="site-mobile-menu site-navbar-target">
-    <div class="site-mobile-menu-header">
-        <div class="site-mobile-menu-close mt-3">
-            <span class="icon-close2 js-menu-toggle"></span>
-        </div>
-    </div>
-    <div class="site-mobile-menu-body"></div>
-</div>
-
-<header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
-        th:replace="/common/header.html :: header">
-</header>
-
-<div class="site-section section-2" id="classes-section">
-    <div class="site-section bg-dark" id="contact-section">
-        <div class="container" id="app" v-cloak>
-
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <h3>나의 채팅 목록</h3>
-                </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="input-group">
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action"
-                        v-for="item in chatrooms" v-bind:key="item.roomid"
-                        v-on:click="enterRoom(item.roomid, item.name)">
-                        <h6>{{item.name}} <span class="badge badge-info badge-pill">{{item.userCount}}</span></h6>
-                    </li>
-                </ul>
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close mt-3">
+                <span class="icon-close2 js-menu-toggle"></span>
             </div>
         </div>
+        <div class="site-mobile-menu-body"></div>
     </div>
-</div>
 
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+            th:replace="/common/header.html :: header">
+    </header>
 
-
-<!-- JavaScript -->
-<script th:src="@{/webjars/vue/2.5.16/dist/vue.min.js}"></script>
-<script th:src="@{/webjars/axios/0.17.1/dist/axios.min.js}"></script>
-<script>
-    var vm = new Vue({
-        el: '#app',
-        data: {
-            room_name: '',
-            chatrooms: []
-        },
-        created() {
-            this.findAllRoom();
-        },
-        methods: {
-            findAllRoom: function () {
-                axios.get('/chat/rooms').then(response => {
-                    // prevent html, allow json array
-                    if (Object.prototype.toString.call(response.data) === "[object Array]")
-                        this.chatrooms = response.data;
-                });
-            },
-            createRoom: function () {
-                if ("" === this.room_name) {
-                    alert("방 제목을 입력해 주십시요.");
-                    return;
-                } else {
-                    var params = new URLSearchParams();
-                    params.append("name", this.room_name);
-                    axios.post('/chat/room', params)
-                        .then(
-                            response => {
-                                alert(response.data.name + "방 개설에 성공하였습니다.")
-                                this.room_name = '';
-                                this.findAllRoom();
-
-                            }
-                        )
-                        .catch(response => {
-                            alert("채팅방 개설에 실패하였습니다.");
-                        });
-                }
-            },
-            enterRoom: function (roomid, roomName) {
-
-                localStorage.setItem('wschat.roomid', roomid);
-                localStorage.setItem('wschat.roomName', roomName);
-                location.href = "/chat/room/enter/" + roomid;
-            }
+    <style>
+        [v-cloak] {
+            display: none;
         }
-    });
-</script>
+    </style>
+
+    <div class="site-section section-2" id="classes-section">
+        <div class="site-section bg-dark" id="contact-section">
+            <div class="container" id="app" v-cloak>
+                <div class="row justify-content-center">
+                    <div class="list-group col-md-5 text-center">
+                        <a href="#" class="list-group-item " style="background-color: #0b0b0b">
+                            나의 채팅 목록
+                        </a>
+                        <div v-for="item in chatrooms" v-bind:key="item.roomid"
+                             v-on:click="enterRoom(item.roomid, item.name)">
+                            <a href="#" class="list-group-item" style="color: black">{{item.name}} <span
+                                    class="badge badge-info badge-pill">{{item.userCount}}</span></a>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- JavaScript -->
+    <script th:src="@{/webjars/vue/2.5.16/dist/vue.min.js}"></script>
+    <script th:src="@{/webjars/axios/0.17.1/dist/axios.min.js}"></script>
+    <script>
+        var vm = new Vue({
+            el: '#app',
+            data: {
+                room_name: '',
+                chatrooms: []
+            },
+            created() {
+                this.findAllRoom();
+            },
+            methods: {
+                findAllRoom: function () {
+                    axios.get('/chat/rooms').then(response => {
+                        // prevent html, allow json array
+                        if (Object.prototype.toString.call(response.data) === "[object Array]")
+                            this.chatrooms = response.data;
+                    });
+                },
+                createRoom: function () {
+                    if ("" === this.room_name) {
+                        alert("방 제목을 입력해 주십시요.");
+                        return;
+                    } else {
+                        var params = new URLSearchParams();
+                        params.append("name", this.room_name);
+                        axios.post('/chat/room', params)
+                            .then(
+                                response => {
+                                    alert(response.data.name + "방 개설에 성공하였습니다.")
+                                    this.room_name = '';
+                                    this.findAllRoom();
+
+                                }
+                            )
+                            .catch(response => {
+                                alert("채팅방 개설에 실패하였습니다.");
+                            });
+                    }
+                },
+                enterRoom: function (roomid, roomName) {
+
+                    localStorage.setItem('wschat.roomid', roomid);
+                    localStorage.setItem('wschat.roomName', roomName);
+                    location.href = "/chat/room/enter/" + roomid;
+                }
+            }
+        });
+    </script>
 
 
 </div>
 <footer class="footer-section" th:replace="/common/footer.html :: footer">
 </footer>
+
 
 <!-- .site-wrap -->
 
@@ -146,6 +139,7 @@
 <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"
         th:integrity="@{sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV}"
         th:crossorigin="@{anonymous}"></script>
+
 
 </body>
 </html>

@@ -21,11 +21,13 @@
     <link
             th:href="@{http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css}"
             rel="stylesheet">
-
     <script
+
             th:src="@{http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js}"></script>
 
+
     <link rel="stylesheet" th:href="@{/css/half.css}">
+
 
 </head>
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
@@ -56,7 +58,6 @@
             <div class="halfmain">
                 <div class="halfleft">
 
-
                     <div id="map" style="width:100%;height:600px;margin-top:10px;display:none">
                     </div>
                     <script th:src="@{http://dmaps.daum.net/map_js_init/postcode.v2.js}">
@@ -69,7 +70,6 @@
 
 
                 </div>
-
                 <div class="halfright">
                     <div class="halfleft2">
                         <label class="col-form-label text-center photoupload" style="font-size: 30px;">
@@ -136,9 +136,9 @@
 
                         </div>
                         <div class="form-group row">
-
                         <textarea class="form-control" id="content" name="content"
                                   placeholder="content" >
+
 
                         </textarea>
 
@@ -215,7 +215,7 @@
     }
 </script>
 <style>
-    img{
+    img {
         width: 300px;
         height: 170px;
     }

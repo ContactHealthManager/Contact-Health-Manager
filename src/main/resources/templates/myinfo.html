@@ -20,49 +20,10 @@
         th:replace="/common/header.html :: header">
 </header>
 
-<!--<div class="site-section">-->
-<!--    <div class="container">-->
-<!--        <div class="row">-->
-<!--            <div class="col-lg-6">-->
-<!--                <h1>내정보 페이지입니다.</h1>-->
-<!--                <img th:src="@{/images/person_1.jpg}" alt="Image" style="float:left" class="img-fluid mb-5">-->
-<!--            </div>-->
-<!--            <div class="col-lg-5 ml-auto">-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">아이디</span>-->
-<!--                    [[${id}]]-->
-<!--                </p>-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">전화번호</span>-->
-<!--                    [[${phone}]]-->
-<!--                </p>-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">이메일</span>-->
-<!--                    [[${email}]]-->
-<!--                </p>-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">역할</span>-->
-<!--                    [[${role}]]-->
-<!--                </p>-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">닉네임</span>-->
-<!--                    [[${nicname}]]-->
-<!--                </p>-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">경력</span>-->
-<!--                    [[${career}]]-->
-<!--                </p>-->
-<!--                <p class="mb-1">-->
-<!--                    <span class="text-white d-block">주소</span>-->
-<!--                    [[${address}]]-->
-<!--                </p>-->
-<!--                <a href="cart.html" th:href="@{/cart}" class="nav-link btn btn-outline-primary">내가 좋아하는 게시물</a>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+
 <div class="site-section">
-<div class="container emp-profile">
+    <br><br>
+<div class="container emp-profile" style="border: 1px solid #000;">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
@@ -84,8 +45,9 @@
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
                         </li>
                         <li class="nav-item">
-                            <a href="cart.html" th:href="@{/cart}" class="nav-link">내가 좋아하는 게시물</a>
+
                         </li>
+
                     </ul>
                 </div>
             </div>
@@ -95,7 +57,7 @@
         </div>
         <div class="row">
             <div class="col-md-4">
-                <div class="profile-work">
+                <div class="profile-work" style="border-right: grey 1px solid ">
                     <p>WORK LINK</p>
                     <a href="">Website Link</a><br/>
                     <a href="">Bootsnipp Profile</a><br/>
@@ -167,6 +129,15 @@
                                 <p>[[${address}]]</p>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label>찜한 게시물</label>
+                            </div>
+                            <div class="col-md-6">
+                                <p><button class="btn btn-dark" ><a th:href="@{/cart}" style="color:white"> 바로가기</a></button></p>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <div class="row">
@@ -236,36 +207,35 @@
 
 <!-- .site-wrap -->
 
-<script src="js/jquery-3.3.1.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/jquery-ui.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/jquery.countdown.min.js"></script>
-<script src="js/bootstrap-datepicker.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.fancybox.min.js"></script>
-<script src="js/jquery.sticky.js"></script>
-<script src="js/jquery.mb.YTPlayer.min.js"></script>
-
-
-<script src="js/main.js"></script>
+<script th:src="@{/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+<script th:src="@{/js/jquery-ui.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/jquery.stellar.min.js}"></script>
+<script th:src="@{/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/jquery.easing.1.3.js}"></script>
+<script th:src="@{/js/aos.js}"></script>
+<script th:src="@{/js/jquery.fancybox.min.js}"></script>
+<script th:src="@{/js/jquery.sticky.js}"></script>
+<script th:src="@{/js/jquery.mb.YTPlayer.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
 
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+<script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}"
+        th:integrity="@{sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj}"
+        th:crossorigin="@{anonymous}"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js}"
+        th:integrity="@{sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN}"
+        th:crossorigin="@{anonymous}"></script>
+<script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"
+        th:integrity="@{sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV}"
+        th:crossorigin="@{anonymous}"></script>
+
 
 </body>
 </html>

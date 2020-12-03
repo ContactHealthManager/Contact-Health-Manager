@@ -2854,6 +2854,7 @@
   content: "\e86d";
 }
 .icon-close2:before {
+  color: white;
   content: "\e5cd";
 }
 .icon-clear_all:before {

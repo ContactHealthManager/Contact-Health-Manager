@@ -51,7 +51,8 @@
         <div class="site-mobile-menu-body"></div>
     </div>
 
-    <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
+
+    <header class="site-navbar py-4 js-sticky-header site-navbar-target" style="background-color: black" role="banner"
             th:fragment="header">
 
         <div class="container-fluid">
@@ -61,38 +62,41 @@
                 <div class="site-logo"><a href="index.html" th:href="@{/}">Contact Health Manager</a></div>
                 <div class="ml-auto">
                     <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block"
+                            style="text-decoration: none!important;list-style:none;">
 
                             <!--                        <li><a href="#home-section" class="nav-link">홈</a></li>-->
                             <a href="/managerlist" th:href="@{/managerlist}"
-                               class="nav-link btn btn-outline-primary  ">
+                               class="nav-link " style="color: white; text-decoration: none !important;">
                                 <li>전체매니저</li>
                             </a>
                             <a th:href="@{/map}"
-                               class="nav-link btn btn-outline-primary">
+                               class="nav-link " style="color: white; text-decoration: none !important;">
                                 <li>주변매니저</li>
                             </a>
-                            <a th:href="@{/servicecenter}" class="nav-link btn btn-outline-primary">
+                            <a th:href="@{/servicecenter}" class="nav-link"
+                               style="color: white; text-decoration: none !important;">
                                 <li>고객센터</li>
                             </a>
 
 
                             <!-- 검색 form -->
-                            <a class="nav-link">
-                            <form class=" form-inline d-flex justify-content-end" action="/board/search"
-                                  method="GET">
-                                <li>
-                                <div class="nav-link form-group mx-sm-2 mb-2">
-                                    <label for="keyword" class="sr-only">검색</label>
-                                    <input class="nav-link  text-light  bg-dark hh" id="keyword" name="keyword"
-                                               type="text" style="width: 240px;height: 45px"
-                                               placeholder="ex)하체,상체,가슴,이두" autocomplete="off" required/>
-                                    <button type="submit" class="nav-link btn btn-light ml-2">검색</button>
+                            <a class="nav-link" style="color: white; text-decoration: none !important;">
+                                <form class=" form-inline d-flex justify-content-start" action="/board/search"
+                                      method="GET">
+                                    <li>
+                                        <div class="nav-link form-group mx-sm-2 mb-2 " style="padding: 0%">
+                                            <label for="keyword" class="sr-only">검색</label>
+                                            <input class="nav-link  text-light  bg-dark hh " id="keyword" name="keyword"
+                                                   type="text" style="width: 200px;height: 45px"
+                                                   placeholder="ex)하체,상체,가슴,이두" autocomplete="off" required/>
+                                            <br>
+                                            <button type="submit" class="nav-link btn btn-light ">검색</button>
 
-                                </div>
-                                </li>
+                                        </div>
+                                    </li>
 
-                            </form>
+                                </form>
                             </a>
 
                             <!--                        <li><a href="#trainer-section" class="nav-link">인기 매니저</a></li>-->
@@ -102,18 +106,20 @@
                 </div>
                 <div class="ml-auto">
                     <nav class="site-navigation position-relative text-right" role="navigation">
-                        <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block">
+                        <ul class="site-menu main-menu site-menu-dark js-clone-nav mr-auto d-none d-lg-block "
+                            style="text-decoration: none!important;list-style:none;">
 
 
                             <button class="btn btn-light">
-                                <a th:href="@{/chat/room/}">
+                                <a th:href="@{/chat/room/}" style="color: #646464; text-decoration: none !important;">
                                     <li class="cta">My Talk</li>
                                 </a>
                             </button>
 
 
                             <button class="btn btn-light">
-                                <a href="templates/myinfo.html" th:href="@{/myinfo}" sec:authentication="name">
+                                <a href="templates/myinfo.html" th:href="@{/myinfo}" sec:authentication="name"
+                                   style="color: #646464; text-decoration: none !important;">
                                     <li class="cta"></li>
                                 </a>
                             </button>
@@ -122,9 +128,11 @@
                             <!--                                class="rounded border border-primary"><span sec:authentication="authorities"></span></span></a></li>-->
                             <li class="cta">
                                 <form id="logout" action="/logout" method="POST">
-                                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-                                    <input type="submit" class="btn btn-light" value="로그아웃"/>
-                                </form>
+                            <li class="cta">
+                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                                <input type="submit" class="btn btn-light" value="로그아웃"/>
+                            </li>
+                            </form>
                             </li>
 
                         </ul>
@@ -135,6 +143,7 @@
                 </div>
             </div>
         </div>
+
 
     </header>
 

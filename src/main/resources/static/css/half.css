@@ -53,3 +53,10 @@ input.hh:focus {
 input.hh::placeholder {
     color: #ABABAB;
 }
+button>a>li{
+    display: inline-block;
+}
+
+li>form{
+    display: inline-block;
+}

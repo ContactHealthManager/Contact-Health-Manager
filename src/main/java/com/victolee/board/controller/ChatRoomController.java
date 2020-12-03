@@ -1,7 +1,9 @@
 package com.victolee.board.controller;
 
 
+import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.ChatRoomRepository;
+import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
@@ -10,9 +12,11 @@ import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.ArrayList;
@@ -28,7 +32,6 @@ public class ChatRoomController {
     private ChatRoomService chatRoomService;
     @Autowired
     private ChatService chatService;
-
     private final ChatRoomRepository chatRoomRepository;
     private final JwtTokenProvider jwtTokenProvider;
 
@@ -52,7 +55,7 @@ public class ChatRoomController {
 
         for (int i=0; i<farawaychatRooms.size(); i++) {
             if(farawaychatRooms.get(i).getName().contains(username))
-            chatRooms.add(farawaychatRooms.get(i));
+                chatRooms.add(farawaychatRooms.get(i));
 
         }
 
@@ -73,12 +76,13 @@ public class ChatRoomController {
     }
 
     @GetMapping("/room/enter/{roomId}") //채팅방 목록중에 한 채팅방 안으로 들어감
-    public String roomDetail(Model model, @PathVariable String roomId) {
 
+    public String roomDetail(Model model, @PathVariable String roomId,Principal principal) {
+
+        ModelAndView view = new ModelAndView();
         List<ChatMessage> chatMessage = chatService.getchatmessagelist(roomId);
 
-//        List<ChatMessage> chatMessage = chatService.getchatmessagelist(roomId);
-
+        model.addAttribute("userId",principal.getName());
         model.addAttribute("roomId", roomId);
         model.addAttribute("chatMessage", chatMessage);
 
