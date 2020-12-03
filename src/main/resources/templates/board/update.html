@@ -10,21 +10,21 @@
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link
-            href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-            rel="stylesheet">
+            th:href="@{http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css}"
+            th:rel="@{stylesheet}">
     <script
-            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+            th:src="@{/js/summernote.important.js}"></script>
     <script
-            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+            th:src="@{http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js}"></script>
     <!-- include summernote css/js-->
     <link
-            href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
-            rel="stylesheet">
+            th:href="@{http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css}"
+            th:rel="@{stylesheet}">
 
     <script
-            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+            th:src="@{http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js}"></script>
 
-    <link rel="stylesheet" th:href="@{/css/half.css}">
+    <link th:rel="@{stylesheet}" th:href="@{/css/half.css}">
 
 </head>
 
@@ -52,7 +52,7 @@
 
         <form th:action="@{'/post/edit/' + ${boardDto.id}}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="_method" value="put"/>
-            <input type="hidden" name="id" th:value="${boardDto.id}"/>
+            <input type="hidden" name="id" th:value="${boardDto.id}" />
             <div class="halfmain">
 
                 <div class="halfleft">
@@ -79,8 +79,8 @@
                             <div class="text-center">
                                 <div class="border-info text-center ">
                                     <input type="file" name="img" class="" value="사진업로드" onchange="setThumbnail(event);"
-                                           style='display: none;'>
-                                    <input type='text' name='file2' id='file2' style='display: none;'>
+                                           style='display: none;' >
+                                    <input type='text' name='file2' id='file2' style='display: none;' >
 
                                     <svg width="2em" height="2em" viewBox="0 0 17 16" class="bi bi-image"
                                          fill="currentColor"
@@ -127,16 +127,16 @@
                                 <div>
                                     <input type="text" class="d-inline-block form-control text-light bg-dark hh"
                                            id="sample5_address" name="address" placeholder="주소재입력"
-                                           th:value="${boardDto.address}"
-                                    />
+                                           onclick="sample5_execDaumPostcode()"
+                                           required/>
                                     <input type="hidden" class="d-inline-block form-control text-light bg-dark"
                                            id="sample5_x" name="x" placeholder="상세주소 x좌표"
-                                           th:value="${boardDto.x}"
-                                    />
+                                           onclick="sample5_execDaumPostcode()"
+                                           required/>
                                     <input type="hidden" class="d-inline-block form-control text-light bg-dark"
                                            id="sample5_y" name="y" placeholder="상세주소 y좌표"
-                                           th:value="${boardDto.y}"
-                                    />
+                                           onclick="sample5_execDaumPostcode()"
+                                           required/>
                                 </div>
                             </div>
 
@@ -144,7 +144,7 @@
                         <div class="form-group row">
 
                         <textarea class="form-control" id="content" name="content" th:value="${boardDto.content}"
-                                  placeholder="content">
+                                  placeholder="content" >
 
                         </textarea>
 
@@ -220,6 +220,27 @@
     };
     reader.readAsDataURL(event.target.files[0]);
 } </script>
+
+<!-- .site-wrap -->
+
+
+<script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+<script th:src="@{/js/jquery-ui.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/jquery.stellar.min.js}"></script>
+<script th:src="@{/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/jquery.easing.1.3.js}"></script>
+<script th:src="@{/js/aos.js}"></script>
+<script th:src="@{/js/jquery.fancybox.min.js}"></script>
+<script th:src="@{/js/jquery.sticky.js}"></script>
+<script th:src="@{/js/jquery.mb.YTPlayer.min.js}"></script>
+<script th:src="@{/js/main.js}"></script>
+
+
+
 
 </body>
 </html>

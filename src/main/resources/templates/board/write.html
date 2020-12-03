@@ -10,19 +10,20 @@
 
     <!-- include libraries(jQuery, bootstrap) -->
     <link
-            href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css"
-            rel="stylesheet">
-    <script
-            src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
-    <script
-            src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-    <!-- include summernote css/js-->
-    <link
-            href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css"
+            th:href="@{http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css}"
             rel="stylesheet">
 
     <script
-            src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
+            th:src="@{/js/summernote.important.js}"></script>
+    <script
+            th:src="@{http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js}"></script>
+    <!-- include summernote css/js-->
+    <link
+            th:href="@{http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css}"
+            rel="stylesheet">
+
+    <script
+            th:src="@{http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js}"></script>
 
     <link rel="stylesheet" th:href="@{/css/half.css}">
 
@@ -58,12 +59,12 @@
 
                     <div id="map" style="width:100%;height:600px;margin-top:10px;display:none">
                     </div>
-                    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
+                    <script th:src="@{http://dmaps.daum.net/map_js_init/postcode.v2.js}">
                     </script>
-                    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
+                    <script th:src="@{//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services}">
 
                     </script>
-                    <script src="/js/test2map.js">
+                    <script th:src="@{/js/test2map.js}">
                     </script>
 
 
@@ -123,13 +124,13 @@
                                     <input type="text" class="d-inline-block form-control text-light bg-dark hh"
                                            id="sample5_address" name="address" placeholder="주소찾기"
 
-                                           onclick="sample5_execDaumPostcode()"/>
+                                           onclick="sample5_execDaumPostcode()" required/>
                                     <input type="hidden" class="d-inline-block form-control text-light bg-dark"
                                            id="sample5_x" name="x" placeholder="상세주소 x좌표"
-                                           onclick="sample5_execDaumPostcode()"/>
+                                           onclick="sample5_execDaumPostcode()" required/>
                                     <input type="hidden" class="d-inline-block form-control text-light bg-dark"
                                            id="sample5_y" name="y" placeholder="상세주소 y좌표"
-                                           onclick="sample5_execDaumPostcode()"/>
+                                           onclick="sample5_execDaumPostcode()" required/>
                                 </div>
                             </div>
 
@@ -137,7 +138,7 @@
                         <div class="form-group row">
 
                         <textarea class="form-control" id="content" name="content"
-                                  placeholder="content">
+                                  placeholder="content" >
 
                         </textarea>
 
@@ -231,6 +232,30 @@
     };
     reader.readAsDataURL(event.target.files[0]);
 } </script>
+
+<!-- .site-wrap -->
+<!--범인은이놈 이새끼 뺴면 섬머노트되고 반응형이 안되고 안빼면 섬머노트 안되고 반응형이 됨-->
+
+
+
+<script th:src="@{/js/jquery-migrate-3.0.1.min.js}"></script>
+<script th:src="@{/js/jquery-ui.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/owl.carousel.min.js}"></script>
+<script th:src="@{/js/jquery.stellar.min.js}"></script>
+<script th:src="@{/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/js/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/js/jquery.easing.1.3.js}"></script>
+<script th:src="@{/js/aos.js}"></script>
+<script th:src="@{/js/jquery.sticky.js}"></script>
+<script th:src="@{/js/jquery.mb.YTPlayer.min.js}"></script>
+
+
+
+
+<script th:src="@{/js/main.js}"></script>
+
+
 
 </body>
 </html>
