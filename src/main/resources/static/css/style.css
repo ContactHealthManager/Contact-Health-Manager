@@ -451,7 +451,7 @@ h1, h2, h3, h4, h5,
     padding: 5px 20px;
 }
 
-.site-navbar .site-navigation .site-menu a {
+.site-navbar .site-navigation .site-menu > a {
     text-decoration: none !important;
     display: inline-block;
 }
@@ -893,6 +893,8 @@ h1, h2, h3, h4, h5,
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('../images/hero_1.jpg') center center no-repeat;
     /* 메인화면 이미지*/
 }
+
+
 
 @media (max-width: 991.98px) {
     .intro-section:before {
@@ -1424,4 +1426,19 @@ div.note-toolbar.panel-heading {
     display: inline-block;
     text-align: left;
     vertical-align: middle;
+}
+.icon-menu:before {
+    content: "\e5d2";
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
