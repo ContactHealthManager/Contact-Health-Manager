@@ -24,6 +24,7 @@
     <script
             src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js"></script>
 
+    <link rel="stylesheet" th:href="@{/css/half.css}">
 
 </head>
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
@@ -53,105 +54,111 @@
 
             <div class="halfmain">
                 <div class="halfleft">
-                    <label class="col-form-label" style="font-size: 30px;">
-                        <div class="mt-5" style="width:350px; height: 350px">
-                            <div class="text-center">
-                                <input type="file" name="img" class="" value="사진업로드" onchange="setThumbnail(event);"
-                                       style='display: none;'>
-                                <input type='text' name='file2' id='file2' style='display: none;'>
 
-                                <svg width="2em" height="2em" viewBox="0 0 17 16" class="bi bi-image"
-                                     fill="currentColor"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                          d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
-                                </svg> <!--버튼 이미지 <!-->
-                            </div>
-                            <span>사진업로드</span>
-                        </div>
-                    </label>
 
-                    <div id="image_container"></div> <!--썸네일 화면 <!-->
+                    <div id="map" style="width:100%;height:600px;margin-top:10px;display:none">
+                    </div>
+                    <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
+                    </script>
+                    <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
+
+                    </script>
+                    <script src="/js/test2map.js">
+                    </script>
+
 
                 </div>
 
                 <div class="halfright">
-                    <div class="form-group row">
-                        <div class="col-md-6 mb-3 mb-lg-0">
-                            <input type="text" name="title"
-                                   class="form-control"
-                                   placeholder="제목"
-                                   autocomplete="off" required/>
-                        </div>
+                    <div class="halfleft2">
+                        <label class="col-form-label text-center photoupload" style="font-size: 30px;">
+                            <div class="text-center">
+                                <div class="border-info text-center ">
+                                    <input type="file" name="img" class="" value="사진업로드" onchange="setThumbnail(event);"
+                                           style='display: none;'>
+                                    <input type='text' name='file2' id='file2' style='display: none;'>
 
-                        <div class="col-md-6">
-                            <input type="text" name="companyphone"
-                                   class="form-control"
-                                   placeholder="소속 전화번호"
-                                   autocomplete="off" required/>
-                        </div>
-
-                        <div class="col-md-6">
-                            <input type="text" name="companyname"
-                                   class="form-control"
-                                   placeholder="소속 이름"
-                                   autocomplete="off" required/>
-                        </div>
-                        <div class="col-md-6">
-
-                            <div>
-                                <input type="text" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_address" name="address" placeholder="상세주소"
-
-                                       onclick="sample5_execDaumPostcode()"/>
-                                <input type="hidden" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_x" name="x" placeholder="상세주소 x좌표"
-                                       onclick="sample5_execDaumPostcode()"/>
-                                <input type="hidden" class="d-inline-block form-control text-light bg-dark"
-                                       id="sample5_y" name="y" placeholder="상세주소 y좌표"
-                                       onclick="sample5_execDaumPostcode()"/>
+                                    <svg width="2em" height="2em" viewBox="0 0 17 16" class="bi bi-image"
+                                         fill="currentColor"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd"
+                                              d="M14.002 2h-12a1 1 0 0 0-1 1v9l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094L15.002 9.5V3a1 1 0 0 0-1-1zm-12-1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm4 4.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+                                    </svg> <!--버튼 이미지 <!-->
+                                </div>
+                                <span class="text-center">사진업로드</span>
                             </div>
+                        </label>
+                    </div>
+
+                    <div class="halfright2">
+                        <div id="image_container"></div><!--썸네일 화면 <!-->
+                    </div>
+
+                    <div class="clear">
+                        <div class="form-group row">
+                            <div class="col-md-6 mb-3 mb-lg-0 md-1">
+                                <input type="text" name="title"
+                                       class="form-control hh"
+                                       placeholder="제목"
+                                       autocomplete="off" required/>
+                            </div>
+
+                            <div class="col-md-6 md-1">
+                                <input type="text" name="companyphone"
+                                       class="form-control hh"
+                                       placeholder="소속 전화번호"
+                                       autocomplete="off"
+                                       required/>
+                            </div>
+
+                            <div class="col-md-6 md-1">
+                                <input type="text" name="companyname"
+                                       class="form-control hh"
+                                       placeholder="소속 이름"
+                                       autocomplete="off" required/>
+                            </div>
+                            <div class="col-md-6 md-1">
+
+                                <div>
+                                    <input type="text" class="d-inline-block form-control text-light bg-dark hh"
+                                           id="sample5_address" name="address" placeholder="주소찾기"
+
+                                           onclick="sample5_execDaumPostcode()"/>
+                                    <input type="hidden" class="d-inline-block form-control text-light bg-dark"
+                                           id="sample5_x" name="x" placeholder="상세주소 x좌표"
+                                           onclick="sample5_execDaumPostcode()"/>
+                                    <input type="hidden" class="d-inline-block form-control text-light bg-dark"
+                                           id="sample5_y" name="y" placeholder="상세주소 y좌표"
+                                           onclick="sample5_execDaumPostcode()"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-group row">
+
+                        <textarea class="form-control" id="content" name="content"
+                                  placeholder="content">
+
+                        </textarea>
+
+                        </div>
+
+
+                        <div class="col-md-6 clear">
+                            <button type="submit" class="btn btn-primary py-3 px-5 btn-block mb-5 text-center">
+                                등록
+                            </button>
+
+
                         </div>
 
                     </div>
-                    <div class="form-group row">
 
-<textarea class="form-control" id="content" name="content"
-          placeholder="content" maxlength="140" rows="7">
-
-</textarea>
-
-                    </div>
-
-
-                    <div class="col-md-6">
-
-                        <input type="submit" class="btn btn-primary py-3 px-5 btn-block " onclick="move()" value="등록">
-
-                    </div>
-                    <script>
-
-                        function move() {
-
-                            alert("게시물이 저장되었습니다.")
-
-                        }
-
-                    </script>
                 </div>
             </div>
 
-
         </form>
-        <div id="map" style="width:100%;height:500px;margin-top:10px;display:none">
-        </div>
-        <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js">
-        </script>
-        <script src="//dapi.kakao.com/v2/maps/sdk.js?appkey=d8bd55823283a83e9dae821410f43579&libraries=services">
 
-        </script>
-        <script src="/js/test2map.js">
-        </script>
     </div>
 </div>
 <style>
@@ -206,13 +213,21 @@
         });
     }
 </script>
+<style>
+    img{
+        width: 300px;
+        height: 170px;
+    }
+</style>
 <script> function setThumbnail(event) {
     var reader = new FileReader();
+
     reader.onload = function (event) {
         var img = document.createElement("img");
-
         img.setAttribute("src", event.target.result);
+        console.log(img);
         document.querySelector("div#image_container").appendChild(img);
+
     };
     reader.readAsDataURL(event.target.files[0]);
 } </script>

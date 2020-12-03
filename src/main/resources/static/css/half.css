@@ -8,15 +8,48 @@ div.halfleft {
     float: left;
     box-sizing: border-box;
     text-align: center;
+    padding: 3% 10%;
 
 }
 div.halfright {
     width: 50%;
     float: right;
     box-sizing: border-box;
+    padding: 0 5% 0 0;
 
 
 }
+div.halfleft2 {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 3%;
+
+}
+div.halfright2 {
+    width: 50%;
+    float: right;
+    box-sizing: border-box;
+    padding: 3%;
 
 
+}
+div.clear{
+    clear: both;
+}
+div.photoupload{
+    width:200px; height: 100px;
+}
 
+input.hh{
+    outline: none;
+    border : 0;
+    border-bottom: 1px solid #CCCCCC;
+}
+input.hh:focus {
+    border-bottom: 2px solid #048DEE;
+}
+input.hh::placeholder {
+    color: #ABABAB;
+}

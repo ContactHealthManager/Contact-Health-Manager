@@ -43,7 +43,7 @@ public class ChatRoomService {
     }
 
     @Transactional // 저장되어있었던 방목록들 전체를 출력해주는 getlist
-    public List<ChatRoom> getchatroomlist(){  // 카트테이블에 있는것중에 유저가 장바구니에 고른것들만 표시하게함
+    public List<ChatRoom> getchatroomlist(){
 
 //        hashOpsChatRoom.values(CHAT_ROOMS);
 
