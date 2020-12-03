@@ -67,27 +67,20 @@
 <div class="site-section section-2" id="classes-section">
     <div class="site-section bg-dark" id="contact-section">
         <div class="container" id="app" v-cloak>
+                <div class="row justify-content-center">
+                    <div class="list-group col-md-5 text-center" >
+                        <a href="#" class="list-group-item " style="background-color: #0b0b0b">
+                            나의 채팅 목록
+                        </a>
+                        <div v-for="item in chatrooms" v-bind:key="item.roomid"  v-on:click="enterRoom(item.roomid, item.name)">
+                        <a href="#" class="list-group-item">{{item.name}} <span class="badge badge-info badge-pill">{{item.userCount}}</span></a>
 
-            <div class="row justify-content-center">
-                <div class="col-md-12 text-center">
-                    <h3>나의 채팅 목록</h3>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="input-group">
                 </div>
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-action"
-                        v-for="item in chatrooms" v-bind:key="item.roomid"
-                        v-on:click="enterRoom(item.roomid, item.name)">
-                        <h6>{{item.name}} <span class="badge badge-info badge-pill">{{item.userCount}}</span></h6>
-                    </li>
-                </ul>
             </div>
         </div>
-    </div>
-</div>
 
 <!-- JavaScript -->
 <script src="/webjars/vue/2.5.16/dist/vue.min.js"></script>
