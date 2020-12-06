@@ -3,9 +3,9 @@ spring:
     exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
-    username: root
-    password: woqls129@@
+    url: jdbc:mysql://spring-boot-board.czvudhqvulqm.ap-northeast-2.rds.amazonaws.com:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
+    username: jaebin
+    password: woqls129
 
 
 
