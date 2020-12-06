@@ -7,6 +7,8 @@ spring:
     username: root
     password: woqls129@@
 
+
+
   redis:
     host: localhost
     port: 6379
@@ -16,6 +18,7 @@ spring:
     redis:
       flush-mode: immediate
       namespace: spring:session
+
 
 
   mail:
@@ -58,6 +61,9 @@ spring:
       enabled: true
       max-file-size: 10MB
       max-request-size: 10MB
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
 
 
 

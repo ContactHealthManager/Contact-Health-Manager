@@ -23,7 +23,7 @@ public class ImageController {
 	@Autowired
 	ResourceLoader resourceLoader;
 	
-	@PostMapping("/image")
+	@PostMapping("image")
 	public ResponseEntity<?> imageUpload(@RequestParam("file") MultipartFile file) {
 		try {
 			UploadFile uploadFile = imageService.store(file);
@@ -34,7 +34,7 @@ public class ImageController {
 		}
 	}
 	
-	@GetMapping("/image/{fileId}")
+	@GetMapping("image/{fileId}")
 	public ResponseEntity<?> serveFile(@PathVariable Long fileId){
 		try {
 			UploadFile uploadFile = imageService.load(fileId);

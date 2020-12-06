@@ -3,7 +3,7 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml" xmlns:padding="http://www.w3.org/1999/xhtml">
 
-<head th:replace="/common/header.html :: head">
+<head th:replace="common/header.html :: head">
 </head>
 
 <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
@@ -18,7 +18,7 @@
 
 
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
-        th:replace="/common/header.html :: header">
+        th:replace="common/header.html :: header">
 </header>
 
 <div class="site-section section-2" id="classes-section">
@@ -71,7 +71,7 @@
     </div>
 </div>
 
-<footer class="footer-section" th:replace="/common/footer.html :: footer">
+<footer class="footer-section" th:replace="common/footer.html :: footer">
 </footer>
 
 

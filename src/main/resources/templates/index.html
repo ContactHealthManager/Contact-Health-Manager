@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="/common/header.html :: head">
+<head th:replace="common/header.html :: head">
 
 </head>
 
@@ -18,7 +18,7 @@
 
 
 <header class="site-navbar py-4 js-sticky-header site-navbar-target bg-dark" role="banner"
-        th:replace="/common/header.html :: header">
+        th:replace="common/header.html :: header">
 </header>
 
 <div class="intro-section" id="home-section" >
@@ -62,7 +62,7 @@
     </div>
 </div>
 <h1 class="text-center" style="color: #646464">인기 게시글</h1>
-<footer class="footer-section" th:replace="/common/footer.html :: footer">
+<footer class="footer-section" th:replace="common/footer.html :: footer">
 </footer>
 
 

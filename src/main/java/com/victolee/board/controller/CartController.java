@@ -23,7 +23,7 @@ public class CartController {
 
 
     /*장바구니 저장*/
-    @RequestMapping(value = "/post/{no}", method = RequestMethod.POST) //카트에다가 저장.
+    @RequestMapping(value = "post/{no}", method = RequestMethod.POST) //카트에다가 저장.
     public String cartsave(CartDto cartDto, Principal principal) {
 
         // 작성자가 자기자신의 게시물을 찜할수 없도록 조건을 걸어줌.
@@ -45,7 +45,7 @@ public class CartController {
     }
 
     /* 장바구니 게시글 목록 */ /*페이지를 담는 리스트와 그 페이지 안의 목록들을 담은 리스트 */
-    @GetMapping("/cart")
+    @GetMapping("cart")
     public String cartlist(Model model, Principal principal) {
 
         String loginId = principal.getName();
@@ -58,12 +58,12 @@ public class CartController {
         model.addAttribute("cartList", cartList);
 
 
-        return "/cart";
+        return "cart";
     }
 //리스트들의 담은것이 카트번호 id,카트 status
 
     /* 게시글 삭제 */
-    @DeleteMapping("/cart/{no}/{boardno}")
+    @DeleteMapping("cart/{no}/{boardno}")
     public String delete(@PathVariable("no") Long no, @PathVariable("boardno") Long boardno, Principal principal) {
         cartService.deleteCart(no);
 

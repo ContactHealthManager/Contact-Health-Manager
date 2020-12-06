@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="/common/header.html :: head">
+<head th:replace="common/header.html :: head">
 
 </head>
 
@@ -18,7 +18,7 @@
 </div>
 
 <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
-        th:replace="/common/header.html :: header">
+        th:replace="common/header.html :: header">
 </header>
 
 <h2>관리자 전용 페이지</h2>
@@ -30,7 +30,7 @@ ID : <span sec:authentication="name"></span> <br>
     <input type="submit" value="로그아웃"/>
 </form>
 
-<footer class="footer-section" th:replace="/common/footer.html :: footer">
+<footer class="footer-section" th:replace="common/footer.html :: footer">
 </footer>
 </body>
 </html>

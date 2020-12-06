@@ -36,18 +36,18 @@ public class BoardController {
 
     //-----------------------------------jpa로만든 컨트롤러-------------------------------------------------
     /* 메인 화면 */
-    @GetMapping("/")
+    @GetMapping("")
     public String list(@AuthenticationPrincipal UserEntity userEntity,Model model) {
         String role = userEntity.getRole();
         List<BoardDto> boardList = boardService.getBoardlistcount();
         model.addAttribute("boardList", boardList);
         model.addAttribute("role",role);
-        return "/index";
+        return "index";
     }
 
 
     /* 게시글 전체 목록 */ /* 페이지 수를 담는 배열과  그 페이지에 따라 게시글 목록들을 담은 리스트 */
-    @GetMapping("/managerlist")
+    @GetMapping("managerlist")
     public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlist(pageNum);
         Integer[] pageList = boardService.getPageList(pageNum);
@@ -55,13 +55,13 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
 
-        return "/managerlist";
+        return "managerlist";
     }
 
 
 
     //게시물 아이디와 게시물 주소값 , 좌표값 , 그리고 게시물 제목과 작성자 가져오기
-    @RequestMapping(value = "/board/address", method = RequestMethod.GET)
+    @RequestMapping(value = "board/address", method = RequestMethod.GET)
     public @ResponseBody Map<Long,BoardIdAddressDto> getboardIdAddressList(Model model){
         List<BoardIdAddressDto> boardDtoList = boardService.getBoardIdAddress(); // DB에 등록된 User List를 받아온다.
 
@@ -80,7 +80,7 @@ public class BoardController {
     }
 
 
-    @GetMapping("/countmanagerlist")
+    @GetMapping("countmanagerlist")
     public String likelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlistcountsort(pageNum);
         Integer[] pageList = boardService.getPageList(pageNum);
@@ -88,9 +88,9 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
 
-        return "/managerlist";
+        return "managerlist";
     }
-    @GetMapping("/Datemanagerlist")
+    @GetMapping("Datemanagerlist")
     public String Datelist(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<BoardDto> boardList = boardService.getBoardlistdate(pageNum);
         Integer[] pageList = boardService.getPageList(pageNum);
@@ -98,13 +98,13 @@ public class BoardController {
         model.addAttribute("boardList", boardList);
         model.addAttribute("pageList", pageList);
 
-        return "/managerlist";
+        return "managerlist";
     }
 
 
 
     /* 게시글 상세 목록*/
-    @RequestMapping("/post/{no}")
+    @RequestMapping("post/{no}")
     public String detail(@PathVariable("no") Long no, Model model
             ,Principal principal) {
 
@@ -125,7 +125,7 @@ public class BoardController {
 
 
     /* 게시글 쓰기 폼으로 이동*/
-    @GetMapping("/post")
+    @GetMapping("post")
     public String write() {
 
         return "board/write";
@@ -134,14 +134,14 @@ public class BoardController {
 
     /* 게시글 쓰기 */ /* 로그인한 유저가 작성자가 되도록 해줌.*/
     /* 게시물의 썸네일 파일업로드 포함*/
-    @RequestMapping(value = "/post", method = RequestMethod.POST)
+    @RequestMapping(value = "post", method = RequestMethod.POST)
     public String write(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
 
         try {
 
 
 
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -153,16 +153,16 @@ public class BoardController {
             boardDto.setWriter(userid);
             boardService.savePost(boardDto);
 
-            return "redirect:/managerlist";
+            return "redirect:managerlist";
         } catch(Exception e) {
             e.printStackTrace();
         }
 
-        return "redirect:/managerlist";
+        return "redirect:managerlist";
     }
 
     /* 게시글 수정 */
-    @GetMapping("/post/edit/{no}")
+    @GetMapping("post/edit/{no}")
     public String edit(@PathVariable("no") Long no, Model model) {
         BoardDto boardDto = boardService.getPost(no);
 
@@ -170,12 +170,12 @@ public class BoardController {
         return "board/update";
     }
     /* 수정 폼에서 수정 완료*/
-    @PutMapping("/post/edit/{no}")
+    @PutMapping("post/edit/{no}")
     public String update(@RequestParam("img") MultipartFile files, BoardDto boardDto, Principal principal,Map<String, Object> map) {
         try {
 
 
-            String baseDir = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
 
@@ -188,21 +188,21 @@ public class BoardController {
             boardDto.setWriter(userid);
             boardService.savePost(boardDto);
 
-            return "redirect:/managerlist";
+            return "redirect:managerlist";
         } catch(Exception e) {
             e.printStackTrace();
         }
 
 
-        return "redirect:/managerlist";
+        return "redirect:managerlist";
     }
 
     /* 게시글 삭제 */
-    @DeleteMapping("/post/{no}")
+    @DeleteMapping("post/{no}")
     public String delete(@PathVariable("no") Long no) {
         boardService.deletePost(no);
 
-        return "redirect:/managerlist";
+        return "redirect:managerlist";
     }
 
     /* 게시글 검색 */ //키워드를 받아서 검색.
@@ -212,27 +212,27 @@ public class BoardController {
 
         model.addAttribute("boardList", boardDtoList);
 
-        return "/managerlist";
+        return "managerlist";
     }
 
 
     /* 주소를 검색하여 찾는곳  */
-    @GetMapping("/map")
+    @GetMapping("map")
     public String map(){
 
-        return "/map";
+        return "map";
     }
     /* 주소찾기 테스트 페이지*/
-    @GetMapping("/maptest")
+    @GetMapping("maptest")
     public String maptest(){
 
-        return "/test2";
+        return "test2";
     }
 
 
 
     //섬머노트 기능 ,다중 파일 업로드를 위해.
-    @RequestMapping(value="/mine/imageUpload.do", method = RequestMethod.POST)
+    @RequestMapping(value="mine/imageUpload.do", method = RequestMethod.POST)
     public void imageUpload(HttpServletRequest request,
                             HttpServletResponse response, MultipartHttpServletRequest multiFile
             , @RequestParam MultipartFile upload) throws Exception{
@@ -256,7 +256,7 @@ public class BoardController {
 
 
 
-            String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
 
 
             String ckUploadPath = path + uid + "_" + fileName;
@@ -305,7 +305,7 @@ public class BoardController {
      * @throws IOException
      */
     //
-    @RequestMapping(value="/mine/ckImgSubmit.do")
+    @RequestMapping(value="mine/ckImgSubmit.do")
     public void ckSubmit(@RequestParam(value="uid") String uid
             , @RequestParam(value="fileName") String fileName
             , HttpServletRequest request, HttpServletResponse response)
@@ -315,7 +315,7 @@ public class BoardController {
 
 
 
-        String path = "C:\\JAVA_Spring\\캡스톤 프로젝트\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
 
 
 

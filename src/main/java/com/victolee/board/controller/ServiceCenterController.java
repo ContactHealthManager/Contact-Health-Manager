@@ -19,7 +19,7 @@ public class ServiceCenterController {
 
 
     /* 게시글 목록 */
-    @GetMapping("/servicecenter")
+    @GetMapping("servicecenter")
     public String list(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum) {
         List<ServiceCenterDto> servicecenterList = servicecenterService.getServiceCenterlist(pageNum);
         Integer[] pageList = servicecenterService.getPageList(pageNum);
@@ -27,13 +27,13 @@ public class ServiceCenterController {
         model.addAttribute("servicecenterList", servicecenterList);
         model.addAttribute("pageList", pageList);
 
-        return "/servicecenter";
+        return "servicecenter";
     }
 
 
 
     /* 게시글 상세 */
-    @GetMapping("/servicepost/{no}")
+    @GetMapping("servicepost/{no}")
     public String detail(@PathVariable("no") Long no, Model model,Principal principal) {
 
         ServiceCenterDto servicecenterDTO = servicecenterService.getPost(no);
@@ -49,13 +49,13 @@ public class ServiceCenterController {
 
 
     /* 게시글 쓰기 */
-    @GetMapping("/servicepost")
+    @GetMapping("servicepost")
     public String write() {
         return "servicecenter/service_write";
     }
 
     /* 게시글 쓰기 */
-    @RequestMapping(value = "/servicepost", method = RequestMethod.POST)
+    @RequestMapping(value = "servicepost", method = RequestMethod.POST)
 
     public String write(ServiceCenterDto servicecenterDTO, Principal principal) {
 
@@ -64,36 +64,36 @@ public class ServiceCenterController {
         servicecenterDTO.setUser(userid);
         servicecenterService.savePost(servicecenterDTO);
 
-        return "redirect:/servicecenter";
+        return "redirect:servicecenter";
     }
 
 
 
     /* 게시글 수정 */
-    @GetMapping("/servicepost/edit/{no}")
+    @GetMapping("servicepost/edit/{no}")
     public String edit(@PathVariable("no") Long no, Model model) {
         ServiceCenterDto servicecenterDTO = servicecenterService.getPost(no);
 
         model.addAttribute("servicecenterDTO", servicecenterDTO);
-        return "ServiceCenter/service_update";
+        return "servicecenter/service_update";
     }
     /* 수정 폼에서 수정 완료*/
-    @PutMapping("/servicepost/edit/{no}")
+    @PutMapping("servicepost/edit/{no}")
     public String update(ServiceCenterDto servicecenterDTO,Principal principal) {
         String userid = principal.getName();
 
         servicecenterDTO.setUser(userid);
         servicecenterService.savePost(servicecenterDTO);
 
-        return "redirect:/servicecenter";
+        return "redirect:servicecenter";
     }
 
     /* 게시글 삭제 */
-    @DeleteMapping("/servicepost/{no}")
+    @DeleteMapping("servicepost/{no}")
     public String delete(@PathVariable("no") Long no) {
         servicecenterService.deletePost(no);
 
-        return "redirect:/servicecenter";
+        return "redirect:servicecenter";
     }
 
 
