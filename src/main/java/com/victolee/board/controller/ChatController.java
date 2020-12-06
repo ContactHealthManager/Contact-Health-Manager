@@ -4,7 +4,6 @@ package com.victolee.board.controller;
 import com.victolee.board.domain.entity.ChatMessageEntity;
 import com.victolee.board.domain.repository.ChatMessageJpaRepository;
 import com.victolee.board.domain.repository.ChatRoomRepository;
-import com.victolee.board.dto.CartDto;
 import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
@@ -14,10 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.stereotype.Controller;
-
-import org.springframework.ui.Model;
-
-import java.util.List;
 
 //import java.security.Principal;
 
@@ -38,7 +33,7 @@ public class ChatController {
      * @return
      */
 
-    @MessageMapping("/chat/message")
+    @MessageMapping("chat/message")
     public String message(ChatMessage message, @Header("token") String token) {
         String userId = jwtTokenProvider.getUserNameFromJwt(token);
         // 로그인 회원 정보로 대화명 설정

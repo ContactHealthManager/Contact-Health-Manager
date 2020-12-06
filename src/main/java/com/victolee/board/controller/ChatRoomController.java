@@ -1,9 +1,7 @@
 package com.victolee.board.controller;
 
 
-import com.victolee.board.domain.entity.UserEntity;
 import com.victolee.board.domain.repository.ChatRoomRepository;
-import com.victolee.board.dto.BoardDto;
 import com.victolee.board.dto.ChatMessage;
 import com.victolee.board.dto.ChatRoom;
 import com.victolee.board.dto.UserInfoDto;
@@ -12,7 +10,6 @@ import com.victolee.board.service.ChatService;
 import com.victolee.board.service.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +21,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("/chat")
+@RequestMapping("chat")
 public class ChatRoomController {
 
 
@@ -38,7 +35,7 @@ public class ChatRoomController {
 
     @GetMapping("/room") //채팅방 목록 페이지로 연결
     public String rooms(Model model) {
-        return "/chat/room";
+        return "chat/room";
     }
 
     @GetMapping("/rooms")
@@ -87,7 +84,7 @@ public class ChatRoomController {
         model.addAttribute("chatMessage", chatMessage);
 
 
-        return "/chat/roomdetail";
+        return "chat/roomdetail";
     }
 
     @GetMapping("/room/{roomid}") //채팅방 목록중 한 채팅방 찾기
