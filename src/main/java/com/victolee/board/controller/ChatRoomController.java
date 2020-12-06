@@ -21,7 +21,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Controller
-@RequestMapping("chat")
+@RequestMapping("/chat")
 public class ChatRoomController {
 
 
@@ -35,7 +35,7 @@ public class ChatRoomController {
 
     @GetMapping("/room") //채팅방 목록 페이지로 연결
     public String rooms(Model model) {
-        return "chat/room";
+        return "/chat/room";
     }
 
     @GetMapping("/rooms")
@@ -84,7 +84,7 @@ public class ChatRoomController {
         model.addAttribute("chatMessage", chatMessage);
 
 
-        return "chat/roomdetail";
+        return "/chat/roomdetail";
     }
 
     @GetMapping("/room/{roomid}") //채팅방 목록중 한 채팅방 찾기
