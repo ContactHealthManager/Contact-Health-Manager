@@ -141,7 +141,7 @@ public class BoardController {
 
 
 
-            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "/home/ec2-user/apps/spring_practice/src/main/resources/static/images/media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -175,7 +175,7 @@ public class BoardController {
         try {
 
 
-            String baseDir = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "/home/ec2-user/apps/spring_practice/src/main/resources/static/images/media";//파일 저장 코드
 
 
 
@@ -256,7 +256,7 @@ public class BoardController {
 
 
 
-            String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
+            String path = "/home/ec2-user/apps/spring_practice/src/main/resources/static/images/summernote";// fileDir는 전역 변수라 그냥 이미지 경로 설정해주면 된다.
 
 
             String ckUploadPath = path + uid + "_" + fileName;
@@ -315,7 +315,7 @@ public class BoardController {
 
 
 
-        String path = "C:\\Users\\jaebin2\\Documents\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "/home/ec2-user/apps/spring_practice/src/main/resources/static/images/summernote";
 
 
 
