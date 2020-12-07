@@ -1,6 +1,8 @@
 #chatWrap {
-    width:360px; margin: 0 auto;
+    margin:0 auto;
+    width: 360px;
     border: 1px solid #ddd;
+
 }
 
 #chatHeader {
@@ -17,6 +19,7 @@
     overflow-y: auto;
     padding: 10px;
     transform: rotate(180deg);
+    border-top: 3px solid #ddd;
 }
 
 .myMsg {
@@ -59,9 +62,10 @@
 
 
 #chatForm {
+    text-align:center; margin:0px auto;
     display: block;
     width: 100%;
-    height: 50px;
+    height: 40px;
     border-top: 2px solid #f0f0f0;
 }
 
@@ -85,11 +89,20 @@
     font-size: 17px;
 }
 #contentCover{
-    width: 1280px;
-    margin: 0 auto;
     padding-top: 20px;
     display: flex;
     justify-content: space-around;
+}
+#SendButton{
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    color: white;
+}
+#app{
+    text-align:center; margin:0px auto;
+    width: 360px;
+    border: 1px solid #ddd;
 }
 [v-cloak] {
     display: none;

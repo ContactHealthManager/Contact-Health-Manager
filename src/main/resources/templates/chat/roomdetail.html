@@ -118,7 +118,7 @@
                         <input type="hidden" name="roomid" value="{{message.roomid}}"/>
                         <input type="hidden" name="message" value="{{message.message}}"/>
                         <input type="hidden" name="sender" value="{{message.sender}}"/>
-                        <input type="button" value="보내기" @click="sendMessage('TALK')">
+                        <input type="button" id="sendButton" value="보내기" @click="sendMessage('TALK')">
 
                     </form>
                 </div>
