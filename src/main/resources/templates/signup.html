@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/common/header.html :: head">
+
+</head>
 <head>
     <meta charset="UTF-8">
     <title>sign up</title>
@@ -116,10 +122,17 @@
         }
     </style>
 </head>
-<body>
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
 
 
-<section class="login-block">
+<div class="login-block">
     <div class="container">
         <div class="row">
             <div class="col-md-4  login-sec">
@@ -185,7 +198,7 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
 </body>
 </html>
