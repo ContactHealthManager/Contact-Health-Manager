@@ -107,11 +107,17 @@ $.ajax({
 
             });
 
+            kakao.maps.event.addListener(marker, 'click', makeClickListener(map, marker, infowindow));
+
         }
-        kakao.maps.event.addListener(marker, 'click', function() {
-            // 마커 위에 인포윈도우를 표시합니다
-            infowindow.open(map, marker);
-        });
+
+        function makeClickListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+
+      
 
         console.log("성공");
         console.log(data)
