@@ -112,14 +112,13 @@
                             </div>
                         </div>
                     </div>
+                    <input type="text" autocomplete="off" size="30" id="message1" v-model="message"
+                           placeholder="메시지를 입력하세요" v-on:keypress.enter="sendMessage('TALK')">
                     <form id="chatForm">
-                        <input type="text" autocomplete="off" size="30" id="message1" v-model="message"
-                               placeholder="메시지를 입력하세요" v-on:keypress.enter="sendMessage('TALK')">
                         <input type="hidden" name="roomid" value="{{message.roomid}}"/>
                         <input type="hidden" name="message" value="{{message.message}}"/>
                         <input type="hidden" name="sender" value="{{message.sender}}"/>
-                        <input type="button" value="보내기" @click="sendMessage('TALK')">
-
+                        <input type="button" id="SendButton"value="보내기" @click="sendMessage('TALK')">
                     </form>
                 </div>
             </div>

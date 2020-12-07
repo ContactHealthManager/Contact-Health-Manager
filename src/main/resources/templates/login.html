@@ -1,5 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="/common/header.html :: head">
+
+</head>
 <head>
     <meta charset="UTF-8">
 
@@ -21,7 +26,8 @@
             width: 100%;
             height: 100%;
             padding: 6.5% 8% 8% 8%;
-
+            margin: 0 auto;
+            background-repeat:no-repeat
         }
 
         .banner-sec {
@@ -36,6 +42,8 @@
             background: #fff;
             border-radius: 10px;
             box-shadow: 15px 20px 0px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            height: 100%;
         }
 
         .carousel-inner {
@@ -124,9 +132,18 @@
         }
     </style>
 </head>
-<body>
 
-<section class="login-block">
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+<div class="site-mobile-menu site-navbar-target">
+    <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+            <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+    </div>
+    <div class="site-mobile-menu-body"></div>
+</div>
+<div class="login-block">
     <div class="container">
         <div class="row">
             <div class="col-md-4 mt-5 login-sec">
@@ -185,7 +202,8 @@
             </div>
         </div>
     </div>
-</section>
-
+</div>
 </body>
+
+
 </html>
