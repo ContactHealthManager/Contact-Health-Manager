@@ -21,7 +21,7 @@ var marker;
 
 
 $.ajax({
-    url : "http://localhost:8080/board/address", // test.jsp 에서 받아옴
+    url : "http://13.124.4.222:8080/board/address", // test.jsp 에서 받아옴
     dataType :"json", // 데이터타입을 json 으로 받아옴
 
     success : function(data) {
