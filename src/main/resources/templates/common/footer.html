@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
       xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:replace="/common/header.html :: head">
+<head th:replace="common/header.html :: head">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Contact Health manager</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/board.css}">
@@ -28,7 +28,7 @@
     <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
 
     <link rel="stylesheet" th:href="@{/css/aos.css}">
-    <link th:href="@{css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/jquery.mb.YTPlayer.min.css}" th:media="@{all}" rel="stylesheet" th:type="@{text/css}">
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>

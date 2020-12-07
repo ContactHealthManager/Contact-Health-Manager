@@ -68,7 +68,12 @@ spring:
   thymeleaf:
     prefix: classpath:/templates/
     suffix: .html
-
+    check-template-location: true
+    mode: LEGACYHTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
 
 
 

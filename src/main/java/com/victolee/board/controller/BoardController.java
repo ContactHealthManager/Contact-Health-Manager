@@ -141,7 +141,7 @@ public class BoardController {
 
 
 
-            String baseDir = "\\home\\ec2-user\\apps\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
+            String baseDir = "home\\ec2-user\\apps\\spring_practice\\src\\main\\resources\\static\\images\\media";//파일 저장 코드
 
 
             String filePath = baseDir + "\\" + files.getOriginalFilename();
@@ -315,7 +315,7 @@ public class BoardController {
 
 
 
-        String path = "\\home\\ec2-user\\apps\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
+        String path = "home\\ec2-user\\apps\\spring_practice\\src\\main\\resources\\static\\images\\summernote";
 
 
 

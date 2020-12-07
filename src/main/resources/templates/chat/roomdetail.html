@@ -12,8 +12,8 @@
     <title>Contact Health manager</title>
 
     <link rel="stylesheet" th:href="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css}"
-          th:integrity="@{sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z}"
-          th:crossorigin="@{anonymous}">
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+          crossorigin="anonymous">
 
     <link rel="stylesheet" th:href="@{/css/board.css}">
     <link rel="stylesheet" th:href="@{/css/chat.css}">
@@ -33,7 +33,7 @@
     <link rel="stylesheet" th:href="@{/fonts/flaticon/font/flaticon.css}">
 
     <link rel="stylesheet" th:href="@{/css/aos.css}">
-    <link th:href="@{css/jquery.mb.YTPlayer.min.css}" media="all" rel="stylesheet" type="text/css">
+    <link th:href="@{/css/jquery.mb.YTPlayer.min.css}" th:media="@{all}" rel="stylesheet" th:type="@{text/css}">
 
     <link rel="stylesheet" th:href="@{/css/style.css}">
 
@@ -61,7 +61,7 @@
     </div>
 
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner"
-            th:replace="/common/header.html :: header">
+            th:replace="common/header.html :: header">
     </header>
     <br>
     <br>
@@ -196,7 +196,7 @@
 
     });
 </script>
-<footer class="footer-section" th:replace="/common/footer.html :: footer">
+<footer class="footer-section" th:replace="common/footer.html :: footer">
 </footer>
 
 <!-- .site-wrap -->
@@ -221,14 +221,14 @@
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script th:src="@{https://code.jquery.com/jquery-3.5.1.slim.min.js}"
-        th:integrity="@{sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj}"
-        th:crossorigin="@{anonymous}"></script>
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="@{anonymous}"></script>
 <script th:src="@{https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js}"
-        th:integrity="@{sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN}"
-        th:crossorigin="@{anonymous}"></script>
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
 <script th:src="@{https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js}"
-        th:integrity="@{sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV}"
-        th:crossorigin="@{anonymous}"></script>
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 
 </body>
 </html>
