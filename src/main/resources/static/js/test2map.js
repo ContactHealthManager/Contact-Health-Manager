@@ -22,7 +22,7 @@ var marker;
 $(function () {
     $.ajax({
         type: "GET",
-        url: '/board/address',
+        url: 'http://13.124.4.222:8080/board/address',
         dataType: "json",
         success: function (data) {
             console.log("접속 성공");
