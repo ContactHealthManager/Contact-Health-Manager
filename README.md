@@ -31,11 +31,21 @@
 ---
 
 ## Front 화면
+-메인페이지
 ![main](https://user-images.githubusercontent.com/43032589/102874509-e21fb500-4485-11eb-88c2-d0bec7ee1af2.png)
+
+-게시물 등록
 ![register](https://user-images.githubusercontent.com/43032589/102874513-e2b84b80-4485-11eb-8927-0a56217b9c32.png)
+
+-게시물 상세정보
 ![detail](https://user-images.githubusercontent.com/43032589/102874517-e350e200-4485-11eb-95e0-a6036b86bc86.png)
+
+-주변 매니저
 ![map](https://user-images.githubusercontent.com/43032589/102874520-e350e200-4485-11eb-9a1d-cd03b32d5de6.png)
+
+-내 정보
 ![my](https://user-images.githubusercontent.com/43032589/102874521-e3e97880-4485-11eb-9778-254a0b2d4651.png)
+
 
 ---
 
