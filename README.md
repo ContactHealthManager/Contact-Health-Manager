@@ -80,6 +80,7 @@
 
 ## author
 정재빈(jaebin1234)<br>
+-<a href="https://https://github.com/jaebin1234"정재빈(jaebin1234)</a><br>
 이성수(LeeSeongSu)<br>
 진형준(jhj960918)<br>
 
