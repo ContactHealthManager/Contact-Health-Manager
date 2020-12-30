@@ -85,6 +85,7 @@
 <a href="https://github.com/jhj960918">진형준(jhj960918)</a><br>
 
 ### Helper
-김승래(Seungrae)<br>
+
+<a href="https://github.com/Seungrae">김승래(Seungrae)</a><br>
 박현주()<br>
 
