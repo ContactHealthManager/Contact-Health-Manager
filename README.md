@@ -78,9 +78,9 @@
 
 ---
 
-## author
+## author (git address)
 정재빈(jaebin1234)<br>
--<a href="//https://github.com/jaebin1234"정재빈(jaebin1234)</a><br>
+-<a href="https://github.com/jaebin1234">정재빈(jaebin1234)</a>
 이성수(LeeSeongSu)<br>
 진형준(jhj960918)<br>
 
