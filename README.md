@@ -79,10 +79,10 @@
 ---
 
 ## author (git address)
-정재빈(jaebin1234)<br>
--<a href="https://github.com/jaebin1234">정재빈(jaebin1234)</a>
-이성수(LeeSeongSu)<br>
-진형준(jhj960918)<br>
+
+<a href="https://github.com/jaebin1234">정재빈(jaebin1234)</a><br>
+<a href="https://github.com/LeeSeongSu">이성수(LeeSeongSu)</a><br>
+<a href="https://github.com/jhj960918">진형준(jhj960918)</a><br>
 
 ### Helper
 김승래(Seungrae)<br>
