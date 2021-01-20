@@ -86,6 +86,6 @@
 
 ### Helper
 
-<a href="https://github.com/Seungrae">김승래(Seungrae)</a><br>
+<a href="https://github.com/Seungpang">김승래(Seungpang)</a><br>
 박현주()<br>
 
