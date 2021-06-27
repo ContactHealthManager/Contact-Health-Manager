@@ -1,11 +1,7 @@
 spring:
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://spring-boot-board.czvudhqvulqm.ap-northeast-2.rds.amazonaws.com:3306/board?serverTimezone=UTC&characterEncoding=UTF-8
-    username: jaebin
-    password: woqls129
+
     hikari:
       idle-timeout: 10000
       max-lifetime: 420000
